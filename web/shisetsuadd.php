@@ -29,7 +29,7 @@
 	</select>
 	<br>
 	<p style="display:inline;">緯度・経度</p>
-	<input id="latlng" class="form-control" maxlength="33" placeholder="999.99999,999.99999" style="width: 600px;">
+	<input id="latlng" class="form-control" maxlength="33" placeholder="999.99999,999.99999" style="width: 600px;"/>
 	<input type="button" class="btn btn-default" style="display:inline;" onclick="map()" value="地図の確認" style="width: 100px;"/>
 	<br><br>
 	<p style="display:inline;">画像ＵＲＬ</p>
