@@ -30,10 +30,11 @@
 	<br>
 	<p style="display:inline;">緯度・経度</p>
 	<input id="latlng" class="form-control" maxlength="33" placeholder="999.99999,999.99999" style="width: 600px;">
-	<input type="button" class="btn btn-default" onclick="map()" value="地図の確認" style="width: 100px;"/>
+	<input type="button" class="btn btn-default" style="display:inline;" onclick="map()" value="地図の確認" style="width: 100px;"/>
 	<br><br>
 	<p style="display:inline;">画像ＵＲＬ</p>
 	<input id="iurl" class="form-control" maxlength="300" placeholder="https://www.yyy.zzz.jpg" style="width: 600px;">
+	<input type="button" class="btn btn-default" style="display:inline;" onclick="image()" value="画像の確認" style="width: 100px;"/>
 	※必ずhttpsから始まるURLを指定してください
 	<br><br>
 	<p style="display:inline;">詳細ＵＲＬ</p>
@@ -242,6 +243,12 @@ function back(){
 function map(){
 	latlng = document.getElementById('latlng').value;
 	window.open( "http://maps.google.com/maps?q=" + latlng + "+(ココ)", '_blank');
+}
+
+//画像の確認
+function image(){
+	imageurl = document.getElementById('iurl').value;
+	window.open( imageurl, '_blank');
 }
 </script>
 </body>
