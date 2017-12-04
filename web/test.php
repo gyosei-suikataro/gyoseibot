@@ -40,7 +40,6 @@ $(function(){
 	  }).then(init);
 
 	  function init() {
-		  /*
 		  botui.message.bot({
 			  delay: 1500,  //メッセージの表示タイミングをずらす
 		      content: 'はじめにテストするボットを選択してください'
@@ -59,31 +58,9 @@ $(function(){
 		        }]
 		      });
 		  }).then(function(res) {
-			  delay: 1500,
-			  content: '「' + res.value + '」ですね。かしこまりました。'
-		  });
-		  */
-		  botui.message.bot({
-			  delay: 1500,  //メッセージの表示タイミングをずらす
-		      content: 'はじめにテストするボットを選択してください'
-		  }).then(function() {
-		      return botui.action.button({
-		        delay: 1000,
-		        action: [{
-		          text: '属性登録',
-		          value: 'aa'
-		        }, {
-		          text: '検診相談',
-		          value: 'bb'
-		        }, {
-		          text: 'その他のお問い合わせ',
-			      value: 'cc'
-		        }]
-		      });
-		  }).then(function(res) {
 			  return botui.message.bot({
-			  delay: 1500,
-			  content: '」ですね。かしこまりました。'
+			  	delay: 1500,
+			  	content: '「' + res.value + '」ですね。かしこまりました。'
 			  })
 		  });
 	  }
