@@ -31,7 +31,7 @@ $(function(){
 
 	var url = 'https://api.github.com/search/repositories?q=';
 	  var msgIndex, key;
-	  var botui = new BotUI('search-repo');
+	  var botui = new BotUI('chat-app');
 
 
 	  //初期メッセージ
