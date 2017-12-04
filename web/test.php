@@ -29,7 +29,7 @@
 </body>
 <script>
 $(function(){
-	$("#header").load("header.html");
+	//$("#header").load("header.html");
 
 	var url = 'https://api.github.com/search/repositories?q=';
 	  var msgIndex, key;
