@@ -71,13 +71,13 @@ $(function(){
 		        delay: 1000,
 		        action: [{
 		          text: '属性登録',
-		          value: '属性登録'
+		          value: 'aa'
 		        }, {
 		          text: '検診相談',
-		          value: '検診相談'
+		          value: 'bb'
 		        }, {
 		          text: 'その他のお問い合わせ',
-			      value: 'その他のお問い合わせ'
+			      value: 'cc'
 		        }]
 		      });
 		  }).then(function(res) {
