@@ -57,11 +57,11 @@ $(function(){
 		          text: 'その他のお問い合わせ',
 			      value: 'その他のお問い合わせ'
 		        }]
-		      }
+		      });
 		  }).then(function(res) {
 			  delay: 1500,
 			  content: '「' + res + '」ですね。かしこまりました。'
-		  })
+		  });
 	  }
 
 
