@@ -21,10 +21,10 @@
 <div id="header"></div>
 <div class="container">
 	<h1>チャットボットテスト</h1>
-	<div class="botui-app-container" id="chat-app">
+</div>
+<div class="botui-app-container" id="chat-app">
     	<!-- チャットの表示  -->
     	<bot-ui></bot-ui>
-	</div>
 </div>
 </body>
 <script>
