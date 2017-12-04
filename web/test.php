@@ -39,6 +39,7 @@ $(function(){
 	    content: 'こんにちは！'
 	  }).then(init);
 
+	  /*
 	  function init() {
 		  botui.message.bot({
 			  delay: 1500,  //メッセージの表示タイミングをずらす
@@ -62,9 +63,10 @@ $(function(){
 			  content: '「' + res.value + '」ですね。かしこまりました。'
 		  });
 	  }
+	  */
 
 
-	  function init2() {
+	  function init() {
 	    botui.message.bot({
 	      delay: 1500,  //メッセージの表示タイミングをずらす
 	      content: '気になるキーワードで、GitHubの総リポジトリ数をお答えします！'
