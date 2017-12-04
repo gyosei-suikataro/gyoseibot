@@ -44,7 +44,6 @@ $(function(){
 			  delay: 1500,  //メッセージの表示タイミングをずらす
 		      content: 'はじめにテストするボットを選択してください'
 		  }).then(function() {
-			//「はい」「いいえ」のボタンを表示
 		      return botui.action.button({
 		        delay: 1000,
 		        action: [{
@@ -60,7 +59,7 @@ $(function(){
 		      });
 		  }).then(function(res) {
 			  delay: 1500,
-			  content: '「' + res + '」ですね。かしこまりました。'
+			  content: '「' + res.value + '」ですね。かしこまりました。'
 		  });
 	  }
 
