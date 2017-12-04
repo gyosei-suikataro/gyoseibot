@@ -81,8 +81,10 @@ $(function(){
 		        }]
 		      });
 		  }).then(function(res) {
+			  return botui.message.bot({
 			  delay: 1500,
 			  content: '」ですね。かしこまりました。'
+			  )}
 		  });
 	  }
 
