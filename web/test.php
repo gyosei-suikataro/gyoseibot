@@ -39,8 +39,8 @@ $(function(){
 	    content: 'こんにちは！'
 	  }).then(init);
 
-	  /*
 	  function init() {
+		  /*
 		  botui.message.bot({
 			  delay: 1500,  //メッセージの表示タイミングをずらす
 		      content: 'はじめにテストするボットを選択してください'
@@ -62,11 +62,31 @@ $(function(){
 			  delay: 1500,
 			  content: '「' + res.value + '」ですね。かしこまりました。'
 		  });
+		  */
+		  botui.message.bot({
+			  delay: 1500,  //メッセージの表示タイミングをずらす
+		      content: 'はじめにテストするボットを選択してください'
+		  }).then(function() {
+		      return botui.action.button({
+		        delay: 1000,
+		        action: [{
+		          text: '属性登録',
+		          value: '属性登録'
+		        }, {
+		          text: '検診相談',
+		          value: '検診相談'
+		        }, {
+		          text: 'その他のお問い合わせ',
+			      value: 'その他のお問い合わせ'
+		        }]
+		      });
+		  }).then(function(res) {
+			  delay: 1500,
+			  content: '」ですね。かしこまりました。'
+		  });
 	  }
-	  */
 
-
-	  function init() {
+	  function init2() {
 	    botui.message.bot({
 	      delay: 1500,  //メッセージの表示タイミングをずらす
 	      content: '気になるキーワードで、GitHubの総リポジトリ数をお答えします！'
