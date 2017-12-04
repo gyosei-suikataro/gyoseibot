@@ -3,9 +3,11 @@
 <head>
 <meta charset='utf-8'>
 <title>チャットボットテスト</title>
+<!--
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/jquery.bootgrid.css" rel="stylesheet" />
+-->
 <link href="css/botui.min.css" rel="stylesheet" />
 <link href="botui-theme-default.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
