@@ -3,13 +3,11 @@
 <head>
 <meta charset='utf-8'>
 <title>チャットボットテスト</title>
-<!--
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/jquery.bootgrid.css" rel="stylesheet" />
--->
 <link href="css/botui.min.css" rel="stylesheet" />
-<link href="botui-theme-default.css" rel="stylesheet" />
+<link href="css/botui-theme-default.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
 <script src="//cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
 <script src="//unpkg.com/botui/build/botui.min.js"></script>
@@ -21,15 +19,15 @@
 <div id="header"></div>
 <div class="container">
 	<h1>チャットボットテスト</h1>
-</div>
-<div class="botui-app-container" id="chat-app">
+	<div class="botui-app-container" id="chat-app">
     	<!-- チャットの表示  -->
     	<bot-ui></bot-ui>
+	</div>
 </div>
 </body>
 <script>
 $(function(){
-	//$("#header").load("header.html");
+	$("#header").load("header.html");
 
 	var url = 'https://api.github.com/search/repositories?q=';
 	  var msgIndex, key;
