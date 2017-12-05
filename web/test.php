@@ -12,6 +12,7 @@
 <!-- <script src="//cdn.jsdelivr.net/vue/latest/vue.min.js"></script> -->
 <script src="//npmcdn.com/vue@2.0.5/dist/vue.min.js"></script>
 <script src="//unpkg.com/botui/build/botui.min.js"></script>
+
 <!--
 <script src="https://embed.small.chat/T7ZNUHSENG7ZM4UH8B.js" async></script>
 -->
