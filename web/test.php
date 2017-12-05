@@ -58,22 +58,25 @@ $(function(){
 		        }]
 		      });
 		  }).then(function(res) {
+			  switch (res.value){
+			  case '属性登録':
+				attribute();
+			    break;
+			  case '検診相談':
+				kenshin();
+			    break;
+			  case 'その他のお問い合わせ':
+				sonota();
+			    break;
+			}
+				/*
 			  return botui.message.bot({
 			  	delay: 1500,
 			  	content: '「' + res.value + '」ですね。かしこまりました。'
 
-			  	switch (res.value){
-				  case '属性登録':
-					attribute();
-				    break;
-				  case '検診相談':
-					kenshin();
-				    break;
-				  case 'その他のお問い合わせ':
-					sonota();
-				    break;
-				}
+
 			  })
+			  */
 		  })
 	  }
 
