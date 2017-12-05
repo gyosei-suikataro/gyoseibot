@@ -62,7 +62,18 @@ $(function(){
 			  	delay: 1500,
 			  	content: '「' + res.value + '」ですね。かしこまりました。'
 			  })
-		  });
+		  }).then(function() {
+			  return botui.message.bot({
+			  	delay: 1000,
+			  	content: 'それでは、質問をお願いします。'
+		  }).then(function() {
+			  return botui.action.text({
+			        delay: 1000,
+			        action: {
+			          placeholder: '質問を入力してください'
+			        }
+			  });
+		  })
 	  }
 
 	  function init2() {
