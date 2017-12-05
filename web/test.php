@@ -9,7 +9,8 @@
 <link href="css/botui.min.css" rel="stylesheet" />
 <link href="css/botui-theme-default.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
-<script src="//cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+<!-- <script src="//cdn.jsdelivr.net/vue/latest/vue.min.js"></script> -->
+<script src="//npmcdn.com/vue@2.0.5/dist/vue.min.js"></script>
 <script src="//unpkg.com/botui/build/botui.min.js"></script>
 <!--
 <script src="https://embed.small.chat/T7ZNUHSENG7ZM4UH8B.js" async></script>
