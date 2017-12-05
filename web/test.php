@@ -66,6 +66,7 @@ $(function(){
 			  return botui.message.bot({
 			  	delay: 1000,
 			  	content: 'それでは、質問をお願いします。'
+			  })
 		  }).then(function() {
 			  return botui.action.text({
 			        delay: 1000,
