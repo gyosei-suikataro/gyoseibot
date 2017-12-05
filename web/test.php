@@ -89,9 +89,8 @@ $(function(){
 			  content: 'それでは、以下のリンクより属性登録をお願いします。'
 		  }).then(function() {
 			  botui.message.add({
-			        //delay: 1000,
-			        //content: '＞＞[属性登録](https://gyoseibot.herokuapp.com/attribute.php?user=w0e999b000test)'
-			        content: 'Go ahead, try [our product](https://example.com)^'
+			        delay: 1000,
+			        content: '＞＞[属性登録](https://gyoseibot.herokuapp.com/attribute.php?user=w0e999b000test)'
 			  });
 		  }).then(init);
 	  }
