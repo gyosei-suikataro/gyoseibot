@@ -30,8 +30,8 @@ $(function(){
 	$("#header").load("header.html");
 
 	var url = 'https://api.github.com/search/repositories?q=';
-	  var msgIndex, key;
-	  var botui = new BotUI('chat-app');
+	var msgIndex, key;
+	var botui = new BotUI('chat-app');
 
 
 	  //初期メッセージ
@@ -62,11 +62,54 @@ $(function(){
 			  	delay: 1500,
 			  	content: '「' + res.value + '」ですね。かしこまりました。'
 			  })
+			  switch (res.value){
+			  case '属性登録':
+				attribute();
+			    break;
+			  case '検診相談':
+				kenshin();
+			    break;
+			  case 'その他のお問い合わせ':
+				sonota();
+			    break;
+			}
+
+		  })
+	  }
+
+	  //属性登録
+	  function attribute(){
+		  botui.message.bot({
+			  delay: 1000,
+			  content: 'それでは、以下のリンクより属性登録をお願いします。'
 		  }).then(function() {
 			  return botui.message.bot({
-			  	delay: 1000,
-			  	content: 'それでは、質問をお願いします。'
-			  })
+			        delay: 1000,
+			        content: '[属性登録](https://gyoseibot.herokuapp.com/attribute.php?user=w0e999b000test)'
+			  });
+		  }).then(init);
+	  }
+
+	  //検診相談
+	  function kenshin(){
+		  botui.message.bot({
+			  delay: 1000,
+			  content: 'それでは、質問をお願いします。'
+		  }).then(function() {
+			  return botui.action.text({
+			        delay: 1000,
+			        action: {
+			          placeholder: '質問を入力してください'
+			        }
+			  });
+		  })
+	  }
+
+	  //その他のお問い合わせ
+	  function sonota(){
+		  botui.message.bot({
+			  delay: 1000,
+			  content: 'それでは、質問をお願いします。'
 		  }).then(function() {
 			  return botui.action.text({
 			        delay: 1000,
