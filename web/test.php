@@ -97,13 +97,12 @@ $(function(){
 		  }).then(function() {
 			  var attrurl = "";
 			  if (lang == "02"){
-				  attrurl = "https://gyoseibot.herokuapp.com/attribute_en.php?user="
+				  attrurl = "https://gyoseibot.herokuapp.com/attribute_en.php?user=";
 			  }else{
 				  attrurl = "https://gyoseibot.herokuapp.com/attribute.php?user=";
 			  }
 			  botui.message.add({
 			        delay: 1000,
-			        $link = mb_substr($userID,0,1).$sex.mb_substr($userID,1,1).$age.mb_substr($userID,2,1).$region.mb_substr($userID,3);
 			        content: '[属性登録](' + attrurl + user.substr(0, 1) + sex + user.substr(1, 1) + age + user.substr(2, 1) + region + user.substr(3) + ')'
 			  });
 		  }).then(init);
