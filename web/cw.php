@@ -37,7 +37,7 @@ if($param == "1"){
 
 $url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$wid."/message?version=2017-04-21";
 
-error_log("★★★★★★★★★★★★★★★★★★".$user);
+error_log("★★★★★★★★★★★★★★★★★★user:".$user." param=".$param." text=".$text." kbn=".$kbn);
 
 $text= str_replace("\n","",$text);
 $data = array('input' => array("text" => $text));
@@ -49,7 +49,7 @@ if($kbn == "0"){
 	//2回め以降
 	main();
 }
-
+error_log("★★★★★★★★★★★★★★★★★★text:".$resmess);
 echo json_encode(['text' => $resmess]);
 
 function init(){
