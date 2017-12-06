@@ -48,7 +48,7 @@ $(function(){
 
 	  //初期メッセージ
 	  botui.message.bot({
-	    content: 'こんにちは！'
+	    content: 'こ' + <p> + 'んにちは！'
 	  }).then(init);
 
 	  function init() {
