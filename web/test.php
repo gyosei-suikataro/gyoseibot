@@ -143,7 +143,7 @@ $(function(){
 	  function kenshin(){
 		  //属性登録チェック
 		  attributeSearch();
-		  if(sex == "0" or age == "999"){
+		  if(sex == "0" || age == "999"){
 			  message = '申し訳ありませんが、先に以下のリンクより属性登録をお願いします。';
 			  attribute();
 			  return;
