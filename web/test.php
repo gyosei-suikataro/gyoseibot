@@ -21,7 +21,7 @@
 <div id="header"></div>
 <div class="container">
 	<h1>チャットボットテスト</h1>
-	<input id="btn_clear" type="button" class="btn btn-default" value="クリア" onclick="clear()">
+	<input id="btn_clear" type="button" class="btn btn-default" value="クリア" onclick="dispclear()">
 	<div class="botui-app-container" id="chat-app">
     	<!-- チャットの表示  -->
     	<bot-ui></bot-ui>
@@ -296,7 +296,7 @@ $(function(){
 	  }
 });
 
-function clear(){
+function dispclear(){
 	location.reload();
 }
 </script>

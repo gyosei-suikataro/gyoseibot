@@ -61,11 +61,13 @@ function init(){
 	//改行コードを置き換え
 	$resmess = str_replace("\\n","\n",$resmess);
 	$conversation_node = $json["context"]["system"]["dialog_stack"][0]["dialog_node"];
+	error_log("resmess=".$resmess);
 	error_log("conversation_id=".$conversation_id);
 	error_log("conversation_node=".$conversation_node);
 	if ($link) {
 		$result = pg_query("SELECT * FROM cvsdata WHERE userid = '{$user}'");
 		if (pg_num_rows($result) == 0) {
+			error_log("データなし");
 			$sql = "INSERT INTO cvsdata (userid, conversationid, dnode, time) VALUES ('{$user}','{$conversation_id}','{$conversation_node}','{$tdate}')";
 			$result_flag = pg_query($sql);
 		}else{
