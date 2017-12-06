@@ -40,6 +40,7 @@ $(function(){
 	var age = "999";
 	var region = "";
 	var search = "";
+	var message = "";
 
 	attributeSearch();
 
@@ -69,6 +70,7 @@ $(function(){
 		  }).then(function(res) {
 			  switch (res.value){
 			  case '属性登録':
+				message = 'それでは、以下のリンクより属性登録をお願いします。';
 				attribute();
 			    break;
 			  case '検診相談':
@@ -93,7 +95,7 @@ $(function(){
 	  function attribute(){
 		  botui.message.bot({
 			  delay: 1000,
-			  content: 'それでは、以下のリンクより属性登録をお願いします。'
+			  content: message
 		  }).then(function() {
 			  var attrurl = "";
 			  alert(lang);
@@ -139,6 +141,13 @@ $(function(){
 
 	  //検診相談
 	  function kenshin(){
+		  //属性登録チェック
+		  attributeSearch();
+		  if(sex == "0" or age = "999"){
+			  message = '申し訳ありませんが、先に以下のリンクより属性登録をお願いします。';
+			  attribute();
+			  return;
+		  }
 		  botui.message.bot({
 			  delay: 1000,
 			  content: 'それでは、質問をお願いします。'
