@@ -21,6 +21,7 @@ $request = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
 ? strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) : '';
 if($request !== 'xmlhttprequest') exit;
 
+$resmess = "";
 $user = filter_input(INPUT_GET, 'user');
 $param = filter_input(INPUT_GET, 'param');
 $text = filter_input(INPUT_GET, 'text');
@@ -60,7 +61,8 @@ function init(){
 	//改行コードを置き換え
 	$resmess = str_replace("\\n","\n",$resmess);
 	$conversation_node = $json["context"]["system"]["dialog_stack"][0]["dialog_node"];
-	error_log("$conversation_node=".$conversation_node);
+	error_log("conversation_id=".$conversation_id);
+	error_log("conversation_node=".$conversation_node);
 	if ($link) {
 		$result = pg_query("SELECT * FROM cvsdata WHERE userid = '{$user}'");
 		if (pg_num_rows($result) == 0) {
