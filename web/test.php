@@ -34,6 +34,12 @@ $(function(){
 	var url = 'https://api.github.com/search/repositories?q=';
 	var msgIndex, key;
 	var botui = new BotUI('chat-app');
+	var user = "webtest";
+	var lang = "";
+	var sex = "0";
+	var age = "999";
+	var region = "";
+	var search = "";
 
 	attributeSearch();
 
@@ -89,9 +95,16 @@ $(function(){
 			  delay: 1000,
 			  content: 'それでは、以下のリンクより属性登録をお願いします。'
 		  }).then(function() {
+			  var attrurl = "";
+			  if (lang == "02"){
+				  attrurl = "https://gyoseibot.herokuapp.com/attribute_en.php?user="
+			  }else{
+				  attrurl = "https://gyoseibot.herokuapp.com/attribute.php?user=";
+			  }
 			  botui.message.add({
 			        delay: 1000,
-			        content: '＞＞[属性登録](https://gyoseibot.herokuapp.com/attribute.php?user=w0e999b000test)'
+			        $link = mb_substr($userID,0,1).$sex.mb_substr($userID,1,1).$age.mb_substr($userID,2,1).$region.mb_substr($userID,3);
+			        content: '[属性登録](' + attrurl + user.substr(0, 1) + sex + user.substr(1, 1) + age + user.substr(2, 1) + region + user.substr(3) + ')'
 			  });
 		  }).then(init);
 	  }
@@ -120,8 +133,11 @@ $(function(){
             dataType : "json",
             scriptCharset: 'utf-8'
         }).done(function(data){
-        	alert(data);
-            alert(data.age + "歳の" + data.sex);
+        	lang = data.lang;
+        	sex = data.sex;
+        	age = data.age;
+        	region = data.region;
+        	search = data.search;
         }).fail(function(XMLHttpRequest, textStatus, errorThrown){
             alert(errorThrown);
         });
