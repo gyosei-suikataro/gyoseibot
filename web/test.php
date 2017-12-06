@@ -96,6 +96,7 @@ $(function(){
 			  content: 'それでは、以下のリンクより属性登録をお願いします。'
 		  }).then(function() {
 			  var attrurl = "";
+			  alert(lang);
 			  if (lang == "02"){
 				  attrurl = "https://gyoseibot.herokuapp.com/attribute_en.php?user=";
 			  }else{
@@ -110,26 +111,13 @@ $(function(){
 			  }
 			  botui.message.add({
 			        delay: 1000,
-			        content: '[属性登録](' + attrurl + user.substr(0, 1) + sex + user.substr(1, 1) + age + user.substr(2, 1) + region + user.substr(3) + ')'
+			        content: '[属性登録](' + attrurl + user.substr(0, 1) + sex + user.substr(1, 1) + age + user.substr(2, 1) + region + user.substr(3) + ')^'
 			  });
 		  }).then(init);
 	  }
 
 	  //属性検索
 	  function attributeSearch(){
-		  /*
-		  $.ajax({
-				type: "POST",
-				url: "botlogdel.php",
-				data: "no=" + rowIds[i],
-			}).then(
-				function(){
-				},
-				function(){
-					successFlg = false;
-				}
-			);
-			*/
 		var param = { "user": "webtest" };
 		$.ajax({
             type: "GET",
