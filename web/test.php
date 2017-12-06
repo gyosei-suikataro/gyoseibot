@@ -101,6 +101,13 @@ $(function(){
 			  }else{
 				  attrurl = "https://gyoseibot.herokuapp.com/attribute.php?user=";
 			  }
+			  if(age < 10){
+					age = "00" + age;
+				}else{
+					if(age < 100){
+						age = "0" + age;
+					}
+			  }
 			  botui.message.add({
 			        delay: 1000,
 			        content: '[属性登録](' + attrurl + user.substr(0, 1) + sex + user.substr(1, 1) + age + user.substr(2, 1) + region + user.substr(3) + ')'
