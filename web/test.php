@@ -128,7 +128,8 @@ $(function(){
             data: param,
             crossDomain: false,
             dataType : "json",
-            scriptCharset: 'utf-8'
+            scriptCharset: 'utf-8',
+            async: false
         }).done(function(data){
         	lang = data.lang;
         	sex = data.sex;
@@ -195,7 +196,8 @@ $(function(){
 	            data: param,
 	            crossDomain: false,
 	            dataType : "json",
-	            scriptCharset: 'utf-8'
+	            scriptCharset: 'utf-8',
+	            async: false
 	        }).done(function(data){
 	        	message = data.text;
 	        }).fail(function(XMLHttpRequest, textStatus, errorThrown){
