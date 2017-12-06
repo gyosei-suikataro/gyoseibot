@@ -54,7 +54,7 @@ error_log("★★★★★★★★★★★★★★★★★★text:".$resmess
 echo json_encode(['text' => $resmess]);
 
 function init(){
-	global $resmess;
+	global $resmess,$link;
 	$jsonString = callWatson();
 	$json = json_decode($jsonString, true);
 	$conversation_id = $json["context"]["conversation_id"];
@@ -80,7 +80,7 @@ function init(){
 }
 
 function main(){
-	global $resmess;
+	global $resmess,$link;
 	if ($link) {
 		$result = pg_query("SELECT * FROM cvsdata WHERE userid = '{$user}'");
 		$row = pg_fetch_row($result);
