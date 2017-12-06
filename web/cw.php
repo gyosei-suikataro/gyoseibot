@@ -60,7 +60,7 @@ function init(){
 	$conversation_id = $json["context"]["conversation_id"];
 	$resmess= $json["output"]["text"][0];
 	//改行コードを置き換え
-	$resmess = str_replace("\\n","\n",$resmess);
+	$resmess = str_replace("\\n","<br>",$resmess);
 	$conversation_node = $json["context"]["system"]["dialog_stack"][0]["dialog_node"];
 	error_log("resmess=".$resmess);
 	error_log("conversation_id=".$conversation_id);
