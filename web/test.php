@@ -35,6 +35,7 @@ $(function(){
 	var msgIndex, key;
 	var botui = new BotUI('chat-app');
 
+	attributeSearch();
 
 	  //初期メッセージ
 	  botui.message.bot({
@@ -93,6 +94,36 @@ $(function(){
 			        content: '＞＞[属性登録](https://gyoseibot.herokuapp.com/attribute.php?user=w0e999b000test)'
 			  });
 		  }).then(init);
+	  }
+
+	  //属性検索
+	  function attributeSearch(){
+		  /*
+		  $.ajax({
+				type: "POST",
+				url: "botlogdel.php",
+				data: "no=" + rowIds[i],
+			}).then(
+				function(){
+				},
+				function(){
+					successFlg = false;
+				}
+			);
+			*/
+		var param = { "user": "webtest" };
+		$.ajax({
+            type: "GET",
+            url: "attsearch.php",
+            data: param,
+            crossDomain: false,
+            dataType : "json",
+            scriptCharset: 'utf-8'
+        }).done(function(data){
+            alert(data.age + "歳の" + data.sex);
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown){
+            alert(errorThrown);
+        });
 	  }
 
 	  //検診相談
