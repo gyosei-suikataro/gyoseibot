@@ -21,7 +21,7 @@ error_log("★★★★★★★★★★★★★★★★★★".$user);
 if ($link) {
 	$result = pg_query("SELECT * FROM userinfo WHERE userid = '{$user}'");
 	if (pg_num_rows($result) == 0) {
-		echo json_encode(['lang' => '0', 'sex' => '0', 'age' => '999', 'region' => '', 'search' => '']);
+		echo json_encode(['lang' => '0', 'sex' => '0', 'age' => '999', 'region' => '000', 'search' => '']);
 	}else{
 		$row = pg_fetch_row($result);
 		echo json_encode(['lang' => $row[2], 'sex' => $row[3], 'age' => $row[4], 'region' => $row[5], 'search' => $row[7]]);
