@@ -120,6 +120,7 @@ $(function(){
             dataType : "json",
             scriptCharset: 'utf-8'
         }).done(function(data){
+        	alert(data);
             alert(data.age + "歳の" + data.sex);
         }).fail(function(XMLHttpRequest, textStatus, errorThrown){
             alert(errorThrown);

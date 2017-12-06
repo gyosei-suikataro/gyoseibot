@@ -27,7 +27,5 @@ if ($link) {
 		echo json_encode(['lang' => $row[2], 'sex' => $row[3], 'age' => $row[4], 'region' => $row[5], 'search' => $row[7]]);
 	}
 }
-
-echo json_encode(['text' => $text . ', World!',]);
 ?>
 
