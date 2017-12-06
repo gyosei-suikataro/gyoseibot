@@ -21,6 +21,7 @@
 <div id="header"></div>
 <div class="container">
 	<h1>チャットボットテスト</h1>
+	<input id="btn_clear" type="button" class="btn btn-default" value="クリア" onclick="clear()">
 	<div class="botui-app-container" id="chat-app">
     	<!-- チャットの表示  -->
     	<bot-ui></bot-ui>
@@ -41,6 +42,7 @@ $(function(){
 	var region = "";
 	var search = "";
 	var message = "";
+	var sexN = "";
 
 	attributeSearch();
 
@@ -98,7 +100,6 @@ $(function(){
 			  content: message
 		  }).then(function() {
 			  var attrurl = "";
-			  alert(lang);
 			  if (lang == "02"){
 				  attrurl = "https://gyoseibot.herokuapp.com/attribute_en.php?user=";
 			  }else{
@@ -120,7 +121,7 @@ $(function(){
 
 	  //属性検索
 	  function attributeSearch(){
-		var param = { "user": "webtest" };
+		var param = { "user": user };
 		$.ajax({
             type: "GET",
             url: "attsearch.php",
@@ -148,14 +149,23 @@ $(function(){
 			  attribute();
 			  return;
 		  }
+
+		  if(sex == "1"){
+			sexN = "男";
+		  }
+		  if(sex == "2"){
+			sexN = "女";
+		  }
+
+		  callWatson("1", "0", age + "の" + sexN)
 		  botui.message.bot({
 			  delay: 1000,
-			  content: 'それでは、質問をお願いします。'
+			  content: message
 		  }).then(function() {
 			  return botui.action.text({
 			        delay: 1000,
 			        action: {
-			          placeholder: '質問を入力してください'
+			          placeholder: '入力してください'
 			        }
 			  });
 		  })
@@ -174,6 +184,23 @@ $(function(){
 			        }
 			  });
 		  })
+	  }
+
+	  //Watson呼び出し
+	  function callWatson(param, kbn, text){
+		  var param = { "user": user , "param": param , "kbn": kbn, "text": text };
+			$.ajax({
+	            type: "GET",
+	            url: "cw.php",
+	            data: param,
+	            crossDomain: false,
+	            dataType : "json",
+	            scriptCharset: 'utf-8'
+	        }).done(function(data){
+	        	message = data.text;
+	        }).fail(function(XMLHttpRequest, textStatus, errorThrown){
+	            alert(errorThrown);
+	        });
 	  }
 
 	  function init2() {
@@ -266,6 +293,10 @@ $(function(){
 	    })
 	  }
 });
+
+function clear(){
+	location.reload();
+}
 </script>
 </html>
 
