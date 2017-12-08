@@ -169,7 +169,23 @@ $(function(){
 			          placeholder: '入力してください'
 			        }
 			  });
-		  })
+		  }).then(kenshin2(res));
+	  }
+
+	  //検診相談続き
+	  function kenshin2(res){
+		  callWatson("1", "1", res)
+		  botui.message.bot({
+			  delay: 1000,
+			  content: message
+		  }).then(function() {
+			  return botui.action.text({
+			        delay: 1000,
+			        action: {
+			          placeholder: '入力してください'
+			        }
+			  });
+		  }).then(kenshin2(res));
 	  }
 
 	  //その他のお問い合わせ
