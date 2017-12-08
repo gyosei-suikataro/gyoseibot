@@ -80,7 +80,7 @@ function init(){
 }
 
 function main(){
-	global $resmess,$link;
+	global $resmess,$link,$data;
 	if ($link) {
 		$result = pg_query("SELECT * FROM cvsdata WHERE userid = '{$user}'");
 		$row = pg_fetch_row($result);
