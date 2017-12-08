@@ -158,7 +158,7 @@ $(function(){
 			sexN = "女";
 		  }
 
-		  callWatson("1", "0", age + "の" + sexN)
+		  callWatson("1", "0", age + "の" + sexN);
 		  botui.message.bot({
 			  delay: 1000,
 			  content: message
@@ -174,7 +174,9 @@ $(function(){
 
 	  //検診相談続き
 	  function kenshin2(res){
-		  callWatson("1", "1", res)
+		  alert(res);
+		  callWatson("1", "1", res);
+		  alert(message);
 		  botui.message.bot({
 			  delay: 1000,
 			  content: message
