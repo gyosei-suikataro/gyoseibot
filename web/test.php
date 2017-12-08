@@ -176,8 +176,8 @@ $(function(){
 
 	  //検診相談続き
 	  function kenshin2(res){
-		  alert(res);
-		  callWatson("1", "1", res);
+		  alert(res.value);
+		  callWatson("1", "1", res.value);
 		  alert(message);
 		  botui.message.bot({
 			  delay: 1000,
