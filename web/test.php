@@ -169,7 +169,9 @@ $(function(){
 			          placeholder: '入力してください'
 			        }
 			  });
-		  }).then(kenshin2(res));
+		  }).then(function(res) {
+			  kenshin2(res);
+		  })
 	  }
 
 	  //検診相談続き
@@ -187,7 +189,9 @@ $(function(){
 			          placeholder: '入力してください'
 			        }
 			  });
-		  }).then(kenshin2(res));
+		  }).then(function(res) {
+			  kenshin2(res);
+		  })
 	  }
 
 	  //その他のお問い合わせ
