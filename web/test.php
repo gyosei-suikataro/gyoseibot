@@ -194,16 +194,37 @@ $(function(){
 
 	  //その他のお問い合わせ
 	  function sonota(){
+		  callWatson("2", "0", "初回発話");
 		  botui.message.bot({
 			  delay: 1000,
-			  content: 'それでは、質問をお願いします。'
+			  content: message
 		  }).then(function() {
 			  return botui.action.text({
 			        delay: 1000,
 			        action: {
-			          placeholder: '質問を入力してください'
+			          placeholder: '入力してください'
 			        }
 			  });
+		  }).then(function(res) {
+			  sonota2(res);
+		  })
+	  }
+
+	//その他のお問い合わせ続き
+	  function sonota2(res){
+		  callWatson("2", "1", res.value);
+		  botui.message.bot({
+			  delay: 1000,
+			  content: message
+		  }).then(function() {
+			  return botui.action.text({
+			        delay: 1000,
+			        action: {
+			          placeholder: '入力してください'
+			        }
+			  });
+		  }).then(function(res) {
+			  sonota2(res);
 		  })
 	  }
 
