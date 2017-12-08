@@ -176,7 +176,6 @@ $(function(){
 
 	  //検診相談続き
 	  function kenshin2(res){
-		  alert(res.value);
 		  callWatson("1", "1", res.value);
 		  alert(message);
 		  botui.message.bot({
@@ -211,6 +210,7 @@ $(function(){
 
 	  //Watson呼び出し
 	  function callWatson(param, kbn, text){
+		  alert(text);
 		  var param = { "user": user , "param": param , "kbn": kbn, "text": text };
 			$.ajax({
 	            type: "GET",

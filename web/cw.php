@@ -62,7 +62,7 @@ function init(){
 	//改行コードを置き換え
 	$resmess = str_replace("\\n","<br>",$resmess);
 	$conversation_node = $json["context"]["system"]["dialog_stack"][0]["dialog_node"];
-	error_log("resmess=".$resmess);
+	//error_log("resmess=".$resmess);
 	error_log("conversation_id=".$conversation_id);
 	error_log("conversation_node=".$conversation_node);
 	if ($link) {
@@ -88,6 +88,8 @@ function main(){
 		$conversation_node= $row[2];
 		$conversation_time= $row[3];
 	}
+	error_log("conversation_id=".$conversation_id);
+	error_log("conversation_node=".$conversation_node);
 
 	$data["context"] = array("conversation_id" => $conversation_id,
 			"system" => array("dialog_stack" => array(array("dialog_node" => $conversation_node)),
