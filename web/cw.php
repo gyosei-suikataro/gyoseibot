@@ -38,7 +38,7 @@ if($param == "1"){
 
 $url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$wid."/message?version=2017-04-21";
 
-error_log("★★★★★★★★★★★★★★★★★★user:".$user." param=".$param." text=".$text." kbn=".$kbn);
+//error_log("★★★★★★★★★★★★★★★★★★user:".$user." param=".$param." text=".$text." kbn=".$kbn);
 
 $text= str_replace("\n","",$text);
 $data = array('input' => array("text" => $text));
@@ -50,7 +50,8 @@ if($kbn == "0"){
 	//2回め以降
 	main();
 }
-error_log("★★★★★★★★★★★★★★★★★★text:".$resmess);
+//改行コードを置き換え
+$resmess = str_replace("\\n","<br>",$resmess);
 echo json_encode(['text' => $resmess]);
 
 function init(){
@@ -59,20 +60,13 @@ function init(){
 	$json = json_decode($jsonString, true);
 	$conversation_id = $json["context"]["conversation_id"];
 	$resmess= $json["output"]["text"][0];
-	//改行コードを置き換え
-	$resmess = str_replace("\\n","<br>",$resmess);
 	$conversation_node = $json["context"]["system"]["dialog_stack"][0]["dialog_node"];
-	//error_log("resmess=".$resmess);
-	error_log("conversation_id=".$conversation_id);
-	error_log("conversation_node=".$conversation_node);
 	if ($link) {
 		$result = pg_query("SELECT * FROM cvsdata WHERE userid = '{$user}'");
 		if (pg_num_rows($result) == 0) {
-			error_log("データなし");
 			$sql = "INSERT INTO cvsdata (userid, conversationid, dnode, time) VALUES ('{$user}','{$conversation_id}','{$conversation_node}','{$tdate}')";
 			$result_flag = pg_query($sql);
 		}else{
-			error_log("データあり");
 			$sql = "UPDATE cvsdata SET conversationid = '{$conversation_id}', dnode = '{$conversation_node}', time = '{$tdate}' WHERE userid = '{$user}'";
 			$result_flag = pg_query($sql);
 		}
@@ -88,9 +82,6 @@ function main(){
 		$conversation_node= $row[2];
 		$conversation_time= $row[3];
 	}
-	error_log("conversation_id=".$conversation_id);
-	error_log("conversation_node=".$conversation_node);
-
 	$data["context"] = array("conversation_id" => $conversation_id,
 			"system" => array("dialog_stack" => array(array("dialog_node" => $conversation_node)),
 					"dialog_turn_counter" => 1,
