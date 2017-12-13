@@ -40,6 +40,7 @@ $url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$wid
 
 //error_log("★★★★★★★★★★★★★★★★★★user:".$user." param=".$param." text=".$text." kbn=".$kbn);
 
+
 $text= str_replace("\n","",$text);
 $data = array('input' => array("text" => $text));
 
