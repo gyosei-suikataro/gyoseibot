@@ -51,12 +51,14 @@ if($kbn == "0"){
 	//2回め以降
 	main();
 }
-//改行コードを置き換え
-$resmess = str_replace("\\n","<br>",$resmess);
+
 //URL置き換え
 $pattern = '(https?://[-_.!~*\'()a-zA-Z0-9;/?:@&=+$,%#]+)';
 $replacement = '[\1](\1)';
 $resmess= mb_ereg_replace($pattern, $replacement, htmlspecialchars($resmess));
+//改行コードを置き換え
+$resmess = str_replace("\\n","<br>",$resmess);
+error_log($resmess);
 echo json_encode(['text' => $resmess]);
 
 function init(){
