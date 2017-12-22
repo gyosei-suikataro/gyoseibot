@@ -45,7 +45,7 @@ if ($link) {
 			$result_flag = pg_query($sql);
 
 			//CVSデータ作成
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values?version=2017-05-26";
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values?version=2017-05-26";
 			$data = array("value" => $meisho);
 			callWatson();
 		}
