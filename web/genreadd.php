@@ -16,6 +16,7 @@
 	<option value="1">大分類</option>
 	<option value="2">小分類</option>
 	</select>
+	※大分類を追加する場合は、Watson Conversationの修正も必要です
 	<br>
 	<p>大分類名称</p>
 	<input id="g1meisho" class="form-control" maxlength="50" placeholder="大分類名称" style="width: 600px;">
@@ -138,6 +139,7 @@ function bchange(){
 function update(){
 	bunrui = document.getElementById('bunrui').value;
 	gid1 = document.getElementById('g1').value;
+	g1meisho = document.getElementById('g1').text;
 	if(bunrui == 1){
 		meisho = document.getElementById('g1meisho').value;
 	}else{
@@ -151,7 +153,8 @@ function update(){
 			"bunrui" : bunrui,
 			"meisho" : meisho,
 			"gid1" : gid1,
-			"gid2" : gid2
+			"gid2" : gid2,
+			"g1meisho" : g1meisho
 		}
 	}).then(
 		function(){

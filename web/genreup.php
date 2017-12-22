@@ -5,6 +5,9 @@ $db_host =  getenv('DB_HOST');
 $db_name =  getenv('DB_NAME');
 $db_pass =  getenv('DB_PASS');
 $db_user =  getenv('DB_USER');
+$workspace_id_shi = getenv('CVS_WORKSPASE_ID_SHI');
+$username = getenv('CVS_USERNAME');
+$password = getenv('CVS_PASS');
 
 //DB接続
 $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass;
@@ -16,8 +19,9 @@ $bunrui= $_POST['bunrui'];
 $meisho= $_POST['meisho'];
 $gid1= $_POST['gid1'];
 $gid2= $_POST['gid2'];
+$g1meisho= $_POST['g1meisho'];
 
-error_log("uiKbn:".$uiKbn." bunrui:".$bunrui." meisho:".$meisho." gid1:".$gid1." gid2:".$gid2);
+error_log("uiKbn:".$uiKbn." bunrui:".$bunrui." meisho:".$meisho." gid1:".$gid1." gid2:".$gid2." g1meisho:".$g1meisho);
 
 if ($link) {
 	if($uiKbn == 1){
@@ -39,6 +43,11 @@ if ($link) {
 			$gid2 = $row[0] + 1;
 			$sql = "INSERT INTO genre (bunrui, gid1, gid2, gid3, meisho) VALUES ({$bunrui}, {$gid1}, {$gid2}, 0, '{$meisho}')";
 			$result_flag = pg_query($sql);
+
+			//CVSデータ作成
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id."/entities/".$g1meisho."/values?version=2017-05-26";
+			$data = array("value" => $meisho);
+			callWatson();
 		}
 		if (!$result_flag) {
 			error_log("インサートに失敗しました。".pg_last_error());
@@ -46,6 +55,22 @@ if ($link) {
 	}
 }
 
+function callWatson(){
+	global $curl, $url, $username, $password, $data, $options;
+	$curl = curl_init($url);
 
+	$options = array(
+			CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/json',
+			),
+			CURLOPT_USERPWD => $username . ':' . $password,
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => json_encode($data),
+			CURLOPT_RETURNTRANSFER => true,
+	);
+
+	curl_setopt_array($curl, $options);
+	return curl_exec($curl);
+}
 ?>
 
