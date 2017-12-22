@@ -13,6 +13,7 @@ $username = getenv('CVS_USERNAME');
 $password = getenv('CVS_PASS');
 $db_host =  getenv('DB_HOST');
 $db_name =  getenv('DB_NAME');
+$db_pass =  getenv('DB_PASS');
 $db_user =  getenv('DB_USER');
 $LTuser = getenv('LT_USER');
 $LTpass = getenv('LT_PASS');
@@ -56,7 +57,7 @@ $searchG = "";
 
 
 //DB接続
-error_log("host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass);
+//error_log("host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass);
 $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass;
 $link = pg_connect($conn);
 
