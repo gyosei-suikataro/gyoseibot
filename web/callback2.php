@@ -56,6 +56,7 @@ $searchG = "";
 
 
 //DB接続
+error_log("host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass);
 $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass;
 $link = pg_connect($conn);
 
