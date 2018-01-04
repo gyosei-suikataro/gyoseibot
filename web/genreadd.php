@@ -142,6 +142,7 @@ function update(){
 	bunrui = document.getElementById('bunrui').value;
 	gid1 = document.getElementById('g1').value;
 	g1meisho = document.getElementById('g1').text;
+	alert(document.getElementById('g1').text);
 	if(bunrui == 1){
 		meisho = document.getElementById('g1meisho').value;
 	}else{
