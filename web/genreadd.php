@@ -77,6 +77,7 @@ var gid1 = 0;
 var gid2 = 0;
 var meisho = "";
 var uiKbn = 0;
+var g1meisho = "";
 
 $(function(){
 	$("#header").load("header.html");
