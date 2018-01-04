@@ -46,8 +46,10 @@ if ($link) {
 
 			//CVSデータ作成
 			error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values?version=2017-05-26";
 			//$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values?version=2017-05-26";
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/test/values?version=2017-05-26";
+			//$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/test/values?version=2017-05-26";
+			error_log($url);
 			$data = array("value" => $meisho);
 			callWatson();
 		}
