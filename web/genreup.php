@@ -53,7 +53,7 @@ if ($link) {
 
 			//DIALOG
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".urlencode($g1meisho)."?version=2017-05-26";
-			$data = array("newConditions" => "@".$g1meisho.":".$meisho,"newOutput" => $gid1.".".$gid2);
+			$data = array("newConditions" => "@".$g1meisho.":".$meisho,"newOutput" => array("text" => $gid1.".".$gid2));
 			callWatson();
 		}
 		if (!$result_flag) {
