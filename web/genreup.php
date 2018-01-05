@@ -45,9 +45,15 @@ if ($link) {
 			$result_flag = pg_query($sql);
 
 			//CVSデータ作成
+			//ENTITIES
 			error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values?version=2017-05-26";
 			$data = array("value" => $meisho);
+			callWatson();
+
+			//DIALOG
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".urlencode($g1meisho)."?version=2017-05-26";
+			$data = array("newConditions" => "@".$g1meisho.":".$meisho,"newOutput" => $gid1.".".$gid2);
 			callWatson();
 		}
 		if (!$result_flag) {
