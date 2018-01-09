@@ -68,7 +68,7 @@ if ($link) {
 
 			//上記で取得したdialog_nodeをparentに設定して新規ノードを作成
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$data = array("dialog_node" => $gid1.".".$gid2,"type" => "response_condition","parent" =>  $parent,"conditions" => "@".$g1meisho.":".$meisho,"output" => array("text" => array("values" => $gid1.".".$gid2)));
+			$data = array("dialog_node" => $gid1.".".$gid2,"type" => "response_condition","parent" =>  $parent,"conditions" => "@".$g1meisho.":".$meisho,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
 			callWatson();
 		}
 		if (!$result_flag) {

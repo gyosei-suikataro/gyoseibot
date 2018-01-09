@@ -41,6 +41,9 @@ if ($link) {
 		error_log("gid1:".$g1meisho." gid2:".$g2meisho);
 		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values/".urlencode($g2meisho)."?version=2017-05-26";
 		callWatson();
+
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1.".".$gid2."?version=2017-05-26";
+		callWatson();
 	}
 
 }
