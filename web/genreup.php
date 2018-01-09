@@ -67,7 +67,7 @@ if ($link) {
 			}
 
 			//上記で取得したdialog_nodeをparentに設定して新規ノードを作成
-			$data = array("parent" =>  $parent,"conditions" => "@".$g1meisho.":".$meisho,"output" => array("text" => $gid1.".".$gid2));
+			$data = array("type" => "response_condition","parent" =>  $parent,"conditions" => "@".$g1meisho.":".$meisho,"output" => array("text" => array("values" => $gid1.".".$gid2)));
 			callWatson();
 		}
 		if (!$result_flag) {
