@@ -52,8 +52,22 @@ if ($link) {
 			callWatson();
 
 			//DIALOG
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".urlencode($g1meisho)."?version=2017-05-26";
-			$data = array("newConditions" => "@".$g1meisho.":".$meisho,"newOutput" => array("text" => $gid1.".".$gid2));
+			$parent = "";
+			//全てのLISTから大分類名とタイトルが同じノードのdialog_nodeを取得
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
+			$jsonString = callWatson2();
+			$json = json_decode($jsonString, true);
+			foreach ($json["dialog_nodes"] as $value){
+				error_log("title:".$value["title"]);
+				if($value["title"] == $g1meisho){
+					$parent = $value["dialog_node"];
+					error_log("parent:".$parent);
+					break;
+				}
+			}
+
+			//上記で取得したdialog_nodeをparentに設定して新規ノードを作成
+			$data = array("parent" =>  $parent,"conditions" => "@".$g1meisho.":".$meisho,"output" => array("text" => $gid1.".".$gid2));
 			callWatson();
 		}
 		if (!$result_flag) {
@@ -73,6 +87,23 @@ function callWatson(){
 			CURLOPT_USERPWD => $username . ':' . $password,
 			CURLOPT_POST => true,
 			CURLOPT_POSTFIELDS => json_encode($data),
+			CURLOPT_RETURNTRANSFER => true,
+	);
+
+	curl_setopt_array($curl, $options);
+	return curl_exec($curl);
+}
+
+function callWatson2(){
+	global $curl, $url, $username, $password, $data, $options;
+	$curl = curl_init($url);
+
+	$options = array(
+			CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/json',
+			),
+			CURLOPT_USERPWD => $username . ':' . $password,
+			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_RETURNTRANSFER => true,
 	);
 
