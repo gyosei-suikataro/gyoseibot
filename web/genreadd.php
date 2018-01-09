@@ -76,6 +76,7 @@ var bunrui = 0;
 var gid1 = 0;
 var gid2 = 0;
 var meisho = "";
+var meishoOld = "";
 var uiKbn = 0;
 var g1meisho = "";
 
@@ -100,6 +101,7 @@ $(function(){
 
 	if(gid1 > 0){
 		uiKbn = 1;
+		meishoOld = meisho;
 		document.getElementById('bunrui').disabled = true;
 		if(gid2 > 0){
 			document.getElementById('bunrui').value = 2;
@@ -156,7 +158,8 @@ function update(){
 			"meisho" : meisho,
 			"gid1" : gid1,
 			"gid2" : gid2,
-			"g1meisho" : g1meisho
+			"g1meisho" : g1meisho,
+			"meishoOld" : meishoOld
 		}
 	}).then(
 		function(){

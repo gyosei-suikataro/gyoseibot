@@ -20,8 +20,10 @@ $meisho= $_POST['meisho'];
 $gid1= $_POST['gid1'];
 $gid2= $_POST['gid2'];
 $g1meisho= $_POST['g1meisho'];
+$meishoOld= $_POST['meishoOld'];
 
-error_log("uiKbn:".$uiKbn." bunrui:".$bunrui." meisho:".$meisho." gid1:".$gid1." gid2:".$gid2." g1meisho:".$g1meisho);
+error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+error_log("uiKbn:".$uiKbn." bunrui:".$bunrui." meisho:".$meisho." gid1:".$gid1." gid2:".$gid2." g1meisho:".$g1meisho." meishoOld:".$meishoOld);
 
 if ($link) {
 	if($uiKbn == 1){
@@ -30,14 +32,31 @@ if ($link) {
 		if (!$result_flag) {
 			error_log("アップデートに失敗しました。".pg_last_error());
 		}
+		if($gid2 == 0){
+			//大分類
+		}else{
+			//小分類
+			//CVSデータ修正
+			//ENTITIES
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values/".urlencode($meishoOld)."?version=2017-05-26";
+			$data = array("value" => $meisho);
+			callWatson();
+
+			//DIALOG
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1.".".$gid2."?version=2017-05-26";
+			$data = array("conditions" => "@".$g1meisho.":".$meisho);
+			callWatson();
+		}
 	}else{
 		if($bunrui == 1){
+			//大分類
 			$result= pg_query("SELECT gid1 FROM genre ORDER BY gid1 DESC");
 			$row = pg_fetch_row($result);
 			$gid1 = $row[0] + 1;
 			$sql = "INSERT INTO genre (bunrui, gid1, gid2, gid3, meisho) VALUES ({$bunrui}, {$gid1}, 0, 0, '{$meisho}')";
 			$result_flag = pg_query($sql);
 		}else{
+			//小分類
 			$result= pg_query("SELECT gid2 FROM genre WHERE gid1 = {$gid1} ORDER BY gid2 DESC");
 			$row = pg_fetch_row($result);
 			$gid2 = $row[0] + 1;
@@ -46,7 +65,6 @@ if ($link) {
 
 			//CVSデータ作成
 			//ENTITIES
-			error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values?version=2017-05-26";
 			$data = array("value" => $meisho);
 			callWatson();
