@@ -80,10 +80,12 @@ if ($link) {
 				error_log("values:".$value["output"]["text"]["values"][0]);
 				if($value["output"]["text"]["values"][0] == $nodevalue){
 					$previous_sibling = $value["dialog_node"];
+					error_log($previous_sibling);
+					break;
 				}
 			}
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$data = array("conditions" => "#".$formatmeisho,"previous_sibling" => $previous_sibling);
+			$data = array("dialog_node" => $gid1.".".$gid2,"conditions" => "#".$formatmeisho,"previous_sibling" => $previous_sibling);
 			callWatson();
 
 		}else{
