@@ -55,6 +55,37 @@ if ($link) {
 			$gid1 = $row[0] + 1;
 			$sql = "INSERT INTO genre (bunrui, gid1, gid2, gid3, meisho) VALUES ({$bunrui}, {$gid1}, 0, 0, '{$meisho}')";
 			$result_flag = pg_query($sql);
+
+			//CVSデータ作成
+			$formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$meisho);
+			//Intents
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents?version=2017-05-26";
+			$data = array("intent" => $formatmeisho);
+			callWatson();
+
+			//ENTITIES
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities?version=2017-05-26";
+			$data = array("entity" => $formatmeisho);
+			callWatson();
+
+			//dialog_node
+			$previous_sibling = "";
+			$bgid1 = $gid1 - 1;
+			$nodevalue = $bgid1.".0";
+			//全てのLISTから１つ前のダイアログを探す
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
+			$jsonString = callWatson2();
+			$json = json_decode($jsonString, true);
+			foreach ($json["dialog_nodes"] as $value){
+				error_log("values:".$value["output"]["text"]["values"][0]);
+				if($value["output"]["text"]["values"][0] == $nodevalue){
+					$previous_sibling = $value["dialog_node"];
+				}
+			}
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
+			$data = array("conditions" => "#".$formatmeisho,"previous_sibling" => $previous_sibling);
+			callWatson();
+
 		}else{
 			//小分類
 			$result= pg_query("SELECT gid2 FROM genre WHERE gid1 = {$gid1} ORDER BY gid2 DESC");
@@ -76,10 +107,8 @@ if ($link) {
 			$jsonString = callWatson2();
 			$json = json_decode($jsonString, true);
 			foreach ($json["dialog_nodes"] as $value){
-				error_log("title:".$value["title"]);
 				if($value["title"] == $g1meisho){
 					$parent = $value["dialog_node"];
-					error_log("parent:".$parent);
 					break;
 				}
 			}
