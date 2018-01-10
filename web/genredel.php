@@ -45,7 +45,7 @@ if ($link) {
 		callWatson();
 
 		//dialog_node
-		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1."?version=2017-05-26";
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/node_".$gid1."?version=2017-05-26";
 		callWatson();
 
 		while ($row = pg_fetch_row($result2)) {
