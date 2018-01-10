@@ -85,7 +85,11 @@ if ($link) {
 				}
 			}
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$data = array("dialog_node" => $gid1.".".$gid2,"conditions" => "#".$formatmeisho,"previous_sibling" => $previous_sibling,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
+			$data = array("dialog_node" => $gid1,"title" => "#".$formatmeisho,"conditions" => "#".$formatmeisho,"previous_sibling" => $previous_sibling,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
+			callWatson();
+
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
+			$data = array("dialog_node" => $gid1.".".$gid2,"title" => $formatmeisho,"conditions" => "@".$formatmeisho);
 			callWatson();
 
 		}else{

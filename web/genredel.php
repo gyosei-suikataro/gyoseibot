@@ -20,26 +20,46 @@ $gid2 = $_POST['gid2'];
 //error_log("★★★★★★★★★★★ gid1:".$gid1." gid2:".$gid2);
 
 if ($link) {
+	//名称の取得
+	$result = pg_query("SELECT meisho FROM genre WHERE bunrui = 1 AND gid1 = {$gid1}");
+	$row = pg_fetch_row($result);
+	$g1meisho = $row[0];
+	$fg1meisho= preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g1meisho);
+
+	$result = pg_query("SELECT meisho FROM genre WHERE gid1 = {$gid1} AND gid2 = {$gid2}");
+	$row = pg_fetch_row($result);
+	$g2meisho = $row[0];
+
 	//大分類の場合は小分類も削除
 	if($gid2 == 0){
+		$result2 = pg_query("SELECT gid2 FROM genre WHERE gid1 = {$gid1}");
 		$result = pg_query("DELETE FROM genre WHERE gid1 = {$gid1}");
+
+		//CVS削除
+		//Intents
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($fg1meisho)."?version=2017-05-26";
+		callWatson();
+
+		//ENTITIES
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($fg1meisho)."?version=2017-05-26";
+		callWatson();
+
+		//dialog_node
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1."?version=2017-05-26";
+		callWatson();
+
+		while ($row = pg_fetch_row($result2)) {
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1.".".$row[0]."?version=2017-05-26";
+			callWatson();
+		}
 	}else{
-		//名称の取得
-		$result = pg_query("SELECT meisho FROM genre WHERE bunrui = 1 AND gid1 = {$gid1}");
-		$row = pg_fetch_row($result);
-		$g1meisho = $row[0];
-
-		$result = pg_query("SELECT meisho FROM genre WHERE gid1 = {$gid1} AND gid2 = {$gid2}");
-		$row = pg_fetch_row($result);
-		$g2meisho = $row[0];
-
 		//削除
 		$result = pg_query("DELETE FROM genre WHERE gid1 = {$gid1} AND gid2 = {$gid2}");
 
 		//CVS削除
 		error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 		error_log("gid1:".$g1meisho." gid2:".$g2meisho);
-		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values/".urlencode($g2meisho)."?version=2017-05-26";
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($fg1meisho)."/values/".urlencode($g2meisho)."?version=2017-05-26";
 		callWatson();
 
 		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1.".".$gid2."?version=2017-05-26";
