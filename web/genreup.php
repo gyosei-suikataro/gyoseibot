@@ -27,6 +27,7 @@ error_log("uiKbn:".$uiKbn." bunrui:".$bunrui." meisho:".$meisho." gid1:".$gid1."
 
 if ($link) {
 	$formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$meisho);
+	$formatmeishoOld = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$meishoOld);
 	if($uiKbn == 1){
 		$sql = "UPDATE genre SET meisho = '{$meisho}' WHERE gid1 = {$gid1} AND gid2 = {$gid2}";
 		$result_flag = pg_query($sql);
@@ -37,12 +38,12 @@ if ($link) {
 			//大分類
 			//CVSデータ修正
 			//Intents
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."?version=2017-05-26";
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeishoOld)."?version=2017-05-26";
 			$data = array("intent" => $formatmeisho);
 			callWatson();
 
 			//ENTITIES
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($formatmeisho)."?version=2017-05-26";
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($formatmeishoOld)."?version=2017-05-26";
 			$data = array("entity" => $formatmeisho);
 			callWatson();
 
