@@ -35,6 +35,7 @@ if ($link) {
 			error_log("アップデートに失敗しました。".pg_last_error());
 		}
 		if($gid2 == 0){
+			$result = pg_query("SELECT gid2,meisho FROM genre WHERE gid1 = {$gid1}");
 			//大分類
 			//CVSデータ修正
 			//Intents
@@ -55,6 +56,14 @@ if ($link) {
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/"."node_".$gid1."?version=2017-05-26";
 			$data = array("title" => "#".$formatmeisho,"conditions" => "#".$formatmeisho);
 			callWatson();
+
+			while ($row = pg_fetch_row($result)) {
+				if($row[0] != "0"){
+					$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1.".".$row[0]."?version=2017-05-26";
+					$data = array("conditions" => "@".$formatmeisho.":".$row[1]);
+					callWatson();
+				}
+			}
 		}else{
 			//小分類
 			//CVSデータ修正
