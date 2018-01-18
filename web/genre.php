@@ -201,7 +201,7 @@ function mrow(){
 }
 
 function intent(){
-	window.location.href = "./genreint.php
+	window.location.href = "./genreint.php";
 }
 </script>
 </body>
