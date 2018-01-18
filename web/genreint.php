@@ -57,19 +57,6 @@ $db_user =  getenv('DB_USER');
 $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass;
 $link = pg_connect($conn);
 
-//引数
-$gid1 = $_GET['gid1'];
-$gid2 = $_GET['gid2'];
-
-//error_log("★★★★★★★★★★★★★★★id:".$id);
-if($gid1 > 0){
-	if ($link) {
-		$result = pg_query("SELECT * FROM genre WHERE gid1 = {$gid1} AND gid2 = {$gid2}");
-		$row = pg_fetch_row($result);
-		$meisho = $row[4];
-	}
-}
-
 if ($link) {
 	$result = pg_query("SELECT * FROM genre WHERE bunrui = 1");
 	while ($row = pg_fetch_row($result)) {
@@ -89,10 +76,6 @@ var g1meisho = "";
 
 $(function(){
 	$("#header").load("header.html");
-	gid1 = <?php echo json_encode($gid1); ?>;
-	gid2 = <?php echo json_encode($gid2); ?>;
-	meisho = <?php echo json_encode($meisho); ?>;
-
 	//ジャンルの設定
 	var j1value = <?php echo json_encode($j1value); ?>;
 	var select = document.getElementById('g1');
@@ -103,30 +86,6 @@ $(function(){
 		var text = document.createTextNode(j1value[key]);
 		option.appendChild(text);
 		select.appendChild(option);
-	}
-
-
-	if(gid1 > 0){
-		uiKbn = 1;
-		meishoOld = meisho;
-		document.getElementById('bunrui').disabled = true;
-		if(gid2 > 0){
-			document.getElementById('bunrui').value = 2;
-			document.getElementById('g1').value = gid1;
-			document.getElementById('g1').disabled = true;
-			document.getElementById('g1meisho').style.display = "none";
-			document.getElementById('g2meisho').value = meisho;
-		}else{
-			document.getElementById('bunrui').value = 1;
-			document.getElementById('g1').value = gid1;
-			document.getElementById('g1').style.display = "none";
-			document.getElementById('g1meisho').value = meisho;
-			document.getElementById('g2meisho').disabled = true;
-		}
-	}else{
-		uiKbn = 2;
-		document.getElementById('g1').style.display = "none";
-		document.getElementById('g2meisho').disabled = true;
 	}
 
 });
