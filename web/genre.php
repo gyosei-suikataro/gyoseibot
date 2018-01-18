@@ -93,6 +93,7 @@ if ($link) {
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
 	<input id="btn_ins" type="button" class="btn btn-default" value="ジャンルの追加" onclick="irow()">
 	<input id="btn_mod" type="button" class="btn btn-default" value="ジャンルの修正" onclick="mrow()">
+	<input id="btn_int" type="button" class="btn btn-default" value="検索ワード追加" onclick="intent()">
 </div>
 </div>
 <script>
@@ -197,6 +198,10 @@ function mrow(){
 	}
 
 	window.location.href = "./genreadd.php?gid1=" + rowgid1[0] + "&gid2=" + rowgid2[0];
+}
+
+function intent(){
+	window.location.href = "./genreint.php
 }
 </script>
 </body>
