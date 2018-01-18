@@ -29,7 +29,7 @@
 				<h4 class="modal-title" id="modal-label">追加</h4>
 			</div>
 			<div class="modal-body">
-				<input id="intent" class="form-control" maxlength="50" placeholder="検索ワード" style="width: 600px;">
+				<input id="intent" class="form-control" placeholder="検索ワード">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
