@@ -134,8 +134,9 @@ $(function(){
 	});
 
 	//テーブル追加
-	$("#grid-basic").insertRow( -1 );
-	$("#grid-basic").rows[0].cells[0].innerText = "テスト";
+	var wtable = document.getElementById('grid-basic');
+	wtable.insertRow( -1 );
+	wtable.rows[0].cells[0].innerText = "テスト";
 
 });
 
