@@ -16,6 +16,12 @@
 	</select>
 	<br>
 	<table id='grid-basic' class='table table-condensed table-hover table-striped'>
+		<thead>
+			<tr><th data-column-id='intent' data-identifier='true'>検索ワード</th></tr>
+		</table>
+		<tbody>
+			<tr><td></td></tr>
+		</tbody>
 	</table>
 	<br>
 	<input type="button" class="btn btn-default"  data-toggle="modal" data-target="#updateDialog" value="追加" />
