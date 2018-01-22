@@ -14,6 +14,14 @@
 	<p>大分類</p>
 	<select id="g1" class="form-control" style="width: 600px;">
 	</select>
+	<table id='grid-basic' class='table table-condensed table-hover table-striped'>
+		<thead>
+			<tr><th data-column-id='intent' data-identifier='true'>検索ワード</th></tr>
+		</table>
+		<tbody>
+			<tr><td></td></tr>
+		</tbody>
+	</table>
 	<br>
 	<input type="button" class="btn btn-default"  data-toggle="modal" data-target="#updateDialog" value="追加" />
 	<input type="button" class="btn btn-default" onclick="delete()" value="削除" />
@@ -87,6 +95,41 @@ $(function(){
 		option.appendChild(text);
 		select.appendChild(option);
 	}
+
+	$("#grid-basic").bootgrid({
+		selection: true,
+		multiSelect: true,
+		rowSelect: true,
+	    keepSelection: true,
+	}).on("selected.rs.jquery.bootgrid", function(e, rows)
+	{
+		for (var i = 0; i < rows.length; i++)
+	    {
+	        rowIds.push(rows[i].no);
+	        rowgid1.push(rows[i].gid1);
+	        rowgid2.push(rows[i].gid2);
+	        //alert("rowgid1:" + rows[i].gid1 + " rowgid2:" + rows[i].gid2);
+	    }
+	    //alert("Select: " + rowIds.join(","));
+	}).on("deselected.rs.jquery.bootgrid", function(e, rows)
+	{
+	    for (var i = 0; i < rows.length; i++)
+	    {
+	    	for (var ii = 0; ii < rowIds.length; ii++){
+		    	if(rowIds[ii] == rows[i].no){
+		    		rowIds.splice(ii,1);
+		    		rowgid1.splice(ii,1);
+		    		rowgid2.splice(ii,1);
+		    		break;
+		    	}
+	    	}
+	        //rowIds.push(rows[i].no);
+	    }
+	    //alert("Deselect: " + rowIds.join(","));
+	});
+
+	//テーブル追加
+	$("#grid-basic").rows[0].cells[0].innerText = "テスト";
 
 });
 
