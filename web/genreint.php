@@ -16,12 +16,6 @@
 	</select>
 	<br>
 	<table id='grid-basic' class='table table-condensed table-hover table-striped'>
-		<thead>
-			<tr><th data-column-id='intent' data-identifier='true'>検索ワード</th></tr>
-		</table>
-		<tbody>
-			<tr><td></td></tr>
-		</tbody>
 	</table>
 	<br>
 	<input type="button" class="btn btn-default"  data-toggle="modal" data-target="#updateDialog" value="追加" />
@@ -103,8 +97,11 @@ $(function(){
 
 	//テーブル追加
 	var wtable = document.getElementById('grid-basic');
-	wtable.insertRow( -1 );
-	wtable.rows[0].cells[0].innerText = "テスト";
+	var raw = wtable.insertRow( -1 );
+	var td1 = tr.insertCell(-1),td2 = tr.insertCell(-1);
+
+	td1.innerHTML = "テスト";
+	td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
 
 	/*
 	$("#grid-basic").bootgrid({
