@@ -104,7 +104,7 @@ $(function(){
 	//テーブル追加
 	var wtable = document.getElementById('grid-basic');
 	var raw = wtable.insertRow( -1 );
-	var td1 = tr.insertCell(-1),td2 = tr.insertCell(-1);
+	var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 
 	td1.innerHTML = "テスト";
 	td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
