@@ -101,6 +101,12 @@ $(function(){
 		select.appendChild(option);
 	}
 
+	//テーブル追加
+	var wtable = document.getElementById('grid-basic');
+	wtable.insertRow( -1 );
+	wtable.rows[0].cells[0].innerText = "テスト";
+
+	/*
 	$("#grid-basic").bootgrid({
 		selection: true,
 		multiSelect: true,
@@ -132,11 +138,7 @@ $(function(){
 	    }
 	    //alert("Deselect: " + rowIds.join(","));
 	});
-
-	//テーブル追加
-	var wtable = document.getElementById('grid-basic');
-	wtable.insertRow( -1 );
-	wtable.rows[0].cells[0].innerText = "テスト";
+	*/
 
 });
 
