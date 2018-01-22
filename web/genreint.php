@@ -82,6 +82,10 @@ var meishoOld = "";
 var uiKbn = 0;
 var g1meisho = "";
 
+var rowIds = [];
+var rowgid1 = [];
+var rowgid2 = [];
+
 $(function(){
 	$("#header").load("header.html");
 	//ジャンルの設定
@@ -129,6 +133,7 @@ $(function(){
 	});
 
 	//テーブル追加
+	$("#grid-basic").table.insertRow( -1 );
 	$("#grid-basic").rows[0].cells[0].innerText = "テスト";
 
 });
