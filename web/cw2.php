@@ -21,7 +21,7 @@ $param = $_POST['param'];
 $g1meisho= $_POST['g1meisho'];
 
 $formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g1meisho);
-error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".$formatmeisho);
+error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".$formatmeisho." param:".$param);
 
 switch($param) {
 	case 'search':
@@ -33,7 +33,7 @@ switch($param) {
 }
 
 function search(){
-	global $url;
+	global $url,$formatmeisho,$workspace_id_shi;
 	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples?version=2017-05-26&export=true";
 	$jsonString = callWatson2();
 	$json = json_decode($jsonString, true);
