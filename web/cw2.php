@@ -27,7 +27,7 @@ $jsonString = callWatson2();
 $json = json_decode($jsonString, true);
 $arr = array();
 foreach ($json["examples"] as $value){
-	error_log("text:".$value["text"]);
+	//error_log("text:".$value["text"]);
 	array_push($arr,$value["text"]);
 }
 echo $arr;
