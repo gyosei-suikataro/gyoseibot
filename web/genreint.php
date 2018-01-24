@@ -15,7 +15,7 @@
 	<select id="g1" class="form-control" style="width: 600px;">
 	</select>
 	<br>
-	<table id='grid-basic' class='table table-condensed table-hover table-striped'>
+	<table id='grid-basic' class='table table-sm'>
 		<thead>
 			<tr><th data-column-id='intent' data-identifier='true'>検索ワード</th></tr>
 		</table>
@@ -102,48 +102,39 @@ $(function(){
 	}
 
 	//テーブル追加
+	getwtint();
+	/*
 	var wtable = document.getElementById('grid-basic');
 	var raw = wtable.insertRow( -1 );
 	var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 
 	td1.innerHTML = "テスト";
 	td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
-
-	/*
-	$("#grid-basic").bootgrid({
-		selection: true,
-		multiSelect: true,
-		rowSelect: true,
-	    keepSelection: true,
-	}).on("selected.rs.jquery.bootgrid", function(e, rows)
-	{
-		for (var i = 0; i < rows.length; i++)
-	    {
-	        rowIds.push(rows[i].no);
-	        rowgid1.push(rows[i].gid1);
-	        rowgid2.push(rows[i].gid2);
-	        //alert("rowgid1:" + rows[i].gid1 + " rowgid2:" + rows[i].gid2);
-	    }
-	    //alert("Select: " + rowIds.join(","));
-	}).on("deselected.rs.jquery.bootgrid", function(e, rows)
-	{
-	    for (var i = 0; i < rows.length; i++)
-	    {
-	    	for (var ii = 0; ii < rowIds.length; ii++){
-		    	if(rowIds[ii] == rows[i].no){
-		    		rowIds.splice(ii,1);
-		    		rowgid1.splice(ii,1);
-		    		rowgid2.splice(ii,1);
-		    		break;
-		    	}
-	    	}
-	        //rowIds.push(rows[i].no);
-	    }
-	    //alert("Deselect: " + rowIds.join(","));
-	});
 	*/
 
 });
+
+//インテント取得
+function getwtint(){
+	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	$.ajax({
+		type: "POST",
+		url: "cw2.php",
+		data: {
+			"g1meisho" : g1meisho
+		}
+	}).done(function (response) {
+		var wtable = document.getElementById('grid-basic');
+		for( var value in response ) {
+			var raw = wtable.insertRow( -1 );
+			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
+			td1.innerHTML = value;
+			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
+		}
+    }).fail(function () {
+        alert("Watsonデータの取得に失敗しました");
+    });
+}
 
 //分類選択
 function bchange(){
