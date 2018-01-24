@@ -123,6 +123,7 @@ function getwtint(){
 		type: "POST",
 		url: "cw2.php",
 		data: {
+			"param" : "search",
 			"g1meisho" : g1meisho
 		}
 	}).done(function (response) {
@@ -150,6 +151,7 @@ function g1change(){
 function update(){
 	intent = document.getElementById('intent').value;
 	alert(intent);
+	$('#updateDialog').modal('hide');
 }
 
 //もどる
