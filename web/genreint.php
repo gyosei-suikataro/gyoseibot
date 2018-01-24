@@ -42,7 +42,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-				<button type="button" class="btn btn-primary">保存</button>
+				<button type="button" class="btn btn-primary" onclick="update()">更新</button>
 			</div>
 		</div>
 	</div>
@@ -141,42 +141,15 @@ function getwtint(){
 //分類選択
 function g1change(){
 	//テーブル初期化
-	while( wtable.rows[ 0 ] ) wtable.deleteRow( 0 );
+	while( wtable.rows[ 1 ] ) wtable.deleteRow( 1 );
 
 	getwtint();
 }
 
 //更新
 function update(){
-	bunrui = document.getElementById('bunrui').value;
-	gid1 = document.getElementById('g1').value;
-	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
-	if(bunrui == 1){
-		meisho = document.getElementById('g1meisho').value;
-	}else{
-		meisho = document.getElementById('g2meisho').value;
-	}
-	$.ajax({
-		type: "POST",
-		url: "genreup.php",
-		data: {
-			"uiKbn" : uiKbn,
-			"bunrui" : bunrui,
-			"meisho" : meisho,
-			"gid1" : gid1,
-			"gid2" : gid2,
-			"g1meisho" : g1meisho,
-			"meishoOld" : meishoOld
-		}
-	}).then(
-		function(){
-			alert("登録が完了しました。");
-			window.location.href = "./genre.php";
-		},
-		function(){
-			alert("登録できませんでした。");
-		}
-	);
+	intent = document.getElementById('intent').value;
+	alert(intent);
 }
 
 //もどる
