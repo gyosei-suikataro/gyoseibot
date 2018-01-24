@@ -125,13 +125,11 @@ function getwtint(){
 		}
 	}).done(function (response) {
 		var wtable = document.getElementById('grid-basic');
-		alert(response);
 		result = JSON.parse(response);
-		alert(result);
-		for( var value in result ) {
+		for( var index in result ) {
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
-			td1.innerHTML = value;
+			td1.innerHTML = result[index];
 			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
 		}
     }).fail(function () {
