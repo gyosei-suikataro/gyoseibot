@@ -26,8 +26,10 @@ error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".
 switch($param) {
 	case 'search':
 		search();
+		break;
 	case 'update':
 		update();
+		break;
 	default:
 		continue;
 }
@@ -39,7 +41,7 @@ function search(){
 	$json = json_decode($jsonString, true);
 	$arr = array();
 	foreach ($json["examples"] as $value){
-		//error_log("text:".$value["text"]);
+		error_log("text:".$value["text"]);
 		array_push($arr,$value["text"]);
 	}
 	echo json_encode($arr);

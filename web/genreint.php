@@ -151,7 +151,7 @@ function g1change(){
 function update(){
 	intent = document.getElementById('intent').value;
 	alert(intent);
-	$('#updateDialog').modal('hide');
+	document.getElementById('#updateDialog').modal('hide');
 }
 
 //もどる
