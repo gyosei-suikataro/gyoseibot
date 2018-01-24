@@ -132,7 +132,7 @@ function getwtint(){
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 			td1.innerHTML = result[index];
-			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + result[index] + '\')" />';
+			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + result[index] + '\',this)" />';
 		}
     }).fail(function () {
         alert("Watsonデータの取得に失敗しました");
@@ -166,7 +166,7 @@ function update(){
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 			td1.innerHTML = intent;
-			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + intent + '\')" />';
+			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + intent + '\',this)" />';
 		}else{
 			alert("更新できませんでした");
 		}
@@ -176,7 +176,7 @@ function update(){
 }
 
 //行削除
-function delLine(value){
+function delLine(value,raw){
 	var myRet = confirm("検索ワード「"+ value + "」を削除しますか？");
 	if ( myRet == true ){
 		g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
@@ -192,7 +192,8 @@ function delLine(value){
 			result = JSON.parse(response);
 			if(result == "OK"){
 				alert("削除しました");
-
+				tr = raw.parentNode.parentNode;
+				tr.parentNode.deleteRow(tr.sectionRowIndex);
 			}else{
 				alert("削除できませんでした");
 			}
