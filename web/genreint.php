@@ -133,7 +133,7 @@ function getwtint(){
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 			td1.innerHTML = result[index];
-			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(' + result[index] + ')" />';
+			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(\'' + result[index] + '\')" />';
 		}
     }).fail(function () {
         alert("Watsonデータの取得に失敗しました");
@@ -162,13 +162,12 @@ function update(){
 		}
 	}).done(function (response) {
 		result = JSON.parse(response);
-		alert(result);
 		if(result == "OK"){
 			alert("更新しました");
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 			td1.innerHTML = intent;
-			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(' + intent + ')" />';
+			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(\'' + intent + '\')" />';
 		}else{
 			alert("更新できませんでした");
 		}
