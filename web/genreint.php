@@ -178,7 +178,7 @@ function update(){
 
 //行削除
 function delLine(value){
-	alert(value);
+	alert(value.value);
 }
 
 //もどる
