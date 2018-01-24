@@ -30,7 +30,7 @@ foreach ($json["examples"] as $value){
 	//error_log("text:".$value["text"]);
 	array_push($arr,$value["text"]);
 }
-echo $arr;
+echo json_encode($arr);
 
 function callWatson(){
 	global $curl, $url, $username, $password, $data, $options;
