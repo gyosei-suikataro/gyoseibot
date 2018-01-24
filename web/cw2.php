@@ -56,11 +56,10 @@ function update(){
 	$data = array("text" => $sword);
 	$jsonString = callWatson();
 	$json = json_decode($jsonString, true);
-	header('Content-type: application/text');
 	if($json["text"] == $sword){
-		echo "OK";
+		echo json_encode("OK");
 	}else{
-		echo "NG";
+		echo json_encode("NG");
 	}
 }
 

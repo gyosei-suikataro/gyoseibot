@@ -161,13 +161,15 @@ function update(){
 			"sword" : intent
 		}
 	}).done(function (response) {
-		alert(response);
+		result = JSON.parse(response);
+		alert(result);
+		alert(result[0]);
 		if(response == "OK"){
 			alert("更新しました");
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 			td1.innerHTML = intent;
-			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
+			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(' + intent + ')" />';
 		}else{
 			alert("更新できませんでした");
 		}
@@ -178,7 +180,7 @@ function update(){
 
 //行削除
 function delLine(value){
-	alert(value.value);
+	alert(value);
 }
 
 //もどる
