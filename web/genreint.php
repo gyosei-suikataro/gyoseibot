@@ -161,6 +161,7 @@ function update(){
 			"sword" : intent
 		}
 	}).done(function (response) {
+		alert(response);
 		if(response == "OK"){
 			alert("更新しました");
 			var raw = wtable.insertRow( -1 );
@@ -173,6 +174,11 @@ function update(){
     }).fail(function () {
         alert("更新できませんでした");
     });
+}
+
+//行削除
+function delLine(value){
+	alert(value);
 }
 
 //もどる
