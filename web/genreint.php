@@ -124,7 +124,8 @@ function getwtint(){
 		url: "cw2.php",
 		data: {
 			"param" : "search",
-			"g1meisho" : g1meisho
+			"g1meisho" : g1meisho,
+			"sword" : ""
 		}
 	}).done(function (response) {
 		result = JSON.parse(response);
@@ -150,8 +151,22 @@ function g1change(){
 //更新
 function update(){
 	intent = document.getElementById('intent').value;
-	alert(intent);
-	document.getElementById('#updateDialog').modal('hide');
+	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	$.ajax({
+		type: "POST",
+		url: "cw2.php",
+		data: {
+			"param" : "update",
+			"g1meisho" : g1meisho,
+			"sword" : intent
+		}
+	}).done(function (response) {
+		alert(response);
+    }).fail(function () {
+        alert("更新できませんでした");
+    });
+
+	document.getElementById('updateDialog').modal('hide');
 }
 
 //もどる

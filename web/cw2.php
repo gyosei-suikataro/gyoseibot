@@ -19,9 +19,12 @@ $link = pg_connect($conn);
 
 $param = $_POST['param'];
 $g1meisho= $_POST['g1meisho'];
+$sword= $_POST['sword'];
+
+$data = "";
 
 $formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g1meisho);
-error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".$formatmeisho." param:".$param);
+error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".$formatmeisho." param:".$param." sword:".$sword);
 
 switch($param) {
 	case 'search':
@@ -45,6 +48,19 @@ function search(){
 		array_push($arr,$value["text"]);
 	}
 	echo json_encode($arr);
+}
+
+function update(){
+	global $url,$formatmeisho,$workspace_id_shi,$sword,$data;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples?version=2017-05-26";
+	$data = array("text" => $sword);
+	$jsonString = callWatson();
+	$json = json_decode($jsonString, true);
+	if($json["text"] == $sword){
+		echo "更新しました";
+	}else{
+		echo "更新できませんでした";
+	}
 }
 
 function callWatson(){
