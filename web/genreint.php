@@ -125,7 +125,8 @@ function getwtint(){
 		}
 	}).done(function (response) {
 		var wtable = document.getElementById('grid-basic');
-		alert(response);
+		alert(response.length);
+		alert(response[0]);
 		for( var value in response ) {
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
