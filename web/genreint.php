@@ -25,7 +25,6 @@
 	</table>
 	<br>
 	<input type="button" class="btn btn-default"  data-toggle="modal" data-target="#updateDialog" value="追加" />
-	<input type="button" class="btn btn-default" onclick="delete()" value="削除" />
 	<input type="button" class="btn btn-default" onclick="back()" value="もどる" />
 </div>
 <div class="modal" id="updateDialog" tabindex="-1">
@@ -133,7 +132,7 @@ function getwtint(){
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 			td1.innerHTML = result[index];
-			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(\'' + result[index] + '\')" />';
+			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + result[index] + '\')" />';
 		}
     }).fail(function () {
         alert("Watsonデータの取得に失敗しました");
@@ -167,7 +166,7 @@ function update(){
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
 			td1.innerHTML = intent;
-			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(\'' + intent + '\')" />';
+			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + intent + '\')" />';
 		}else{
 			alert("更新できませんでした");
 		}
@@ -178,7 +177,29 @@ function update(){
 
 //行削除
 function delLine(value){
-	alert(value);
+	var myRet = confirm("検索ワード「"+ value + "」を削除しますか？");
+	if ( myRet == true ){
+		g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+		$.ajax({
+			type: "POST",
+			url: "cw2.php",
+			data: {
+				"param" : "delete",
+				"g1meisho" : g1meisho,
+				"sword" : value
+			}
+		}).done(function (response) {
+			result = JSON.parse(response);
+			if(result == "OK"){
+				alert("削除しました");
+
+			}else{
+				alert("削除できませんでした");
+			}
+	    }).fail(function () {
+	        alert("削除できませんでした");
+	    });
+	}
 }
 
 //もどる

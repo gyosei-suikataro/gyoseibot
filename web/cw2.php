@@ -33,6 +33,9 @@ switch($param) {
 	case 'update':
 		update();
 		break;
+	case 'delete':
+		delete();
+		break;
 	default:
 		continue;
 }
@@ -44,7 +47,6 @@ function search(){
 	$json = json_decode($jsonString, true);
 	$arr = array();
 	foreach ($json["examples"] as $value){
-		error_log("text:".$value["text"]);
 		array_push($arr,$value["text"]);
 	}
 	echo json_encode($arr);
@@ -57,6 +59,18 @@ function update(){
 	$jsonString = callWatson();
 	$json = json_decode($jsonString, true);
 	if($json["text"] == $sword){
+		echo json_encode("OK");
+	}else{
+		echo json_encode("NG");
+	}
+}
+
+function delete(){
+	global $url,$formatmeisho,$workspace_id_shi,$sword,$data;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples/".urlencode($sword)."?version=2017-05-26";
+	$result = callWatson3();
+	error_log($result);
+	if($result == "200"){
 		echo json_encode("OK");
 	}else{
 		echo json_encode("NG");
@@ -96,6 +110,24 @@ function callWatson2(){
 
 	curl_setopt_array($curl, $options);
 	return curl_exec($curl);
+}
+
+function callWatson3(){
+	global $curl, $url, $username, $password, $data, $options;
+	$curl = curl_init($url);
+
+	$options = array(
+			CURLOPT_HTTPHEADER => array(
+					'Content-Type: application/json',
+			),
+			CURLOPT_USERPWD => $username . ':' . $password,
+			CURLOPT_CUSTOMREQUEST => 'DELETE',
+			CURLOPT_RETURNTRANSFER => true,
+	);
+
+	curl_setopt_array($curl, $options);
+	curl_exec($curl);
+	return curl_getinfo($curl, CURLINFO_HTTP_CODE);
 }
 ?>
 
