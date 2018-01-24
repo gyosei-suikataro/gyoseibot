@@ -57,9 +57,9 @@ function update(){
 	$jsonString = callWatson();
 	$json = json_decode($jsonString, true);
 	if($json["text"] == $sword){
-		echo "更新しました";
+		echo "OK";
 	}else{
-		echo "更新できませんでした";
+		echo "NG";
 	}
 }
 

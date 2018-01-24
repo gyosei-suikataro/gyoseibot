@@ -42,7 +42,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-				<button type="button" class="btn btn-primary" onclick="update()">更新</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="update()">更新</button>
 			</div>
 		</div>
 	</div>
@@ -161,12 +161,18 @@ function update(){
 			"sword" : intent
 		}
 	}).done(function (response) {
-		alert(response);
+		if(response == "OK"){
+			alert("更新しました");
+			var raw = wtable.insertRow( -1 );
+			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
+			td1.innerHTML = intent;
+			td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
+		}else{
+			alert("更新できませんでした");
+		}
     }).fail(function () {
         alert("更新できませんでした");
     });
-
-	document.getElementById('updateDialog').modal('hide');
 }
 
 //もどる
