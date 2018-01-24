@@ -12,12 +12,12 @@
 <div id="header"></div>
 <div class="container">
 	<p>大分類</p>
-	<select id="g1" class="form-control" style="width: 600px;">
+	<select id="g1" class="form-control" onChange="g1change()" style="width: 600px;">
 	</select>
 	<br>
 	<table id='grid-basic' class='table table-sm'>
 		<thead>
-			<tr><th data-column-id='intent' data-identifier='true'>検索ワード</th></tr>
+			<tr><th >検索ワード</th></tr>
 		</table>
 		<tbody>
 			<tr><td></td></tr>
@@ -87,6 +87,8 @@ var rowIds = [];
 var rowgid1 = [];
 var rowgid2 = [];
 
+var wtable = document.getElementById('grid-basic');
+
 $(function(){
 	$("#header").load("header.html");
 	//ジャンルの設定
@@ -124,7 +126,6 @@ function getwtint(){
 			"g1meisho" : g1meisho
 		}
 	}).done(function (response) {
-		var wtable = document.getElementById('grid-basic');
 		result = JSON.parse(response);
 		for( var index in result ) {
 			var raw = wtable.insertRow( -1 );
@@ -138,18 +139,11 @@ function getwtint(){
 }
 
 //分類選択
-function bchange(){
-	if(document.getElementById('bunrui').value == 1){
-		document.getElementById('g1').style.display = "none";
-		document.getElementById('g1meisho').style.display = "block";
-		document.getElementById('g2meisho').disabled = true;
-		document.getElementById('g2meisho').value = "";
-	}
-	if(document.getElementById('bunrui').value == 2){
-		document.getElementById('g1').style.display = "block";
-		document.getElementById('g1meisho').style.display = "none"
-		document.getElementById('g2meisho').disabled = false;
-	}
+function g1change(){
+	//テーブル初期化
+	while( wtable.rows[ 0 ] ) wtable.deleteRow( 0 );
+
+	getwtint();
 }
 
 //更新
