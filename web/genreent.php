@@ -176,15 +176,17 @@ function g2change(){
 
 //更新
 function update(){
-	intent = document.getElementById('intent').value;
+	synonym = document.getElementById('synonym').value;
 	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	g2meisho = document.getElementById('g2').options[document.getElementById('g2').selectedIndex].text;
 	$.ajax({
 		type: "POST",
 		url: "cw2.php",
 		data: {
-			"param" : "intentUpdate",
+			"param" : "entityUpdate",
 			"g1meisho" : g1meisho,
-			"sword" : intent
+			"g2meisho" : g2meisho,
+			"sword" : synonym
 		}
 	}).done(function (response) {
 		result = JSON.parse(response);
@@ -192,8 +194,8 @@ function update(){
 			alert("更新しました");
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
-			td1.innerHTML = intent;
-			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + intent + '\',this)" />';
+			td1.innerHTML = synonym;
+			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + synonym + '\',this)" />';
 		}else{
 			alert("更新できませんでした");
 		}

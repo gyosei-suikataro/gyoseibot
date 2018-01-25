@@ -100,6 +100,19 @@ function entitySearch(){
 	echo json_encode($arr);
 }
 
+function entityUpdate(){
+	global $url,$formatmeisho,$formatmeisho2,$workspace_id_shi,$sword,$data;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($formatmeisho)."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
+	$data = array("synonym" => $sword);
+	$jsonString = callWatson();
+	$json = json_decode($jsonString, true);
+	if($json["synonym"] == $sword){
+		echo json_encode("OK");
+	}else{
+		echo json_encode("NG");
+	}
+}
+
 function callWatson(){
 	global $curl, $url, $username, $password, $data, $options;
 	$curl = curl_init($url);
