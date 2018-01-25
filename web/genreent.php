@@ -162,7 +162,7 @@ function g1change(){
 
 	for( var key in g2value ) {
 		alert(key);
-		g12 = splitString(key,".");
+		g12 = key.split(".");
 		alert(g12[0]);
 		if(g12[0] == g1value){
 			var option = document.createElement('option');
