@@ -21,7 +21,7 @@
 	<br>
 	<table id='grid-basic' class='table table-sm'>
 		<thead>
-			<tr><th >類義語</th></tr>
+			<tr><th >類義語</th><th align="right"></th></tr>
 		</table>
 		<tbody>
 			<tr><td></td></tr>
@@ -206,15 +206,17 @@ function update(){
 
 //行削除
 function delLine(value,raw){
-	var myRet = confirm("検索ワード「"+ value + "」を削除しますか？");
+	var myRet = confirm("類義語「"+ value + "」を削除しますか？");
 	if ( myRet == true ){
 		g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+		g2meisho = document.getElementById('g2').options[document.getElementById('g2').selectedIndex].text;
 		$.ajax({
 			type: "POST",
 			url: "cw2.php",
 			data: {
-				"param" : "intentDelete",
+				"param" : "entityDelete",
 				"g1meisho" : g1meisho,
+				"g2meisho" : g2meisho,
 				"sword" : value
 			}
 		}).done(function (response) {
