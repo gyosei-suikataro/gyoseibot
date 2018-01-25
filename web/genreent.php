@@ -21,7 +21,7 @@
 	<br>
 	<table id='grid-basic' class='table table-sm'>
 		<thead>
-			<tr><th >類義語</th><th style="text-align: right;">テスト</th></tr>
+			<tr><th >類義語</th><th></th></tr>
 		</table>
 		<tbody>
 			<tr><td></td></tr>
@@ -133,6 +133,7 @@ function getwtent(){
 		for( var index in result ) {
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
+			td2.style.textAlign = "right";
 			td1.innerHTML = result[index];
 			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + result[index] + '\',this)" />';
 		}
