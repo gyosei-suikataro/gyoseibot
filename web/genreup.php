@@ -92,12 +92,12 @@ if ($link) {
 			//CVSデータ作成
 			//Intents
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents?version=2017-05-26";
-			$data = array("intent" => $gid1);
+			$data = array("intent" => (string)$gid1);
 			callWatson();
 
 			//ENTITIES
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities?version=2017-05-26";
-			$data = array("entity" => $gid1);
+			$data = array("entity" => (string)$gid1);
 			callWatson();
 
 			//dialog_node
