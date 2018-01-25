@@ -117,7 +117,8 @@ $(function(){
 
 //インテント取得
 function getwtint(){
-	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	//g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	g1meisho = document.getElementById('g1').value;
 	$.ajax({
 		type: "POST",
 		url: "cw2.php",
@@ -152,7 +153,7 @@ function g1change(){
 //更新
 function update(){
 	intent = document.getElementById('intent').value;
-	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	g1meisho = document.getElementById('g1').value;
 	$.ajax({
 		type: "POST",
 		url: "cw2.php",
@@ -183,7 +184,7 @@ function update(){
 function delLine(value,raw){
 	var myRet = confirm("検索ワード「"+ value + "」を削除しますか？");
 	if ( myRet == true ){
-		g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+		g1meisho = document.getElementById('g1').value;
 		$.ajax({
 			type: "POST",
 			url: "cw2.php",

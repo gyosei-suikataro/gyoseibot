@@ -94,7 +94,7 @@ $(function() {
 	    keepSelection: true,
 	    formatters: {
 	        "details": function($column, $row) {
-	        	return "<input type='button' value='詳細' onclick='detailwin("  + $row.no + ")'> ";
+	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'> ";
              }
 	    }
 	}).on("selected.rs.jquery.bootgrid", function(e, rows)

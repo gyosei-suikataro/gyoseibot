@@ -24,9 +24,7 @@ $sword= $_POST['sword'];
 
 $data = "";
 
-$formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g1meisho);
-$formatmeisho2 = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g2meisho);
-error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".$formatmeisho." param:".$param." sword:".$sword);
+error_log("★★★★★★★★★★★★★★★★★★g1meisho:".$g1meisho." g2meisho:".$g2meisho." param:".$param." sword:".$sword);
 
 switch($param) {
 	case 'intentSearch':
@@ -52,8 +50,8 @@ switch($param) {
 }
 
 function intentSearch(){
-	global $url,$formatmeisho,$workspace_id_shi;
-	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples?version=2017-05-26&export=true";
+	global $url,$g1meisho,$workspace_id_shi;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".$g1meisho."/examples?version=2017-05-26&export=true";
 	$jsonString = callWatson2();
 	$json = json_decode($jsonString, true);
 	$arr = array();
@@ -64,8 +62,8 @@ function intentSearch(){
 }
 
 function intentUpdate(){
-	global $url,$formatmeisho,$workspace_id_shi,$sword,$data;
-	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples?version=2017-05-26";
+	global $url,$g1meisho,$workspace_id_shi,$sword,$data;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".$g1meisho."/examples?version=2017-05-26";
 	$data = array("text" => $sword);
 	$jsonString = callWatson();
 	$json = json_decode($jsonString, true);
@@ -77,8 +75,8 @@ function intentUpdate(){
 }
 
 function intentDelete(){
-	global $url,$formatmeisho,$workspace_id_shi,$sword,$data;
-	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples/".urlencode($sword)."?version=2017-05-26";
+	global $url,$g1meisho,$workspace_id_shi,$sword,$data;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".$g1meisho."/examples/".urlencode($sword)."?version=2017-05-26";
 	$result = callWatson3();
 	error_log($result);
 	if($result == "200"){
@@ -89,8 +87,8 @@ function intentDelete(){
 }
 
 function entitySearch(){
-	global $url,$formatmeisho,$formatmeisho2,$workspace_id_shi;
-	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($formatmeisho)."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
+	global $url,$g1meisho,$g2meisho,$workspace_id_shi;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
 	$jsonString = callWatson2();
 	$json = json_decode($jsonString, true);
 	$arr = array();
@@ -101,8 +99,8 @@ function entitySearch(){
 }
 
 function entityUpdate(){
-	global $url,$formatmeisho,$formatmeisho2,$workspace_id_shi,$sword,$data;
-	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($formatmeisho)."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
+	global $url,$g1meisho,$g2meisho,$workspace_id_shi,$sword,$data;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
 	$data = array("synonym" => $sword);
 	$jsonString = callWatson();
 	$json = json_decode($jsonString, true);
