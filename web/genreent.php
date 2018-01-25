@@ -77,7 +77,7 @@ if ($link) {
 	}
 	$result = pg_query("SELECT * FROM genre WHERE bunrui = 2");
 	while ($row = pg_fetch_row($result)) {
-		$g2value = $g2value + array($row[1] => $row[4]);
+		$g2value = $g2value + array($row[1].".".$row[2]=> $row[4]);
 	}
 }
 ?>
@@ -161,9 +161,10 @@ function g1change(){
 	g1value = document.getElementById('g1').value;
 
 	for( var key in g2value ) {
-		if(key == g1value){
+		g12 = splitString(key,".");
+		if(g12[0] == g1value){
 			var option = document.createElement('option');
-			option.setAttribute('value', g2value[key]);
+			option.setAttribute('value', g12[1]);
 			var text = document.createTextNode(g2value[key]);
 			option.appendChild(text);
 			select2.appendChild(option);
