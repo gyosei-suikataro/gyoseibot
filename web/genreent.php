@@ -161,7 +161,9 @@ function g1change(){
 	g1value = document.getElementById('g1').value;
 
 	for( var key in g2value ) {
+		alert(key);
 		g12 = splitString(key,".");
+		alert(g12[0]);
 		if(g12[0] == g1value){
 			var option = document.createElement('option');
 			option.setAttribute('value', g12[1]);
