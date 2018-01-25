@@ -22,3 +22,14 @@
   z-index: 2;
 }
 .table-img { width: 100px; height: 100px; }
+.modal-dialog{
+	display: flex
+	flex-direction: column
+	justify-content: center
+	min-height: 100%
+	margin: auto
+	pointer-events: none
+}
+.modal-content{
+    pointer-events: all
+}
