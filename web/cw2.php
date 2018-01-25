@@ -112,7 +112,7 @@ function entityUpdate(){
 }
 
 function entityDelete(){
-	global $url,$g1meisho,$workspace_id_shi,$sword,$data;
+	global $url,$g1meisho,$g2meisho,$workspace_id_shi,$sword,$data;
 	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($g2meisho)."/synonyms/".urlencode($sword)."?version=2017-05-26";
 	$result = callWatson3();
 	error_log($result);
