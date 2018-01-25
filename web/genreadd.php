@@ -16,8 +16,6 @@
 	<option value="1">大分類</option>
 	<option value="2">小分類</option>
 	</select>
-	※大分類を追加する場合は、Watson Conversationの修正も必要です
-	<br>
 	<br>
 	<p>大分類名称</p>
 	<input id="g1meisho" class="form-control" maxlength="50" placeholder="大分類名称" style="width: 600px;">
