@@ -21,11 +21,6 @@ $gid2 = $_POST['gid2'];
 
 if ($link) {
 	//名称の取得
-	$result = pg_query("SELECT meisho FROM genre WHERE bunrui = 1 AND gid1 = {$gid1}");
-	$row = pg_fetch_row($result);
-	$g1meisho = $row[0];
-	$fg1meisho= preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g1meisho);
-
 	$result = pg_query("SELECT meisho FROM genre WHERE gid1 = {$gid1} AND gid2 = {$gid2}");
 	$row = pg_fetch_row($result);
 	$g2meisho = $row[0];
@@ -37,11 +32,11 @@ if ($link) {
 
 		//CVS削除
 		//Intents
-		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($fg1meisho)."?version=2017-05-26";
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".$gid1."?version=2017-05-26";
 		callWatson();
 
 		//ENTITIES
-		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($fg1meisho)."?version=2017-05-26";
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$gid1."?version=2017-05-26";
 		callWatson();
 
 		//dialog_node
@@ -59,7 +54,7 @@ if ($link) {
 		//CVS削除
 		error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 		error_log("gid1:".$g1meisho." gid2:".$g2meisho);
-		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($fg1meisho)."/values/".urlencode($g2meisho)."?version=2017-05-26";
+		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$gid1."/values/".urlencode($g2meisho)."?version=2017-05-26";
 		callWatson();
 
 		$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1.".".$gid2."?version=2017-05-26";
