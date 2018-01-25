@@ -141,22 +141,9 @@ if ($link) {
 			$data = array("value" => $meisho);
 			callWatson();
 
-			//DIALOG
-			$parent = "";
-			//全てのLISTから大分類名とタイトルが同じノードのdialog_nodeを取得
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$jsonString = callWatson2();
-			$json = json_decode($jsonString, true);
-			foreach ($json["dialog_nodes"] as $value){
-				if($value["title"] == $g1meisho){
-					$parent = $value["dialog_node"];
-					break;
-				}
-			}
-
 			//上記で取得したdialog_nodeをparentに設定して新規ノードを作成
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$data = array("dialog_node" => $gid1.".".$gid2,"type" => "response_condition","parent" =>  $parent,"conditions" => "@".$gid1.":".$meisho,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
+			$data = array("dialog_node" => $gid1.".".$gid2,"type" => "response_condition","parent" =>  "entity".$gid1,"conditions" => "@".$gid1.":".$meisho,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
 			callWatson();
 		}
 		if (!$result_flag) {
