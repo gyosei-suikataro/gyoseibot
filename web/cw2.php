@@ -19,11 +19,13 @@ $link = pg_connect($conn);
 
 $param = $_POST['param'];
 $g1meisho= $_POST['g1meisho'];
+$g2meisho= $_POST['g2meisho'];
 $sword= $_POST['sword'];
 
 $data = "";
 
 $formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g1meisho);
+$formatmeisho2 = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$g2meisho);
 error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".$formatmeisho." param:".$param." sword:".$sword);
 
 switch($param) {
@@ -35,6 +37,15 @@ switch($param) {
 		break;
 	case 'intentDelete':
 		intentDelete();
+		break;
+	case 'entitySearch':
+		entitySearch();
+		break;
+	case 'entityUpdate':
+		entityUpdate();
+		break;
+	case 'entityDelete':
+		entityDelete();
 		break;
 	default:
 		continue;
@@ -75,6 +86,18 @@ function intentDelete(){
 	}else{
 		echo json_encode("NG");
 	}
+}
+
+function entitySearch(){
+	global $url,$formatmeisho,$formatmeisho2,$workspace_id_shi;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($formatmeisho)."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
+	$jsonString = callWatson2();
+	$json = json_decode($jsonString, true);
+	$arr = array();
+	foreach ($json["synonyms"] as $value){
+		array_push($arr,$value["synonym"]);
+	}
+	echo json_encode($arr);
 }
 
 function callWatson(){

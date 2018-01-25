@@ -124,6 +124,7 @@ function getwtint(){
 		data: {
 			"param" : "intentSearch",
 			"g1meisho" : g1meisho,
+			"g2meisho" : "",
 			"sword" : ""
 		}
 	}).done(function (response) {
@@ -157,6 +158,7 @@ function update(){
 		data: {
 			"param" : "intentUpdate",
 			"g1meisho" : g1meisho,
+			"g2meisho" : "",
 			"sword" : intent
 		}
 	}).done(function (response) {
@@ -186,6 +188,7 @@ function delLine(value,raw){
 			data: {
 				"param" : "intentDelete",
 				"g1meisho" : g1meisho,
+				"g2meisho" : "",
 				"sword" : value
 			}
 		}).done(function (response) {

@@ -113,28 +113,19 @@ $(function(){
 
 	g1change();
 
-	//テーブル追加
-	//getwtint();
-	/*
-	var wtable = document.getElementById('grid-basic');
-	var raw = wtable.insertRow( -1 );
-	var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
-
-	td1.innerHTML = "テスト";
-	td2.innerHTML = '<input type="button" value="行削除" onclick="delLine(this)" />';
-	*/
-
 });
 
 //インテント取得
-function getwtint(){
+function getwtent(){
 	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	g2meisho = document.getElementById('g2').options[document.getElementById('g2').selectedIndex].text;
 	$.ajax({
 		type: "POST",
 		url: "cw2.php",
 		data: {
-			"param" : "intentSearch",
+			"param" : "entitySearch",
 			"g1meisho" : g1meisho,
+			"g2meisho" : g2meisho,
 			"sword" : ""
 		}
 	}).done(function (response) {
@@ -152,9 +143,6 @@ function getwtint(){
 
 //大分類切替
 function g1change(){
-	//テーブル初期化
-	while( wtable.rows[ 1 ] ) wtable.deleteRow( 1 );
-
 	var g2value = <?php echo json_encode($g2value); ?>;
 	var select2 = document.getElementById('g2');
 
@@ -175,6 +163,15 @@ function g1change(){
 			select2.appendChild(option);
 		}
 	}
+	g2change();
+}
+
+//小分類切替
+function g2change(){
+	//テーブル初期化
+	while( wtable.rows[ 1 ] ) wtable.deleteRow( 1 );
+
+	getwtent();
 }
 
 //更新
