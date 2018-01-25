@@ -26,8 +26,8 @@ error_log("★★★★★★★★★★★★★★★★★★★★★★★
 error_log("uiKbn:".$uiKbn." bunrui:".$bunrui." meisho:".$meisho." gid1:".$gid1." gid2:".$gid2." g1meisho:".$g1meisho." meishoOld:".$meishoOld);
 
 if ($link) {
-	$formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$meisho);
-	$formatmeishoOld = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$meishoOld);
+	//$formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$meisho);
+	//$formatmeishoOld = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u",'' ,$meishoOld);
 	if($uiKbn == 1){
 		$sql = "UPDATE genre SET meisho = '{$meisho}' WHERE gid1 = {$gid1} AND gid2 = {$gid2}";
 		$result_flag = pg_query($sql);
@@ -39,10 +39,11 @@ if ($link) {
 			//大分類
 			//CVSデータ修正
 			//Intents
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeishoOld)."?version=2017-05-26";
-			$data = array("intent" => $formatmeisho);
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".$gid1."?version=2017-05-26";
+			$data = array("description" => $meisho);
 			callWatson();
 
+			/*
 			//ENTITIES
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($formatmeishoOld)."?version=2017-05-26";
 			$data = array("entity" => $formatmeisho);
@@ -64,17 +65,18 @@ if ($link) {
 					callWatson();
 				}
 			}
+			*/
 		}else{
 			//小分類
 			//CVSデータ修正
 			//ENTITIES
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values/".urlencode($meishoOld)."?version=2017-05-26";
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$gid1."/values/".urlencode($meishoOld)."?version=2017-05-26";
 			$data = array("value" => $meisho);
 			callWatson();
 
 			//DIALOG
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/".$gid1.".".$gid2."?version=2017-05-26";
-			$data = array("conditions" => "@".$g1meisho.":".$meisho);
+			$data = array("conditions" => "@".$gid1.":".$meisho);
 			callWatson();
 
 		}
@@ -90,12 +92,12 @@ if ($link) {
 			//CVSデータ作成
 			//Intents
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents?version=2017-05-26";
-			$data = array("intent" => $formatmeisho);
+			$data = array("intent" => $gid1);
 			callWatson();
 
 			//ENTITIES
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities?version=2017-05-26";
-			$data = array("entity" => $formatmeisho);
+			$data = array("entity" => $gid1);
 			callWatson();
 
 			//dialog_node
@@ -115,14 +117,14 @@ if ($link) {
 				}
 			}
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$data = array("dialog_node" => $gid1.".".$gid2,"title" => $formatmeisho,"conditions" => "@".$formatmeisho,"previous_sibling" => "ようこそ","metadata" => array("_customization" => array("mcr" => true)));
+			$data = array("dialog_node" => $gid1.".".$gid2,"title" => "entity".$gid1,"conditions" => "@".$gid1,"previous_sibling" => "ようこそ","metadata" => array("_customization" => array("mcr" => true)));
 			callWatson();
 
 			if($previous_sibling == ""){
 				$previous_sibling = $gid1.".".$gid2;
 			}
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$data = array("dialog_node" => "node_".$gid1,"title" => "#".$formatmeisho,"conditions" => "#".$formatmeisho,"previous_sibling" => $previous_sibling,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
+			$data = array("dialog_node" => "node_".$gid1,"title" => "intent".$gid1,"conditions" => "#".$gid1,"previous_sibling" => $previous_sibling,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
 			callWatson();
 
 		}else{
@@ -135,7 +137,7 @@ if ($link) {
 
 			//CVSデータ作成
 			//ENTITIES
-			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".urlencode($g1meisho)."/values?version=2017-05-26";
+			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$gid1."/values?version=2017-05-26";
 			$data = array("value" => $meisho);
 			callWatson();
 
@@ -154,7 +156,7 @@ if ($link) {
 
 			//上記で取得したdialog_nodeをparentに設定して新規ノードを作成
 			$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/dialog_nodes/?version=2017-05-26";
-			$data = array("dialog_node" => $gid1.".".$gid2,"type" => "response_condition","parent" =>  $parent,"conditions" => "@".$g1meisho.":".$meisho,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
+			$data = array("dialog_node" => $gid1.".".$gid2,"type" => "response_condition","parent" =>  $parent,"conditions" => "@".$gid1.":".$meisho,"output" => array("text" => array("values" => array($gid1.".".$gid2))));
 			callWatson();
 		}
 		if (!$result_flag) {
