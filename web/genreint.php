@@ -17,7 +17,7 @@
 	<br>
 	<table id='grid-basic' class='table table-sm'>
 		<thead>
-			<tr><th >検索ワード</th></tr>
+			<tr><th >検索ワード</th><th ></th></tr>
 		</table>
 		<tbody>
 			<tr><td></td></tr>
@@ -132,6 +132,7 @@ function getwtint(){
 		for( var index in result ) {
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
+			td2.style.width = "50px";
 			td1.innerHTML = result[index];
 			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + result[index] + '\',this)" />';
 		}
@@ -167,6 +168,7 @@ function update(){
 			alert("更新しました");
 			var raw = wtable.insertRow( -1 );
 			var td1 = raw.insertCell(-1),td2 = raw.insertCell(-1);
+			td2.style.width = "50px";
 			td1.innerHTML = intent;
 			td2.innerHTML = '<input type="button" value="削除" class="btn btn-default" onclick="delLine(\'' + intent + '\',this)" />';
 		}else{
