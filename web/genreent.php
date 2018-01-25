@@ -21,7 +21,7 @@
 	<br>
 	<table id='grid-basic' class='table table-sm'>
 		<thead>
-			<tr><th >類義語</th><th data-width='50px'></th></tr>
+			<tr><th data-width='80%'>類義語</th><th ></th></tr>
 		</table>
 		<tbody>
 			<tr><td></td></tr>
