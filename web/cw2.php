@@ -88,7 +88,7 @@ function intentDelete(){
 
 function entitySearch(){
 	global $url,$g1meisho,$g2meisho,$workspace_id_shi;
-	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($g2meisho)."/synonyms?version=2017-05-26";
 	$jsonString = callWatson2();
 	$json = json_decode($jsonString, true);
 	$arr = array();
@@ -100,11 +100,23 @@ function entitySearch(){
 
 function entityUpdate(){
 	global $url,$g1meisho,$g2meisho,$workspace_id_shi,$sword,$data;
-	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($formatmeisho2)."/synonyms?version=2017-05-26";
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($g2meisho)."/synonyms?version=2017-05-26";
 	$data = array("synonym" => $sword);
 	$jsonString = callWatson();
 	$json = json_decode($jsonString, true);
 	if($json["synonym"] == $sword){
+		echo json_encode("OK");
+	}else{
+		echo json_encode("NG");
+	}
+}
+
+function entityDelete(){
+	global $url,$g1meisho,$workspace_id_shi,$sword,$data;
+	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/entities/".$g1meisho."/values/".urlencode($g2meisho)."/synonyms/".urlencode($sword)."?version=2017-05-26";
+	$result = callWatson3();
+	error_log($result);
+	if($result == "200"){
 		echo json_encode("OK");
 	}else{
 		echo json_encode("NG");

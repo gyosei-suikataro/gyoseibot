@@ -117,7 +117,7 @@ $(function(){
 
 //インテント取得
 function getwtent(){
-	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	g1meisho = document.getElementById('g1').value;
 	g2meisho = document.getElementById('g2').options[document.getElementById('g2').selectedIndex].text;
 	$.ajax({
 		type: "POST",
@@ -178,7 +178,7 @@ function g2change(){
 //更新
 function update(){
 	synonym = document.getElementById('synonym').value;
-	g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+	g1meisho = document.getElementById('g1').value;
 	g2meisho = document.getElementById('g2').options[document.getElementById('g2').selectedIndex].text;
 	$.ajax({
 		type: "POST",
@@ -210,7 +210,7 @@ function update(){
 function delLine(value,raw){
 	var myRet = confirm("類義語「"+ value + "」を削除しますか？");
 	if ( myRet == true ){
-		g1meisho = document.getElementById('g1').options[document.getElementById('g1').selectedIndex].text;
+		g1meisho = document.getElementById('g1').value;
 		g2meisho = document.getElementById('g2').options[document.getElementById('g2').selectedIndex].text;
 		$.ajax({
 			type: "POST",
