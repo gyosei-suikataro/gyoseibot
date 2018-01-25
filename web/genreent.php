@@ -3,7 +3,7 @@
 <head>
 <meta charset='utf-8'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=10.0, user-scalable=yes">
-<title>ジャンル検索ワード登録</title>
+<title>類義語登録</title>
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
@@ -15,9 +15,13 @@
 	<select id="g1" class="form-control" onChange="g1change()" style="width: 600px;">
 	</select>
 	<br>
+	<p>小分類</p>
+	<select id="g2" class="form-control" onChange="g2change()" style="width: 600px;">
+	</select>
+	<br>
 	<table id='grid-basic' class='table table-sm'>
 		<thead>
-			<tr><th >検索ワード</th></tr>
+			<tr><th >類義語</th></tr>
 		</table>
 		<tbody>
 			<tr><td></td></tr>
@@ -37,7 +41,7 @@
 				<h4 class="modal-title" id="modal-label">追加</h4>
 			</div>
 			<div class="modal-body">
-				<input id="intent" class="form-control" placeholder="検索ワード">
+				<input id="synonym" class="form-control" placeholder="類義語">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
@@ -53,7 +57,8 @@ $gid2 = "";
 $meisho = "";
 
 //ジャンル
-$j1value = array();
+$g1value = array();
+$g2value = array();
 
 //環境変数の取得
 $db_host =  getenv('DB_HOST');
@@ -68,7 +73,11 @@ $link = pg_connect($conn);
 if ($link) {
 	$result = pg_query("SELECT * FROM genre WHERE bunrui = 1");
 	while ($row = pg_fetch_row($result)) {
-		$j1value = $j1value + array($row[1] => $row[4]);
+		$g1value = $g1value + array($row[1] => $row[4]);
+	}
+	$result = pg_query("SELECT * FROM genre WHERE bunrui = 2");
+	while ($row = pg_fetch_row($result)) {
+		$g2value = $g2value + array($row[1] => $row[4]);
 	}
 }
 ?>
@@ -91,19 +100,21 @@ var wtable = document.getElementById('grid-basic');
 $(function(){
 	$("#header").load("header.html");
 	//ジャンルの設定
-	var j1value = <?php echo json_encode($j1value); ?>;
-	var select = document.getElementById('g1');
+	var g1value = <?php echo json_encode($g1value); ?>;
+	var select1 = document.getElementById('g1');
 
-	for( var key in j1value ) {
+	for( var key in g1value ) {
 		var option = document.createElement('option');
 		option.setAttribute('value', key);
-		var text = document.createTextNode(j1value[key]);
+		var text = document.createTextNode(g1value[key]);
 		option.appendChild(text);
-		select.appendChild(option);
+		select1.appendChild(option);
 	}
 
+	g1change();
+
 	//テーブル追加
-	getwtint();
+	//getwtint();
 	/*
 	var wtable = document.getElementById('grid-basic');
 	var raw = wtable.insertRow( -1 );
@@ -139,12 +150,25 @@ function getwtint(){
     });
 }
 
-//分類選択
+//大分類切替
 function g1change(){
 	//テーブル初期化
 	while( wtable.rows[ 1 ] ) wtable.deleteRow( 1 );
 
-	getwtint();
+	var g2value = <?php echo json_encode($g2value); ?>;
+	var select2 = document.getElementById('g2');
+
+	g1value = document.getElementById('g1').value;
+
+	for( var key in g2value ) {
+		if(key == g1value){
+			var option = document.createElement('option');
+			option.setAttribute('value', g2value[key]);
+			var text = document.createTextNode(g2value[key]);
+			option.appendChild(text);
+			select2.appendChild(option);
+		}
+	}
 }
 
 //更新

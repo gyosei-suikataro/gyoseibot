@@ -27,20 +27,20 @@ $formatmeisho = preg_replace("/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/
 error_log("★★★★★★★★★★★★★★★★★★formatmeisho:".$formatmeisho." param:".$param." sword:".$sword);
 
 switch($param) {
-	case 'search':
-		search();
+	case 'intentSearch':
+		intentSearch();
 		break;
-	case 'update':
-		update();
+	case 'intentUpdate':
+		intentUpdate();
 		break;
-	case 'delete':
-		delete();
+	case 'intentDelete':
+		intentDelete();
 		break;
 	default:
 		continue;
 }
 
-function search(){
+function intentSearch(){
 	global $url,$formatmeisho,$workspace_id_shi;
 	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples?version=2017-05-26&export=true";
 	$jsonString = callWatson2();
@@ -52,7 +52,7 @@ function search(){
 	echo json_encode($arr);
 }
 
-function update(){
+function intentUpdate(){
 	global $url,$formatmeisho,$workspace_id_shi,$sword,$data;
 	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples?version=2017-05-26";
 	$data = array("text" => $sword);
@@ -65,7 +65,7 @@ function update(){
 	}
 }
 
-function delete(){
+function intentDelete(){
 	global $url,$formatmeisho,$workspace_id_shi,$sword,$data;
 	$url = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/".$workspace_id_shi."/intents/".urlencode($formatmeisho)."/examples/".urlencode($sword)."?version=2017-05-26";
 	$result = callWatson3();

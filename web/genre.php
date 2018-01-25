@@ -94,6 +94,7 @@ if ($link) {
 	<input id="btn_ins" type="button" class="btn btn-default" value="ジャンルの追加" onclick="irow()">
 	<input id="btn_mod" type="button" class="btn btn-default" value="ジャンルの修正" onclick="mrow()">
 	<input id="btn_int" type="button" class="btn btn-default" value="検索ワード追加" onclick="intent()">
+	<input id="btn_int" type="button" class="btn btn-default" value="類義語追加" onclick="entity()">
 </div>
 </div>
 <script>
@@ -202,6 +203,10 @@ function mrow(){
 
 function intent(){
 	window.location.href = "./genreint.php";
+}
+
+function entity(){
+	window.location.href = "./genreent.php";
 }
 </script>
 </body>
