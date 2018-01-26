@@ -8,8 +8,8 @@
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/jquery.bootgrid.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
-<script src="js/jquery.bootgrid.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/jquery.bootgrid.js"></script>
 </head>
 <body>
 <div id="loader-bg">
@@ -78,7 +78,8 @@ if ($link) {
 </div>
 </div>
 <div class="modal fade" id="shosaiDialog">
-	<div class="modal-dialog modal-content">
+	<div class="modal-dialog">
+		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
@@ -92,6 +93,7 @@ if ($link) {
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 			</div>
+		</div>
 	</div>
 </div>
 <script>
