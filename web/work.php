@@ -5,11 +5,9 @@
 <title>Menu</title>
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
-<link href="css/jquery.bootgrid.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
 </head>
 <body>
-<div id="header"></div>
 <div class="container">
 	<div class="center-block">
 		<input type="button" class="btn btn-default" onclick="detailwin()" value="モーダル表示" />
