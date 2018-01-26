@@ -15,22 +15,17 @@
 		<input type="button" class="btn btn-default" onclick="detailwin()" value="モーダル表示" />
 	</div>
 </div>
-<div class="modal fade" id="shosaiDialog">
-	<div class="modal-dialog modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="modal-label">詳細</h4>
-			</div>
-			<div class="modal-body">
-				<p style='display:inline;'>　　　　日時　</p>
-				<input id="date" type="text" readonly style="width: 600px;">
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-			</div>
-	</div>
+<div class="modal fade" id="modal_box">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="box_inner">
+        <p>
+          てすとでーーーす
+        </p>
+        <p class="text-center"><a class="btn btn-primary" data-dismiss="modal" href="#">閉じる</a></p>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 <script>
@@ -41,7 +36,7 @@ $(function(){
 */
 
 function detailwin(){
-	$('#shosaiDialog').modal('show');
+	$('#modal_box').modal('show');
 }
 </script>
 </html>
