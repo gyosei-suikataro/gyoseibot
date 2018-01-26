@@ -76,8 +76,7 @@ if ($link) {
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
 </div>
 <div class="modal fade" id="shosaiDialog">
-	<div class="modal-dialog">
-    	<div class="modal-content">
+	<div class="modal-dialog modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
@@ -91,7 +90,6 @@ if ($link) {
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 			</div>
-		</div>
 	</div>
 </div>
 </div>
@@ -174,6 +172,7 @@ function drow() {
 }
 
 function detailwin(value){
+	alert("表示");
 	/*
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
@@ -218,7 +217,7 @@ function detailwin(value){
 		}
 	}
 	*/
-	$('#shosaiDialog').modal('show');
+	$('#shosaiDialog').modal();
 }
 </script>
 </body>
