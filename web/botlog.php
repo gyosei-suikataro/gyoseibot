@@ -175,7 +175,6 @@ function drow() {
 }
 
 function detailwin(value){
-	/*
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
 			// 表示するウィンドウのサイズ
@@ -218,8 +217,7 @@ function detailwin(value){
 		    break;
 		}
 	}
-	*/
-	$('#shosaiDialog').modal('show');
+	//$('#shosaiDialog').modal('show');
 }
 </script>
 </body>
