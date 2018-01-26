@@ -9,6 +9,7 @@
 <script src="js/bootstrap.js"></script>
 </head>
 <body>
+<div id="header"></div>
 <div class="container">
 	<div class="center-block">
 		<input type="button" class="btn btn-default" onclick="detailwin()" value="モーダル表示" />
@@ -35,11 +36,9 @@
 </div>
 </body>
 <script>
-/*
 $(function(){
 	$("#header").load("header.html");
 });
-*/
 
 function detailwin(){
 	$('#shosaiDialog').modal('show');
