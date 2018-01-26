@@ -75,32 +75,23 @@ if ($link) {
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
 </div>
-<div id="icesword" class="modal fade">
-  <div class="modal-dialog modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-        <i class="glyphicon glyphicon-remove"></i>
-      </button>
-      <h4 class="modal-title">
-        テスト
-      </h4>
-    </div>
-    <div class="modal-body">
-      テストですよ
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-default" data-dismiss="modal">
-        １
-      </button>
-      <button class="btn btn-danger" data-bind="click: close">
-        ２
-      </button>
-      <button class="btn btn-default" data-dismiss="modal">
-        ３
-      </button>
-    </div>
-  </div>
 </div>
+<div class="modal fade" id="shosaiDialog">
+	<div class="modal-dialog modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="modal-label">詳細</h4>
+			</div>
+			<div class="modal-body">
+				<p style='display:inline;'>　　　　日時　</p>
+				<input id="date" type="text" readonly style="width: 600px;">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+			</div>
+	</div>
 </div>
 <script>
 var rowIds = [];
@@ -120,8 +111,7 @@ $(function() {
 	    keepSelection: true,
 	    formatters: {
 	        "details": function($column, $row) {
-	        	//return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'> ";
-	        	return "<button type='button' class='btn btn-default' value='詳細' data-bind='click: open'> ";
+	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'> ";
 	        	//return "<input type='button' class='btn btn-default'  data-toggle='modal' data-target='#shosaiDialog' value="詳細" /> ";
              }
 	    }
@@ -228,14 +218,6 @@ function detailwin(value){
 	*/
 	$('#shosaiDialog').modal();
 }
-public open(): void {
-	  $('#icesword').modal();
-};
-public close(): void {
-	  $('body').removeClass('modal-open'); // 1
-	  $('.modal-backdrop').remove();       // 2
-	  $('#icesword').modal('hide');        // 3
-};
 </script>
 </body>
 </html>
