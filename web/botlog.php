@@ -217,7 +217,7 @@ function detailwin(value){
 		}
 	}
 	*/
-	$('#shosaiDialog').modal();
+	$('#shosaiDialog').modal('show');
 }
 </script>
 </body>
