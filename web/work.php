@@ -41,7 +41,7 @@ $(function(){
 */
 
 function detailwin(){
-	$('#shosaiDialog').modal();
+	$('#shosaiDialog').modal('show');
 }
 </script>
 </html>
