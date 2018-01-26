@@ -75,6 +75,25 @@ if ($link) {
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
 </div>
+<div class="modal fade" id="shosaiDialog">
+	<div class="modal-dialog">
+    	<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="modal-label">詳細</h4>
+			</div>
+			<div class="modal-body">
+				<p style='display:inline;'>　　　　日時　</p>
+				<input id="date" type="text" readonly style="width: 600px;">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+			</div>
+		</div>
+	</div>
+</div>
 </div>
 <script>
 var rowIds = [];
@@ -95,6 +114,7 @@ $(function() {
 	    formatters: {
 	        "details": function($column, $row) {
 	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'> ";
+	        	//return "<input type='button' class='btn btn-default'  data-toggle='modal' data-target='#shosaiDialog' value="詳細" /> ";
              }
 	    }
 	}).on("selected.rs.jquery.bootgrid", function(e, rows)
@@ -154,6 +174,7 @@ function drow() {
 }
 
 function detailwin(value){
+	/*
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
 			// 表示するウィンドウのサイズ
@@ -196,6 +217,8 @@ function detailwin(value){
 		    break;
 		}
 	}
+	*/
+	$('#shosaiDialog').modal('show');
 }
 </script>
 </body>
