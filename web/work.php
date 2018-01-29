@@ -34,7 +34,7 @@
 </body>
 <script>
 $(function(){
-	$("#header").load("header2.html");
+	$("#header").load("header.html");
 })
 function detailwin(){
 	//$('#shosaiDialog').modal('show');
