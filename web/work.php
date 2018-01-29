@@ -38,7 +38,7 @@
 <script>
 $(function(){
 	$("#header").load("header.html");
-}
+})
 function detailwin(){
 	$('#shosaiDialog').modal('show');
 }
