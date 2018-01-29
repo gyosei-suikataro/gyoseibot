@@ -76,9 +76,9 @@ if ($link) {
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
 </div>
 </div>
-<div class="modal fade" id="shosaiDialog">
+<div class="modal" id="shosaiDialog"  tabindex="-1">
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" style="width:740px; margin-left: -20px;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
@@ -86,8 +86,32 @@ if ($link) {
 				<h4 class="modal-title" id="modal-label">詳細</h4>
 			</div>
 			<div class="modal-body">
-				<p style='display:inline;'>　　　　日時　</p>
-				<input id="date" type="text" readonly style="width: 600px;">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_date">日時</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="dia_date" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_user">ユーザーＩＤ</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="dia_user" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_que">質問内容</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="dia_que" readonly></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_ans">回答内容</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="dia_ans" readonly></textarea>
+						</div>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
@@ -113,7 +137,7 @@ $(function() {
 	    keepSelection: true,
 	    formatters: {
 	        "details": function($column, $row) {
-	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'> ";
+	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'  data-toggle='modal'  data-target='#shosaiDialog'> ";
 	        	//return "<input type='button' class='btn btn-default'  data-toggle='modal' data-target='#shosaiDialog' value="詳細" /> ";
              }
 	    }
@@ -174,6 +198,7 @@ function drow() {
 }
 
 function detailwin(value){
+	/*
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
 			// 表示するウィンドウのサイズ
@@ -216,7 +241,16 @@ function detailwin(value){
 		    break;
 		}
 	}
-	//$('#shosaiDialog').modal('show');
+	*/
+	for (var i = 0; i < dbvalue.length; i++){
+		if(dbvalue[i][0] == value){
+			var idate = dbvalue[i][1].substr(0,4) + "/" + dbvalue[i][1].substr(4,2) + "/" + dbvalue[i][1].substr(6,2) + " " + dbvalue[i][1].substr(8,2) + ":" + dbvalue[i][1].substr(10,2);
+			document.getElementById('dia_date').value = idate;
+			document.getElementById('dia_user').value  = dbvalue[i][2];
+			document.getElementById('dia_que').innerHTML  = dbvalue[i][3];
+			document.getElementById('dia_ans').innerHTML  = dbvalue[i][4];
+		}
+	}
 }
 </script>
 </body>
