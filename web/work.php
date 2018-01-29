@@ -22,14 +22,24 @@
 				<h4 class="modal-title" id="modal-label">詳細</h4>
 			</div>
 			<div class="modal-body">
-				<div class="col-xs-9 form-inline">
-					<label class="control-label col-xs-3">日時</label>
-					<input id="date" class="form-control" type="text" readonly style="width: 600px;">
-				</div>
-				<div class="col-xs-9 form-inline">
-					<label class="control-label col-xs-3">ユーザーＩＤ</label>
-					<input id="userid" class="form-control" type="text" readonly style="width: 600px;">
-				</div>
+				<label>日時</label>
+				<input id="date" class="form-control" type="text" readonly style="width: 600px;">
+				<label>ユーザーＩＤ</label>
+				<input id="userid" class="form-control" type="text" readonly style="width: 600px;">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="InputText">１行テキスト入力欄</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="InputText" value="読み取り専用" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="InputText">複数行テキスト入力欄</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="InputTextarea" readonly>読み取り専用</textarea>
+						</div>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
