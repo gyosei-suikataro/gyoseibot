@@ -21,13 +21,13 @@
 				</button>
 				<h4 class="modal-title" id="modal-label">詳細</h4>
 			</div>
-			<span class="modal-body">
+			<div class="modal-body">
 				<br>
-				<p>　　　　日時　</p>
+				<p style='display:inline;'>　　　　日時　</p>
 				<input id="date" type="text" readonly style="width: 600px;">
-				<p>ユーザーＩＤ　</p>
+				<p style='display:inline;'>ユーザーＩＤ　</p>
 				<input id="userid" type="text" readonly style="width: 600px;">
-			</span>
+			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 			</div>
