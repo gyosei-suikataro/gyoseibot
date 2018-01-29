@@ -38,7 +38,8 @@ $(function(){
 })
 function detailwin(){
 	//$('#shosaiDialog').modal('show');
-	$('#date').value = "テスト";
+	//$('#date').value = "テスト";
+	document.getElementById('date').value = "テスト";
 }
 </script>
 </html>
