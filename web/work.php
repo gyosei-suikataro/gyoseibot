@@ -24,15 +24,15 @@
 			<div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="InputText">日時</label>
+						<label class="col-sm-2 control-label" for="date">日時</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="InputText" value="読み取り専用" readonly>
+							<input type="text" class="form-control" id="date" readonly>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="InputText">ユーザーＩＤ</label>
+						<label class="col-sm-2 control-label" for="userid">ユーザーＩＤ</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" id="InputTextarea" readonly>読み取り専用</textarea>
+							<textarea class="form-control" id="userid" readonly></textarea>
 						</div>
 					</div>
 				</form>
@@ -52,7 +52,7 @@ function detailwin(){
 	//$("#shosaiDialog").modal("show");
 	//$('#date').value = "テスト";
 	document.getElementById('date').value = "テスト";
-	document.getElementById('userid').value = "テストマン";
+	document.getElementById('userid').innerHTML  = "テストマン";
 }
 </script>
 </html>
