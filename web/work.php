@@ -25,6 +25,7 @@
 				<br>
 				<p style='display:inline;'>　　　　日時　</p>
 				<input id="date" type="text" readonly style="width: 600px;">
+				<br><br>
 				<p style='display:inline;'>ユーザーＩＤ　</p>
 				<input id="userid" type="text" readonly style="width: 600px;">
 			</span>
