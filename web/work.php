@@ -3,6 +3,7 @@
 <head>
 <meta charset='utf-8'>
 <title>Menu</title>
+<link href="css/common.css" rel="stylesheet" />
 <script src="js/bootstrap.js"></script>
 </head>
 <body>
