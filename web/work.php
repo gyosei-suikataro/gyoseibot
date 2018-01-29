@@ -9,7 +9,7 @@
 <div id="header"></div>
 <div class="container">
 	<div class="center-block">
-		<input type="button" class="btn btn-default" onclick="detailwin()" data-toggle="modal" data-target="#shosaiDialog" value="モーダル表示" />
+		<input type="button" class="btn btn-default" onclick="detailwin()" data-toggle="modal" value="モーダル表示" />
 	</div>
 </div>
 <div class="modal" id="shosaiDialog"  tabindex="-1">
@@ -37,7 +37,7 @@ $(function(){
 	$("#header").load("header.html");
 })
 function detailwin(){
-	//$('#shosaiDialog').modal('show');
+	$("#shosaiDialog").modal("show");
 	//$('#date').value = "テスト";
 	document.getElementById('date').value = "テスト";
 }
