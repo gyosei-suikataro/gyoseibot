@@ -23,11 +23,11 @@
 			</div>
 			<span class="modal-body">
 				<br>
-				<p style='display:inline;'>　　　　日時　</p>
-				<input id="date" type="text" readonly style="width: 600px;">
+				<p style='display:inline;'>　　　　　日時　</p>
+				<input id="date" class="form-control" type="text" readonly style="width: 600px;">
 				<br><br>
-				<p style='display:inline;'>ユーザーＩＤ　</p>
-				<input id="userid" type="text" readonly style="width: 600px;">
+				<p style='display:inline;'>　ユーザーＩＤ　</p>
+				<input id="userid" class="form-control" type="text" readonly style="width: 600px;">
 			</span>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
