@@ -103,13 +103,13 @@ if ($link) {
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_que">質問内容</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" id="dia_que" readonly></textarea>
+							<textarea class="form-control" id="dia_que" rows='10' readonly></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_ans">回答内容</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" id="dia_ans" readonly></textarea>
+							<textarea class="form-control" id="dia_ans" rows='10' readonly></textarea>
 						</div>
 					</div>
 				</form>
@@ -138,7 +138,8 @@ $(function() {
 	    keepSelection: true,
 	    formatters: {
 	        "details": function($column, $row) {
-	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'  data-toggle='modal'  data-target='#shosaiDialog'> ";
+	        	//return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'  data-toggle='modal'  data-target='#shosaiDialog'> ";
+	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")' > ";
 	        	//return "<input type='button' class='btn btn-default'  data-toggle='modal' data-target='#shosaiDialog' value="詳細" /> ";
              }
 	    }
@@ -199,7 +200,7 @@ function drow() {
 }
 
 function detailwin(value){
-	/*
+
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
 			// 表示するウィンドウのサイズ
@@ -242,7 +243,7 @@ function detailwin(value){
 		    break;
 		}
 	}
-	*/
+	/*
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
 			var idate = dbvalue[i][1].substr(0,4) + "/" + dbvalue[i][1].substr(4,2) + "/" + dbvalue[i][1].substr(6,2) + " " + dbvalue[i][1].substr(8,2) + ":" + dbvalue[i][1].substr(10,2);
@@ -252,6 +253,7 @@ function detailwin(value){
 			document.getElementById('dia_ans').innerHTML  = dbvalue[i][4];
 		}
 	}
+	*/
 }
 </script>
 </body>
