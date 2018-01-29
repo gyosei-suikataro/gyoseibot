@@ -22,12 +22,14 @@
 				<h4 class="modal-title" id="modal-label">詳細</h4>
 			</div>
 			<div class="modal-body">
-				<br>
-				<label class="control-label col-xs-3">日時</label>
-				<input id="date" class="form-control" type="text" readonly style="width: 600px;">
-				<br><br>
-				<p style='display:inline;'>　ユーザーＩＤ　</p>
-				<input id="userid" class="form-control" type="text" readonly style="width: 600px;">
+				<div class="col-xs-9 form-inline">
+					<label class="control-label col-xs-3">日時</label>
+					<input id="date" class="form-control" type="text" readonly style="width: 600px;">
+				</div>
+				<div class="col-xs-9 form-inline">
+					<label class="control-label col-xs-3">ユーザーＩＤ</label>
+					<input id="userid" class="form-control" type="text" readonly style="width: 600px;">
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
