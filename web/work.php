@@ -3,15 +3,13 @@
 <head>
 <meta charset='utf-8'>
 <title>Menu</title>
-<link href="css/bootstrap.css" rel="stylesheet" />
-<link href="css/common.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
 </head>
 <body>
+<div id="header"></div>
 <div class="container">
 	<div class="center-block">
-		<input type="button" class="btn btn-default" onclick="detailwin()" value="モーダル表示" />
+		<input type="button" class="btn btn-default" onclick="detailwin()" data-target="#shosaiDialog" value="モーダル表示" />
 	</div>
 </div>
 <div class="modal" id="shosaiDialog"  tabindex="-1">
@@ -35,13 +33,12 @@
 </div>
 </body>
 <script>
-/*
 $(function(){
-	$("#header").load("header.html");
+	$("#header").load("header2.html");
 })
-*/
 function detailwin(){
-	$('#shosaiDialog').modal('show');
+	//$('#shosaiDialog').modal('show');
+	$('#date').value = "テスト";
 }
 </script>
 </html>
