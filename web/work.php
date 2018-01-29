@@ -14,21 +14,21 @@
 </div>
 <div class="modal" id="shosaiDialog"  tabindex="-1">
 	<div class="modal-dialog">
-		<div class="modal-content" style="width:740px;">
+		<div class="modal-content" style="width:740px; margin-left: -20px;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title" id="modal-label">詳細</h4>
 			</div>
-			<span class="modal-body">
+			<div class="modal-body">
 				<br>
-				<p style='display:inline;'>　　　　　日時　</p>
+				<label class="control-label col-xs-3">日時</label>
 				<input id="date" class="form-control" type="text" readonly style="width: 600px;">
 				<br><br>
 				<p style='display:inline;'>　ユーザーＩＤ　</p>
 				<input id="userid" class="form-control" type="text" readonly style="width: 600px;">
-			</span>
+			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 			</div>
@@ -41,7 +41,7 @@ $(function(){
 	$("#header").load("header.html");
 })
 function detailwin(){
-	$("#shosaiDialog").modal("show");
+	//$("#shosaiDialog").modal("show");
 	//$('#date').value = "テスト";
 	document.getElementById('date').value = "テスト";
 	document.getElementById('userid').value = "テストマン";
