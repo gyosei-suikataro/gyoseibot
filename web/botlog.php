@@ -74,6 +74,7 @@ if ($link) {
 ?>
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
+	<input type="button" class="btn btn-default" onclick="detailwin(1364)" data-toggle="modal"  data-target="#shosaiDialog" value="モーダル表示" />
 </div>
 </div>
 <div class="modal" id="shosaiDialog"  tabindex="-1">
