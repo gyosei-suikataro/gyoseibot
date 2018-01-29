@@ -22,8 +22,11 @@
 				<h4 class="modal-title" id="modal-label">詳細</h4>
 			</div>
 			<span class="modal-body">
-				<p style='display:inline;'>　　　　日時　</p>
+				<br>
+				<p>　　　　日時　</p>
 				<input id="date" type="text" readonly style="width: 600px;">
+				<p>ユーザーＩＤ　</p>
+				<input id="userid" type="text" readonly style="width: 600px;">
 			</span>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
@@ -40,6 +43,7 @@ function detailwin(){
 	$("#shosaiDialog").modal("show");
 	//$('#date').value = "テスト";
 	document.getElementById('date').value = "テスト";
+	document.getElementById('userid').value = "テストマン";
 }
 </script>
 </html>
