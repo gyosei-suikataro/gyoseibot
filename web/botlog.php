@@ -89,6 +89,12 @@ if ($link) {
 			<div class="modal-body">
 				<form class="form-horizontal">
 					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_date">No</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="dia_no" readonly>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_date">日時</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="dia_date" readonly>
@@ -115,6 +121,8 @@ if ($link) {
 				</form>
 			</div>
 			<div class="modal-footer">
+				<button id="sback" type="button" class="btn btn-default" onclick="shosai_back()">＜＜前へ</button>
+				<button id="snext" type="button" class="btn btn-default" onclick="shosai_next()">次へ＞＞</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 			</div>
 		</div>
@@ -123,6 +131,7 @@ if ($link) {
 <script>
 var rowIds = [];
 var dbvalue = [];
+var shosai_idx = 0;
 $(function() {
 	dbvalue = <?php echo json_encode($dbvalue); ?>;
 	var h = $(window).height();
@@ -200,62 +209,44 @@ function drow() {
 }
 
 function detailwin(value){
-	alert("詳細表示");
 	document.getElementById("btn_modal").click();
-	/*
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
-			// 表示するウィンドウのサイズ
-			var w_size=900;
-			var h_size=400;
-			// 表示するウィンドウの位置
-			var l_position=Number((window.screen.width-w_size)/2);
-			var t_position=Number((window.screen.height-h_size)/2);
-
-		    myWin = window.open("" , "detailwindow" , 'width='+w_size+', height='+h_size+', left='+l_position+', top='+t_position); // ウィンドウを開く
-
-		    myWin.document.open();
-		    myWin.document.write( "<html>" );
-		    myWin.document.write( "<head>" );
-		    myWin.document.write( "<title>", "詳細" , "</title>" );
-		    myWin.document.write( "</head>" );
-		    myWin.document.write( "<body style='margin:10px;padding:10px'>" );
-		    var idate = dbvalue[i][1].substr(0,4) + "/" + dbvalue[i][1].substr(4,2) + "/" + dbvalue[i][1].substr(6,2) + " " + dbvalue[i][1].substr(8,2) + ":" + dbvalue[i][1].substr(10,2);
-		    myWin.document.write( "<p style='display:inline;'>　　　　日時　</p>" );
-		    myWin.document.write( "<input type='text' readonly style='width: 600px;' value='" + idate + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<p style='display:inline;'>ユーザーＩＤ　</p>" );
-		    myWin.document.write( "<input type='text' readonly style='width: 600px;' value='" + dbvalue[i][2] + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<label>　　質問内容　</label>" );
-		    myWin.document.write( "<textarea  readonly rows='10' cols='100' style='vertical-align:middle;'>" + dbvalue[i][3] + "</textarea>");
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<label>　　回答内容　</label>" );
-		    myWin.document.write( "<textarea  readonly rows='10' cols='100' style='vertical-align:middle;'>" + dbvalue[i][4] + "</textarea>");
-		    myWin.document.write( "</body>" );
-		    myWin.document.write( "</html>" );
-		    myWin.document.close();
-
-		    myWin.onpageshow = function(){
-
-		    	var width=screen.availWidth - 600;
-		        var height=screen.availHeight - 300;
-		        myWin.moveTo(width/2, height/2);
-		    };
-		    break;
+			shosai_idx = i;
+			modal_mod(i);
 		}
 	}
-	*/
-	for (var i = 0; i < dbvalue.length; i++){
-		if(dbvalue[i][0] == value){
-			var idate = dbvalue[i][1].substr(0,4) + "/" + dbvalue[i][1].substr(4,2) + "/" + dbvalue[i][1].substr(6,2) + " " + dbvalue[i][1].substr(8,2) + ":" + dbvalue[i][1].substr(10,2);
-			document.getElementById('dia_date').value = idate;
-			document.getElementById('dia_user').value  = dbvalue[i][2];
-			document.getElementById('dia_que').innerHTML  = dbvalue[i][3];
-			document.getElementById('dia_ans').innerHTML  = dbvalue[i][4];
-		}
+}
+
+function shosai_back(){
+	shosai_idx = shosai_idx - 1;
+	modal_mod(shosai_idx);
+}
+
+function shosai_next(){
+	shosai_idx = shosai_idx + 1;
+	modal_mod(shosai_idx);
+}
+
+function modal_mod(index){
+	document.getElementById('dia_no').value  = dbvalue[index][0];
+	var idate = dbvalue[index][1].substr(0,4) + "/" + dbvalue[index][1].substr(4,2) + "/" + dbvalue[index][1].substr(6,2) + " " + dbvalue[index][1].substr(8,2) + ":" + dbvalue[index][1].substr(10,2);
+	document.getElementById('dia_date').value = idate;
+	document.getElementById('dia_user').value  = dbvalue[index][2];
+	document.getElementById('dia_que').innerHTML  = dbvalue[index][3];
+	document.getElementById('dia_ans').innerHTML  = dbvalue[index][4];
+
+	if(index == 0){
+		document.getElementById("sback").disabled = "true";
+	}else{
+		document.getElementById("sback").disabled = "";
 	}
 
+	if(index == dbvalue.length - 1){
+		document.getElementById("snext").disabled = "true";
+	}else{
+		document.getElementById("snext").disabled = "";
+	}
 }
 </script>
 </body>
