@@ -74,7 +74,7 @@ if ($link) {
 ?>
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
-	<input type="button" class="btn btn-default" onclick="detailwin(1364)" data-toggle="modal"  data-target="#shosaiDialog" value="モーダル表示" />
+	<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#shosaiDialog" value="モーダル表示" />
 </div>
 </div>
 <div class="modal" id="shosaiDialog"  tabindex="-1">
@@ -200,7 +200,9 @@ function drow() {
 }
 
 function detailwin(value){
-
+	alert("詳細表示");
+	document.getElementById("btn_modal").click();
+	/*
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
 			// 表示するウィンドウのサイズ
@@ -243,7 +245,7 @@ function detailwin(value){
 		    break;
 		}
 	}
-	/*
+	*/
 	for (var i = 0; i < dbvalue.length; i++){
 		if(dbvalue[i][0] == value){
 			var idate = dbvalue[i][1].substr(0,4) + "/" + dbvalue[i][1].substr(4,2) + "/" + dbvalue[i][1].substr(6,2) + " " + dbvalue[i][1].substr(8,2) + ":" + dbvalue[i][1].substr(10,2);
@@ -253,7 +255,7 @@ function detailwin(value){
 			document.getElementById('dia_ans').innerHTML  = dbvalue[i][4];
 		}
 	}
-	*/
+
 }
 </script>
 </body>
