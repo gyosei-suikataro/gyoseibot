@@ -105,7 +105,7 @@ if ($link) {
 	<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#image_Modal" value="モーダル表示" />
 </div>
 </div>
-<div class="modal" id="image_Modal" id="dia_modal" tabindex="-1">
+<div class="modal" id="image_Modal" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content" id="dia_cont">
 			<div class="modal-body">
@@ -207,7 +207,7 @@ function imgwin(imgno){
 	var imgwidth = img.width + 40;
 	var imgmar = img.width / 2;
 	document.getElementById('dia_cont').style.width = imgwidth + "px";
-	document.getElementById('dia_modal').style.left = "50%";
+	document.getElementById('image_Modal').style.left = "50%";
 	//document.getElementById('dia_modal').style.marginLeft = "-" + imgmar + "px";
 	document.getElementById("btn_modal").click();
 	/*
