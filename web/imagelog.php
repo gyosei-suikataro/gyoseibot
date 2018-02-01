@@ -205,6 +205,9 @@ function imgwin(imgno){
 	document.getElementById('dia_image').src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
 	var imgwidth = img.width + 40;
+	if(imgwidth < 600){
+		imgwidth = 600;
+	}
 	var imgmar = img.width / 2;
 	document.getElementById('dia_cont').style.width = imgwidth + "px";
 	//document.getElementById('image_Modal').style.left = "10%";
