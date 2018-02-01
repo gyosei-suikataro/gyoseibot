@@ -203,9 +203,9 @@ function imgwin(imgno){
 
 	var oimg = new Image();
 	oimg.src = "getimage.php?id=" + imgno;
+	var img = document.getElementById("dia_image");
 	img.width = oimg.width;
 	img.height = oimg.height;
-	var img = document.getElementById("dia_image");
 	document.getElementById('dia_kaku').innerHTML  = "確信度：";
 	img.src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
