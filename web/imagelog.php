@@ -140,7 +140,7 @@ $(function() {
                   //return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + $row.no + "\">画像拡大</button> ";
 	        	//return "<Form><input type='button' value='画像拡大' onClick='window.open('" + getimage.php?id=$row.no + "','test','width=250,height=100,');'></Form> ";
 	        	//return "<Form><input type='button' value='画像拡大' onclick='imgwin()'></Form> ";
-	        	return "<input type='button' class='btn btn-default' value='画像拡大' onclick='imgwin("  + $row.no + ")'> ";
+	        	return "<input type='button' class='btn btn-default' value='画像拡大' onclick='imgwin("  + $row.no + ","+ $row.scr +")'> ";
              }
 	    }
 	}).on("selected.rs.jquery.bootgrid", function(e, rows)
@@ -199,14 +199,14 @@ function drow() {
 	}
 }
 
-function imgwin(imgno){
+function imgwin(imgno,value){
 
 	var oimg = new Image();
 	oimg.src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
 	img.width = oimg.width;
 	img.height = oimg.height;
-	document.getElementById('dia_kaku').innerHTML  = "確信度：";
+	document.getElementById('dia_kaku').innerHTML  = "確信度：" + value;
 	img.src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
 	if(img.width > 600){
