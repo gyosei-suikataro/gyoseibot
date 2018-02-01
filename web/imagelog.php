@@ -208,7 +208,7 @@ function imgwin(imgno){
 	var imgmar = img.width / 2;
 	document.getElementById('dia_cont').style.width = imgwidth + "px";
 	document.getElementById('image_Modal').style.left = "50%";
-	//document.getElementById('dia_modal').style.marginLeft = "-" + imgmar + "px";
+	document.getElementById('dia_modal').style.marginLeft = "-" + imgmar + "px";
 	document.getElementById("btn_modal").click();
 	/*
     myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
