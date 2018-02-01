@@ -146,9 +146,7 @@ $(function() {
 	    keepSelection: true,
 	    formatters: {
 	        "details": function($column, $row) {
-	        	//return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")'  data-toggle='modal'  data-target='#shosaiDialog'> ";
 	        	return "<input type='button' class='btn btn-default' value='詳細' onclick='detailwin("  + $row.no + ")' > ";
-	        	//return "<input type='button' class='btn btn-default'  data-toggle='modal' data-target='#shosaiDialog' value="詳細" /> ";
              }
 	    }
 	}).on("selected.rs.jquery.bootgrid", function(e, rows)
