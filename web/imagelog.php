@@ -105,14 +105,14 @@ if ($link) {
 	<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#image_Modal" value="モーダル表示" />
 </div>
 </div>
-<div class="modal fade" id="image_Modal" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-lg modal-middle">
-		<div class="modal-content">
+<div class="modal" id="image_Modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content" id="dia_cont">
 			<div class="modal-body">
+				<p id="dia_kaku"></p>
 				<img  id="dia_image" class="aligncenter size-full wp-image-425"/>
 			</div>
-			<div class="modal-img_footer">
-				<p id="dia_kaku"></p>
+			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 			</div>
 		</div>
@@ -204,6 +204,8 @@ function imgwin(imgno){
 	document.getElementById("btn_modal").click();
 	document.getElementById('dia_kaku').innerHTML  = "確信度：";
 	document.getElementById('dia_image').src = "getimage.php?id=" + imgno;
+	var img = document.getElementById("dia_image");
+	document.getElementById('dia_cont').style.width = img.width + 40;
 	/*
     myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
     myWin = window.open("" , "imgwindow" , myWinSize); // ウィンドウを開く
