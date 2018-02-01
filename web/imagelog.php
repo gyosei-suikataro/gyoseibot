@@ -108,7 +108,7 @@ if ($link) {
 <div class="modal" id="image_Modal" tabindex="-1">
 	<div class="modal-dialog">
 		<div class="modal-content" id="dia_cont">
-			<div class="modal-body">
+			<div class="modal-body" align="center">
 				<p id="dia_kaku"></p>
 				<img  id="dia_image"/>
 			</div>
