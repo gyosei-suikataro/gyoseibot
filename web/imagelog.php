@@ -201,13 +201,14 @@ function drow() {
 
 function imgwin(imgno){
 
+	var oimg = new Image();
+	oimg.src = "getimage.php?id=" + imgno;
+	img.width = oimg.width;
+	img.height = oimg.height;
 	var img = document.getElementById("dia_image");
-	img.width = 0;
-	img.height = 0;
 	document.getElementById('dia_kaku').innerHTML  = "確信度：";
 	img.src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
-	alert(img.width);
 	if(img.width > 600){
 		var orgWidth  = img.width;
 		var orgHeight = img.height;
