@@ -102,7 +102,21 @@ if ($link) {
 ?>
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
+	<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#image_Modal" value="モーダル表示" />
 </div>
+</div>
+<div class="modal fade" id="image_Modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg modal-middle">
+		<div class="modal-content">
+			<div class="modal-body">
+				<img  id="dia_image" class="aligncenter size-full wp-image-425"/>
+			</div>
+			<div class="modal-img_footer">
+				<p id="dia_kaku"></p>
+				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+			</div>
+		</div>
+	</div>
 </div>
 <script>
 var rowIds = [];
@@ -187,6 +201,10 @@ function drow() {
 
 function imgwin(imgno){
 
+	document.getElementById("btn_modal").click();
+	document.getElementById('dia_kaku').innerHTML  = "確信度：";
+	document.getElementById('dia_image').src = "getimage.php?id=" + imgno;
+	/*
     myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
     myWin = window.open("" , "imgwindow" , myWinSize); // ウィンドウを開く
 
@@ -209,6 +227,7 @@ function imgwin(imgno){
         var height=screen.availHeight - img.height - 80;
         myWin.moveTo(width/2, height/2);
     };
+    */
 }
 
 </script>
