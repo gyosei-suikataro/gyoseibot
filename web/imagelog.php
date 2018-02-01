@@ -201,11 +201,12 @@ function drow() {
 
 function imgwin(imgno){
 
-	document.getElementById("btn_modal").click();
 	document.getElementById('dia_kaku').innerHTML  = "確信度：";
 	document.getElementById('dia_image').src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
-	document.getElementById('dia_cont').style.width = img.width + 40;
+	var imgwidth = img.width + 40;
+	document.getElementById('dia_cont').style.width = imgwidth + "px";
+	document.getElementById("btn_modal").click();
 	/*
     myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
     myWin = window.open("" , "imgwindow" , myWinSize); // ウィンドウを開く
