@@ -106,7 +106,7 @@ if ($link) {
 </div>
 </div>
 <div class="modal" id="image_Modal" tabindex="-1">
-	<div class="modal-dialog">
+	<div class="modal-dialog" id="dia_modal">
 		<div class="modal-content" id="dia_cont">
 			<div class="modal-body">
 				<p id="dia_kaku"></p>
@@ -206,6 +206,7 @@ function imgwin(imgno){
 	var img = document.getElementById("dia_image");
 	var imgwidth = img.width + 40;
 	document.getElementById('dia_cont').style.width = imgwidth + "px";
+	document.getElementById('dia_modal').style.justify-content = "center";
 	document.getElementById("btn_modal").click();
 	/*
     myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
