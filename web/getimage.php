@@ -18,6 +18,8 @@ if ($link) {
 	header('Content-type: image/jpeg');
 	header("Content-Disposition: inline; filename=image.jpg");
 	$img_data=pg_unescape_bytea($row[0]);
+	$width = ImageSx($img);
+	error_log("★★★★★★★★★★★★★★★width:".$width);
 	echo $img_data;
 }
 
