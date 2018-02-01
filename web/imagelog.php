@@ -201,8 +201,11 @@ function drow() {
 
 function imgwin(imgno){
 
+	var img = document.getElementById("dia_image");
+	img.width = 0;
+	img.height = 0;
 	document.getElementById('dia_kaku').innerHTML  = "確信度：";
-	document.getElementById('dia_image').src = "getimage.php?id=" + imgno;
+	img.src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
 	alert(img.width);
 	if(img.width > 600){
@@ -220,30 +223,6 @@ function imgwin(imgno){
 	//document.getElementById('image_Modal').style.left = "10%";
 	//document.getElementById('image_Modal').style.marginLeft = "-" + imgmar;
 	document.getElementById("btn_modal").click();
-	/*
-    myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
-    myWin = window.open("" , "imgwindow" , myWinSize); // ウィンドウを開く
-
-    myWin.document.open();
-    myWin.document.write( "<html>" );
-    myWin.document.write( "<head>" );
-    myWin.document.write( "<title>", "拡大表示" , "</title>" );
-    myWin.document.write( "</head>" );
-    myWin.document.write( "<body style='margin:0px;padding:0px'>" );
-    myWin.document.write( "<img src='getimage.php?id=" + imgno + "' id='image'>" );
-    myWin.document.write( "</body>" );
-    myWin.document.write( "</html>" );
-    myWin.document.close();
-
-    myWin.onpageshow = function(){
-    	var img = myWin.document.getElementById("image");
-    	myWin.resizeTo(img.width + 70, img.height + 80);
-
-    	var width=screen.availWidth - img.width - 70;
-        var height=screen.availHeight - img.height - 80;
-        myWin.moveTo(width/2, height/2);
-    };
-    */
 }
 
 </script>
