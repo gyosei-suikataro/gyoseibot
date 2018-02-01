@@ -130,7 +130,6 @@ $(function() {
 	$("#grid-basic").bootgrid({
 		selection: true,
 		multiSelect: true,
-		rowSelect: true,
 	    keepSelection: true,
 	    formatters: {
 	        "image": function($column, $row) {
