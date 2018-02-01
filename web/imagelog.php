@@ -204,6 +204,7 @@ function imgwin(imgno){
 	document.getElementById('dia_kaku').innerHTML  = "確信度：";
 	document.getElementById('dia_image').src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
+	alert(img.width);
 	if(img.width > 600){
 		var orgWidth  = img.width;
 		var orgHeight = img.height;
