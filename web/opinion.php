@@ -148,6 +148,8 @@ if ($link) {
 						<div class="col-sm-2">
 							<input type="text" class="form-control" id="dia_fear" readonly>
 						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_disgust">嫌悪</label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control" id="dia_disgust" readonly>
@@ -188,7 +190,6 @@ $(function() {
 	$("#grid-basic").bootgrid({
 		selection: true,
 		multiSelect: true,
-		rowSelect: true,
 	    keepSelection: true,
 	    formatters: {
 	        "details": function($column, $row) {
