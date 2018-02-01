@@ -206,7 +206,7 @@ function imgwin(imgno){
 	var img = document.getElementById("dia_image");
 	var imgwidth = img.width + 40;
 	document.getElementById('dia_cont').style.width = imgwidth + "px";
-	document.getElementById('dia_modal').style.justify-content = "center";
+	document.getElementById('dia_modal').style.justifyContent = "center";
 	document.getElementById("btn_modal").click();
 	/*
     myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
