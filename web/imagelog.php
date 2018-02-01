@@ -105,8 +105,8 @@ if ($link) {
 	<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#image_Modal" value="モーダル表示" />
 </div>
 </div>
-<div class="modal" id="image_Modal" tabindex="-1">
-	<div class="modal-dialog" id="dia_modal">
+<div class="modal" id="image_Modal" id="dia_modal" tabindex="-1">
+	<div class="modal-dialog">
 		<div class="modal-content" id="dia_cont">
 			<div class="modal-body">
 				<p id="dia_kaku"></p>
@@ -205,8 +205,10 @@ function imgwin(imgno){
 	document.getElementById('dia_image').src = "getimage.php?id=" + imgno;
 	var img = document.getElementById("dia_image");
 	var imgwidth = img.width + 40;
+	var imgmar = img.width / 2;
 	document.getElementById('dia_cont').style.width = imgwidth + "px";
-	document.getElementById('dia_modal').style.justifyContent = "center";
+	document.getElementById('dia_modal').style.left = "50%";
+	document.getElementById('dia_modal').style.marginLeft = "-" + imgmar
 	document.getElementById("btn_modal").click();
 	/*
     myWinSize = "resizable=yes,width=100,height=100"; // ウィンドウオプション
