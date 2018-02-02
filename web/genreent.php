@@ -204,6 +204,7 @@ function update(){
     }).fail(function () {
         alert("更新できませんでした");
     });
+	document.getElementById('synonym').value = "";
 }
 
 //行削除

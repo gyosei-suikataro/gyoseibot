@@ -178,6 +178,7 @@ function update(){
     }).fail(function () {
         alert("更新できませんでした");
     });
+	document.getElementById('intent').value = "";
 }
 
 //行削除
