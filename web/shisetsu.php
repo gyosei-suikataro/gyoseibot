@@ -158,11 +158,9 @@ if ($link) {
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="dia_iurl">詳細ＵＲＬ</label>
+						<label class="col-sm-2 control-label" for="dia_url">詳細ＵＲＬ</label>
 						<div class="col-sm-10">
 							<input id="dia_url" class="form-control" maxlength="300" placeholder="http://www.yyy.zzz.html">
-							<input type="button" class="btn btn-default" style="display:inline;" onclick="image()" value="画像の確認" style="width: 100px;"/>
-							※必ずhttpsから始まるURLを指定してください
 						</div>
 					</div>
 				</form>
@@ -250,6 +248,7 @@ function drow() {
 
 function modwin(){
 	document.getElementById("btn_modal").click();
+	document.getElementById('modal-label').innerHTML  = "施設情報修正";
 }
 
 function irow(){
