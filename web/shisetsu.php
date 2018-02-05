@@ -151,12 +151,14 @@ if ($link) {
 						<label class="col-sm-2 control-label" for="dia_j1">ジャンル１</label>
 						<div class="col-sm-10">
 							<select class="form-control" id="dia_j1"  onChange="j1change()">
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_j2">ジャンル２</label>
 						<div class="col-sm-10">
-							<input id="dia_j2" class="form-control" type="tel" maxlength="14" placeholder="000-000-0000">
+							<select class="form-control" id="dia_j2"  onChange="j1change()">
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
@@ -279,27 +281,40 @@ function drow() {
 function modwin(id,meisho,jusho,tel,genre1,genre2,lat,lng,iurl,url){
 	document.getElementById('modal-label').innerHTML  = "施設情報修正";
 	document.getElementById('dia_meisho').value = meisho;
-
+	document.getElementById('dia_jusho').value = jusho;
+	document.getElementById('dia_tel').value = tel;
+	var options = document.getElementById('dia_j1').options;
+	for(var i = 0; i < options.length; i++){
+		if(options[i].text === genre1){
+			options[i].selected = true;
+			break;
+		};
+	};
+	j1change();
+	var options = document.getElementById('dia_j2').options;
+	for(var i = 0; i < options.length; i++){
+		if(options[i].text === genre2){
+			options[i].selected = true;
+			break;
+		};
+	};
+	document.getElementById('dia_latlng').value = lat + "," + lng;
+	document.getElementById('dia_iurl').value = iurl;
+	document.getElementById('dia_url').value = url;
 	document.getElementById("btn_modal").click();
-
 }
 
 function irow(){
-	window.location.href = "./shisetsuadd.php";
-}
-
-function mrow(){
-	if(rowIds.length == 0){
-		alert("修正する行を選択してください");
-		return;
-	}
-
-	if(rowIds.length > 1){
-		alert("修正対象の行のみ選択してください");
-		return;
-	}
-
-	window.location.href = "./shisetsuadd.php?id=" + rowIds[0];
+	document.getElementById('modal-label').innerHTML  = "施設情報追加";
+	document.getElementById('dia_meisho').value = "";
+	document.getElementById('dia_jusho').value = "";
+	document.getElementById('dia_tel').value = "";
+	document.getElementById('dia_j1').selectedIndex = 0;
+	j1change();
+	document.getElementById('dia_latlng').value = "";
+	document.getElementById('dia_iurl').value = "";
+	document.getElementById('dia_url').value = "";
+	document.getElementById("btn_modal").click();
 }
 
 //ジャンル選択
@@ -319,10 +334,6 @@ function j1change(){
 		option.appendChild(text);
 		select.appendChild(option);
 	}
-}
-
-function j2change(){
-	alert("修正対象の行のみ選択してください");
 }
 </script>
 </body>
