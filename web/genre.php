@@ -155,6 +155,7 @@ var rowgid1 = [];
 var rowgid2 = [];
 var meishoOld = "";
 var uiKbn = 0;
+var gid2 = 0;
 
 $(function() {
 	var h = $(window).height();
@@ -257,15 +258,18 @@ function drow() {
 function irow(){
 	document.getElementById('modal-label').innerHTML  = "ジャンル追加";
 	uiKbn = 2;
+	meishoOld = "";
+	gid2 = 0;
 	initmodal();
 	document.getElementById('dia_g1').style.display = "none";
 	document.getElementById('dia_g2meisho').disabled = true;
 	document.getElementById("btn_modal").click();
 }
 
-function modwin(no,gid1,gid2,g1,g2){
+function modwin(no,gid1,_gid2,g1,g2){
 	document.getElementById('modal-label').innerHTML  = "ジャンル修正";
 	initmodal();
+	gid2 = _gid2;
 	uiKbn = 1;
 	document.getElementById('dia_bunrui').disabled = true;
 	if(gid2 > 0){
@@ -313,6 +317,42 @@ function initmodal(){
 	document.getElementById('dia_g1').disabled = false;
 	document.getElementById('dia_g1meisho').disabled = false;
 	document.getElementById('dia_g2meisho').disabled = false;
+}
+
+//更新
+function update(){
+	var bunrui = document.getElementById('dia_bunrui').value;
+	var gid1 = document.getElementById('dia_g1').value;
+	var g1meisho = document.getElementById('dia_g1').options[document.getElementById('dia_g1').selectedIndex].text;
+	if(bunrui == 1){
+		var meisho = document.getElementById('dia_g1meisho').value;
+	}else{
+		var meisho = document.getElementById('dia_g2meisho').value;
+	}
+	$.ajax({
+		type: "POST",
+		url: "genreup.php",
+		data: {
+			"uiKbn" : uiKbn,
+			"bunrui" : bunrui,
+			"meisho" : meisho,
+			"gid1" : gid1,
+			"gid2" : gid2,
+			"g1meisho" : g1meisho,
+			"meishoOld" : meishoOld
+		}
+	}).done(function (response) {
+		result = JSON.parse(response);
+		if(result == "OK"){
+			alert("更新しました");
+			location.reload();
+		}else{
+			alert("更新できませんでした");
+		}
+    }).fail(function () {
+        alert("更新できませんでした");
+    });
+
 }
 
 function intent(){
