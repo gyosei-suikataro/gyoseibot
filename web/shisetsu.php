@@ -156,7 +156,7 @@ if ($link) {
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_j2">ジャンル２</label>
 						<div class="col-sm-10">
-							<select class="form-control" id="dia_j2"  onChange="j2change()">
+							<input id="dia_j2" class="form-control" type="tel" maxlength="14" placeholder="000-000-0000">
 						</div>
 					</div>
 					<div class="form-group">
