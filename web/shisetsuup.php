@@ -32,6 +32,9 @@ if ($link) {
 		$result_flag = pg_query($sql);
 		if (!$result_flag) {
 			error_log("アップデートに失敗しました。".pg_last_error());
+			echo json_encode("NG");
+		}else{
+			echo json_encode("OK");
 		}
 	}else{
 		$sql = "INSERT INTO shisetsu (meisho, jusho, tel, genre1, genre2, genre3, lat, lng, imageurl, url, geom) VALUES
@@ -39,6 +42,9 @@ if ($link) {
 		$result_flag = pg_query($sql);
 		if (!$result_flag) {
 			error_log("インサートに失敗しました。".pg_last_error());
+			echo json_encode("NG");
+		}else{
+			echo json_encode("OK");
 		}
 	}
 }

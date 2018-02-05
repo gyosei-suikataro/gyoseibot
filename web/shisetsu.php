@@ -157,7 +157,7 @@ if ($link) {
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_j2">ジャンル２</label>
 						<div class="col-sm-10">
-							<select class="form-control" id="dia_j2"  onChange="j1change()">
+							<select class="form-control" id="dia_j2">
 							</select>
 						</div>
 					</div>
@@ -185,14 +185,15 @@ if ($link) {
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" >更新</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+				<button type="button" class="btn btn-default" onclick="update()">更新</button>
+				<button id="dia_close" type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
 var rowIds = [];
+var modID = "";
 $(function() {
 	var h = $(window).height();
 	$('#wrap').css('display','none');
@@ -206,7 +207,7 @@ $(function() {
 	    keepSelection: true,
 	    formatters: {
 	        "mods": function($column, $row) {
-	        	return "<input type='button' class='btn btn-default' value='修正' onclick='modwin("  + $row.id + ",\"" + $row.meisho + "\",\"" + $row.jusho + "\",\"" + $row.tel + "\",\"" + $row.genre1 + "\",\"" + $row.genre2 + "\",\"" + $row.lat + "\",\"" + $row.lng + "\",\"" + $row.iurl + "\",\"" + "\",\"" + $row.url + "\")' > ";
+	        	return "<input type='button' class='btn btn-default' value='修正' onclick='modwin("  + $row.id + ",\"" + $row.meisho + "\",\"" + $row.jusho + "\",\"" + $row.tel + "\",\"" + $row.genre1 + "\",\"" + $row.genre2 + "\",\"" + $row.lat + "\",\"" + $row.lng + "\",\"" + $row.iurl + "\",\"" + $row.url + "\")' > ";
              }
 	    }
 	}).on("selected.rs.jquery.bootgrid", function(e, rows)
@@ -280,6 +281,7 @@ function drow() {
 
 function modwin(id,meisho,jusho,tel,genre1,genre2,lat,lng,iurl,url){
 	document.getElementById('modal-label').innerHTML  = "施設情報修正";
+	modID = id;
 	document.getElementById('dia_meisho').value = meisho;
 	document.getElementById('dia_jusho').value = jusho;
 	document.getElementById('dia_tel').value = tel;
@@ -306,6 +308,7 @@ function modwin(id,meisho,jusho,tel,genre1,genre2,lat,lng,iurl,url){
 
 function irow(){
 	document.getElementById('modal-label').innerHTML  = "施設情報追加";
+	modID = "";
 	document.getElementById('dia_meisho').value = "";
 	document.getElementById('dia_jusho').value = "";
 	document.getElementById('dia_tel').value = "";
@@ -315,6 +318,47 @@ function irow(){
 	document.getElementById('dia_iurl').value = "";
 	document.getElementById('dia_url').value = "";
 	document.getElementById("btn_modal").click();
+}
+
+//更新
+function update(){
+	var meisho = document.getElementById('dia_meisho').value;
+	var jusho = document.getElementById('dia_jusho').value;
+	var tel = document.getElementById('dia_tel').value;
+	var j1 = document.getElementById('dia_j1').value;
+	var j2 = document.getElementById('dia_j2').value;
+	var latlng = document.getElementById('dia_latlng').value;
+	var arrayOfStrings = latlng.split(",");
+	var lat = arrayOfStrings[0];
+	var lng = arrayOfStrings[1];
+	var iurl = document.getElementById('dia_iurl').value;
+	var url = document.getElementById('dia_url').value;
+	$.ajax({
+		type: "POST",
+		url: "shisetsuup.php",
+		data: {
+			"id" : modID,
+			"meisho" : meisho,
+			"jusho" : jusho,
+			"tel" : tel,
+			"j1" : j1,
+			"j2" : j2,
+			"lat" : lat,
+			"lng" : lng,
+			"iurl" : iurl,
+			"url" : url
+		}
+	}).done(function (response) {
+		result = JSON.parse(response);
+		if(result == "OK"){
+			alert("更新しました");
+			location.reload();
+		}else{
+			alert("更新できませんでした");
+		}
+    }).fail(function () {
+        alert("更新できませんでした");
+    });
 }
 
 //ジャンル選択
@@ -334,6 +378,18 @@ function j1change(){
 		option.appendChild(text);
 		select.appendChild(option);
 	}
+}
+
+//地図の確認
+function map(){
+	latlng = document.getElementById('latlng').value;
+	window.open( "http://maps.google.com/maps?q=" + latlng + "+(ココ)", '_blank');
+}
+
+//画像の確認
+function image(){
+	imageurl = document.getElementById('iurl').value;
+	window.open( imageurl, '_blank');
 }
 </script>
 </body>
