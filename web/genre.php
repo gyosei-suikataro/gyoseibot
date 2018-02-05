@@ -324,10 +324,11 @@ function update(){
 	var bunrui = document.getElementById('dia_bunrui').value;
 	var gid1 = document.getElementById('dia_g1').value;
 	var g1meisho = document.getElementById('dia_g1').options[document.getElementById('dia_g1').selectedIndex].text;
+	var meisho = "";
 	if(bunrui == 1){
-		var meisho = document.getElementById('dia_g1meisho').value;
+		meisho = document.getElementById('dia_g1meisho').value;
 	}else{
-		var meisho = document.getElementById('dia_g2meisho').value;
+		meisho = document.getElementById('dia_g2meisho').value;
 	}
 	$.ajax({
 		type: "POST",
