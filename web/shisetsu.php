@@ -156,7 +156,7 @@ if ($link) {
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_j2">ジャンル２</label>
 						<div class="col-sm-10">
-							<select class="form-control" id="dia_j2" >
+							<select class="form-control" id="dia_j2"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -204,7 +204,7 @@ $(function() {
 	    keepSelection: true,
 	    formatters: {
 	        "mods": function($column, $row) {
-	        	return "<input type='button' class='btn btn-default' value='修正' onclick='modwin("  + $row.id + ")' > ";
+	        	return "<input type='button' class='btn btn-default' value='修正' onclick='modwin("  + $row.id + ",\"" + $row.meisho + "\",\"" + $row.jusho + "\",\"" + $row.tel + "\",\"" + $row.genre1 + "\",\"" + $row.genre2 + "\",\"" + $row.lat + "\",\"" + $row.lng + "\",\"" + $row.iurl + "\",\"" + "\",\"" + $row.url + "\")' > ";
              }
 	    }
 	}).on("selected.rs.jquery.bootgrid", function(e, rows)
@@ -276,9 +276,12 @@ function drow() {
 	}
 }
 
-function modwin(){
-	document.getElementById("btn_modal").click();
+function modwin(id,meisho,jusho,tel,genre1,genre2,lat,lng,iurl,url){
 	document.getElementById('modal-label').innerHTML  = "施設情報修正";
+	document.getElementById('dia_meisho').value = meisho;
+
+	document.getElementById("btn_modal").click();
+
 }
 
 function irow(){
