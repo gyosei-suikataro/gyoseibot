@@ -301,6 +301,7 @@ function drow() {
 function modwin(id,meisho,jusho,tel,genre1,genre2,lat,lng,iurl,url){
 	document.getElementById('modal-label').innerHTML  = "施設情報修正";
 	modID = id;
+	initmodal();
 	document.getElementById('dia_meisho').value = meisho;
 	document.getElementById('dia_jusho').value = jusho;
 	document.getElementById('dia_tel').value = tel;
@@ -328,6 +329,12 @@ function modwin(id,meisho,jusho,tel,genre1,genre2,lat,lng,iurl,url){
 function irow(){
 	document.getElementById('modal-label').innerHTML  = "施設情報追加";
 	modID = "";
+	initmodal();
+	document.getElementById("btn_modal").click();
+}
+
+//ダイアログ初期化
+function initmodal(){
 	document.getElementById('dia_meisho').value = "";
 	document.getElementById('dia_jusho').value = "";
 	document.getElementById('dia_tel').value = "";
@@ -336,7 +343,6 @@ function irow(){
 	document.getElementById('dia_latlng').value = "";
 	document.getElementById('dia_iurl').value = "";
 	document.getElementById('dia_url').value = "";
-	document.getElementById("btn_modal").click();
 }
 
 //更新

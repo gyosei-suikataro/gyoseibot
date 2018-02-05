@@ -257,17 +257,13 @@ function drow() {
 function irow(){
 	document.getElementById('modal-label').innerHTML  = "ジャンル追加";
 	uiKbn = 2;
-	document.getElementById('dia_bunrui').value = 1;
-	document.getElementById('dia_g1').selectedIndex = 0;
-	document.getElementById('dia_g1meisho').value = "";
-	document.getElementById('dia_g2meisho').value = "";
-	document.getElementById('dia_g1').style.display = "none";
-	document.getElementById('dia_g2meisho').disabled = true;
+	initmodal();
 	document.getElementById("btn_modal").click();
 }
 
 function modwin(no,gid1,gid2,g1,g2){
 	document.getElementById('modal-label').innerHTML  = "ジャンル修正";
+	initmodal();
 	uiKbn = 1;
 	document.getElementById('dia_bunrui').disabled = true;
 	if(gid2 > 0){
@@ -301,6 +297,17 @@ function bchange(){
 		document.getElementById('dia_g1meisho').style.display = "none"
 		document.getElementById('dia_g2meisho').disabled = false;
 	}
+}
+
+//ダイアログ初期化
+function initmodal(){
+	document.getElementById('dia_bunrui').value = 1;
+	document.getElementById('dia_g1').selectedIndex = 0;
+	document.getElementById('dia_g1meisho').value = "";
+	document.getElementById('dia_g2meisho').value = "";
+	document.getElementById('dia_g1meisho').style.display = "block";
+	document.getElementById('dia_g1').style.display = "none";
+	document.getElementById('dia_g2meisho').disabled = true;
 }
 
 function intent(){
