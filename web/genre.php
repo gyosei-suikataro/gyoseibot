@@ -271,6 +271,7 @@ function modwin(no,gid1,gid2,g1,g2){
 		document.getElementById('dia_bunrui').value = 2;
 		document.getElementById('dia_g1').value = gid1;
 		document.getElementById('dia_g1').disabled = true;
+		document.getElementById('dia_g1').style.display = "block";
 		document.getElementById('dia_g1meisho').style.display = "none";
 		document.getElementById('dia_g2meisho').value = g2;
 	}else{
