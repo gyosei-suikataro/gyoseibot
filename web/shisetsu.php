@@ -31,7 +31,9 @@ $db_user =  getenv('DB_USER');
 $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass;
 $link = pg_connect($conn);
 
-
+//ジャンル
+$j1value = array();
+$j2value = array();
 
 if ($link) {
 	$result = pg_query("SELECT * FROM shisetsu ORDER BY genre1, genre2");
@@ -92,6 +94,21 @@ if ($link) {
 	echo "</tbody>";
 	echo "</table>";
 	echo "<br>";
+
+	//ジャンル情報検索
+	$result = pg_query("SELECT * FROM genre WHERE bunrui = 1");
+	while ($row = pg_fetch_row($result)) {
+		$j1value = $j1value + array($row[1] => $row[4]);
+	}
+
+	foreach($j1value as $key => $value){
+		$result = pg_query("SELECT * FROM genre WHERE bunrui = 2 AND gid1 = {$key}");
+		$arr = array();
+		while ($row = pg_fetch_row($result)) {
+			$arr = $arr + array($row[2] => $row[4]);
+		}
+		$j2value = $j2value + array($key => $arr);
+	}
 }
 
 ?>
@@ -208,6 +225,19 @@ $(function() {
 	    }
 	    //alert("Deselect: " + rowIds.join(","));
 	});
+
+	//ジャンルの設定
+	var j1value = <?php echo json_encode($j1value); ?>;
+	var select = document.getElementById('dia_j1');
+
+	for( var key in j1value ) {
+		var option = document.createElement('option');
+		option.setAttribute('value', key);
+		var text = document.createTextNode(j1value[key]);
+		option.appendChild(text);
+		select.appendChild(option);
+	}
+	j1change();
 });
 
 $(window).load(function () { //全ての読み込みが完了したら実行
@@ -267,6 +297,26 @@ function mrow(){
 	}
 
 	window.location.href = "./shisetsuadd.php?id=" + rowIds[0];
+}
+
+//ジャンル選択
+function j1change(){
+	var select = document.getElementById('dia_j2');
+	while (0 < select.childNodes.length) {
+		select.removeChild(select.childNodes[0]);
+	}
+
+	var j2value = <?php echo json_encode($j2value); ?>;
+	var janru = j2value[document.getElementById('dia_j1').value];
+
+	for( var key in janru ) {
+		var option = document.createElement('option');
+		option.setAttribute('value', key);
+		var text = document.createTextNode(janru[key]);
+		option.appendChild(text);
+		select.appendChild(option);
+	}
+
 }
 </script>
 </body>
