@@ -156,7 +156,7 @@ if ($link) {
 					<div class="form-group">
 						<label class="col-sm-2 control-label" for="dia_j2">ジャンル２</label>
 						<div class="col-sm-10">
-							<select class="form-control" id="dia_j2"/>
+							<select class="form-control" id="dia_j2"  onChange="j2change()">
 						</div>
 					</div>
 					<div class="form-group">
@@ -319,7 +319,10 @@ function j1change(){
 		option.appendChild(text);
 		select.appendChild(option);
 	}
+}
 
+function j2change(){
+	alert("修正対象の行のみ選択してください");
 }
 </script>
 </body>
