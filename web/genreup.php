@@ -133,6 +133,7 @@ if ($link) {
 
 				echo json_encode("OK");
 			}
+		}
 	}
 }
 
