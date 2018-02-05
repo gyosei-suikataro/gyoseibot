@@ -47,7 +47,7 @@ if ($link) {
                <th data-column-id='lng'  data-width='5%'>経度</th>
                <th data-column-id='iurl'  data-width='17%'>画像URL</th>
                <th data-column-id='url'  data-width='17%'>詳細URL</th>
-               <th data-column-id='mod'  data-width='6%' data-formatter='details' data-sortable='false'></th>
+               <th data-column-id='mod'  data-width='6%' data-formatter='mods' data-sortable='false'></th>
            </tr>";
 	echo "</thead>";
 	echo "<tbody>";
@@ -188,7 +188,7 @@ $(function() {
 		multiSelect: true,
 	    keepSelection: true,
 	    formatters: {
-	        "mod": function($column, $row) {
+	        "mods": function($column, $row) {
 	        	return "<input type='button' class='btn btn-default' value='修正' onclick='modwin("  + $row.id + ")' > ";
              }
 	    }
