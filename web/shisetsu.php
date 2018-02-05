@@ -382,13 +382,13 @@ function j1change(){
 
 //地図の確認
 function map(){
-	latlng = document.getElementById('latlng').value;
+	latlng = document.getElementById('dia_latlng').value;
 	window.open( "http://maps.google.com/maps?q=" + latlng + "+(ココ)", '_blank');
 }
 
 //画像の確認
 function image(){
-	imageurl = document.getElementById('iurl').value;
+	imageurl = document.getElementById('dia_iurl').value;
 	window.open( imageurl, '_blank');
 }
 </script>
