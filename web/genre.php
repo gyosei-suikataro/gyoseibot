@@ -31,7 +31,8 @@ $db_user =  getenv('DB_USER');
 $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass;
 $link = pg_connect($conn);
 
-
+//ジャンル
+$j1value = array();
 
 if ($link) {
 	$no = 1;
@@ -44,6 +45,7 @@ if ($link) {
                <th data-column-id='g2'  >小分類名称</th>
                <th data-column-id='gid1'>分類ID1</th>
                <th data-column-id='gid2'>分類ID2</th>
+               <th data-column-id='mod'  data-width='7%' data-formatter='mods' data-sortable='false'></th>
            </tr>";
 	echo "</thead>";
 	echo "<tbody>";
@@ -86,21 +88,74 @@ if ($link) {
 	echo "</tbody>";
 	echo "</table>";
 	echo "<br>";
+
+	if ($link) {
+		$result = pg_query("SELECT * FROM genre WHERE bunrui = 1");
+		while ($row = pg_fetch_row($result)) {
+			$j1value = $j1value + array($row[1] => $row[4]);
+		}
+	}
 }
 
 ?>
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
 	<input id="btn_ins" type="button" class="btn btn-default" value="ジャンルの追加" onclick="irow()">
-	<input id="btn_mod" type="button" class="btn btn-default" value="ジャンルの修正" onclick="mrow()">
 	<input id="btn_int" type="button" class="btn btn-default" value="検索ワード追加" onclick="intent()">
 	<input id="btn_int" type="button" class="btn btn-default" value="類義語追加" onclick="entity()">
+	<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#shosaiDialog" value="モーダル表示" />
 </div>
+</div>
+<div class="modal" id="shosaiDialog"  tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content" style="width:740px; margin-left: -20px;">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="modal-label">ジャンル登録</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_bunrui">分類</label>
+						<div class="col-sm-10">
+							<select class="form-control" id="dia_bunrui"  onChange="bchange()">
+								<option value="1">大分類</option>
+								<option value="2">小分類</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_g1meisho">大分類名称</label>
+						<div class="col-sm-10">
+							<input id="dia_g1meisho" class="form-control" maxlength="50" placeholder="大分類名称">
+							<select id="dia_g1" class="form-control">
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="dia_tel">小分類名称</label>
+						<div class="col-sm-10">
+							<input id="dia_g2meisho" class="form-control" maxlength="50" placeholder="小分類名称">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" onclick="update()">更新</button>
+				<button id="dia_close" type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+			</div>
+		</div>
+	</div>
 </div>
 <script>
 var rowIds = [];
 var rowgid1 = [];
 var rowgid2 = [];
+var meishoOld = "";
+var uiKbn = 0;
+
 $(function() {
 	var h = $(window).height();
 	$('#wrap').css('display','none');
@@ -111,8 +166,12 @@ $(function() {
 	$("#grid-basic").bootgrid({
 		selection: true,
 		multiSelect: true,
-		rowSelect: true,
 	    keepSelection: true,
+	    formatters: {
+	        "mods": function($column, $row) {
+	        	return "<input type='button' class='btn btn-default' value='修正' onclick='modwin("  + $row.no + ",\"" + $row.gid1 + "\",\"" + $row.gid2 + "\",\"" + $row.g1 + "\",\"" + $row.g2 + "\")' > ";
+             }
+	    }
 	}).on("selected.rs.jquery.bootgrid", function(e, rows)
 	{
 		for (var i = 0; i < rows.length; i++)
@@ -139,6 +198,18 @@ $(function() {
 	    }
 	    //alert("Deselect: " + rowIds.join(","));
 	});
+
+	//ジャンルの設定
+	var j1value = <?php echo json_encode($j1value); ?>;
+	var select = document.getElementById('dia_g1');
+
+	for( var key in j1value ) {
+		var option = document.createElement('option');
+		option.setAttribute('value', key);
+		var text = document.createTextNode(j1value[key]);
+		option.appendChild(text);
+		select.appendChild(option);
+	}
 });
 
 $(window).load(function () { //全ての読み込みが完了したら実行
@@ -184,21 +255,52 @@ function drow() {
 }
 
 function irow(){
-	window.location.href = "./genreadd.php?gid1=0&gid2=0";
+	document.getElementById('modal-label').innerHTML  = "ジャンル追加";
+	uiKbn = 2;
+	document.getElementById('dia_bunrui').value = 1;
+	document.getElementById('dia_g1').selectedIndex = 0;
+	document.getElementById('dia_g1meisho').value = "";
+	document.getElementById('dia_g2meisho').value = "";
+	document.getElementById('dia_g1').style.display = "none";
+	document.getElementById('dia_g2meisho').disabled = true;
+	document.getElementById("btn_modal").click();
 }
 
-function mrow(){
-	if(rowIds.length == 0){
-		alert("修正する行を選択してください");
-		return;
+function modwin(no,gid1,gid2,g1,g2){
+	document.getElementById('modal-label').innerHTML  = "ジャンル修正";
+	uiKbn = 1;
+	document.getElementById('dia_bunrui').disabled = true;
+	if(gid2 > 0){
+		meishoOld = g2;
+		document.getElementById('dia_bunrui').value = 2;
+		document.getElementById('dia_g1').value = gid1;
+		document.getElementById('dia_g1').disabled = true;
+		document.getElementById('dia_g1meisho').style.display = "none";
+		document.getElementById('dia_g2meisho').value = g2;
+	}else{
+		meishoOld = g1;
+		document.getElementById('dia_bunrui').value = 1;
+		document.getElementById('dia_g1').value = gid1;
+		document.getElementById('dia_g1').style.display = "none";
+		document.getElementById('dia_g1meisho').value = g1;
+		document.getElementById('dia_g2meisho').disabled = true;
 	}
+	document.getElementById("btn_modal").click();
+}
 
-	if(rowIds.length > 1){
-		alert("修正対象の行のみ選択してください");
-		return;
+//分類選択
+function bchange(){
+	if(document.getElementById('dia_bunrui').value == 1){
+		document.getElementById('dia_g1').style.display = "none";
+		document.getElementById('dia_g1meisho').style.display = "block";
+		document.getElementById('dia_g2meisho').disabled = true;
+		document.getElementById('dia_g2meisho').value = "";
 	}
-
-	window.location.href = "./genreadd.php?gid1=" + rowgid1[0] + "&gid2=" + rowgid2[0];
+	if(document.getElementById('dia_bunrui').value == 2){
+		document.getElementById('dia_g1').style.display = "block";
+		document.getElementById('dia_g1meisho').style.display = "none"
+		document.getElementById('dia_g2meisho').disabled = false;
+	}
 }
 
 function intent(){
