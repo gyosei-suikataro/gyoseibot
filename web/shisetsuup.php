@@ -47,6 +47,8 @@ if ($link) {
 			echo json_encode("OK");
 		}
 	}
+}else{
+	echo json_encode("NG");
 }
 
 

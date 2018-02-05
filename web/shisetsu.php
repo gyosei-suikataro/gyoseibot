@@ -257,6 +257,7 @@ function drow() {
 	var successFlg = true;
 	var myRet = confirm("選択行を削除しますか？");
 	if ( myRet == true ){
+		/*
 		for (var i = 0; i < rowIds.length; i++){
 			$.ajax({
 				type: "POST",
@@ -276,6 +277,24 @@ function drow() {
 		}else{
 			alert("削除できませんでした");
 		}
+		*/
+		$.ajax({
+			type: "POST",
+			url: "shisetsudel.php",
+			data:{
+				"id" : rowIds
+			}
+		}).done(function (response) {
+			result = JSON.parse(response);
+			if(result == "OK"){
+				alert("削除しました");
+				location.reload();
+			}else{
+				alert("削除できませんでした");
+			}
+	    }).fail(function () {
+	        alert("削除できませんでした");
+	    });
 	}
 }
 
