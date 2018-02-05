@@ -259,8 +259,7 @@ function irow(){
 	uiKbn = 2;
 	initmodal();
 	document.getElementById('dia_g1').style.display = "none";
-	document.getElementById('dia_g2meisho').disabled = false;
-	document.getElementById('dia_g1meisho').style.display = "none";
+	document.getElementById('dia_g2meisho').disabled = true;
 	document.getElementById("btn_modal").click();
 }
 
