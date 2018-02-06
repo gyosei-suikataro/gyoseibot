@@ -237,8 +237,8 @@ function drow() {
 		}
 	}
 	alert("削除前" + idarray);
-	g1array.some(function(v, i){
-		idarray.some(function(vv, ii){
+	g1array.forEach(function(v, i){
+		idarray.forEach(function(vv, ii){
 			var aos = vv.split(".");
 			if(aos[0] == v){
 				idarray.splice(ii,1);
