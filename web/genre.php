@@ -227,6 +227,26 @@ function drow() {
 		alert("削除する行を選択してください");
 		return;
 	}
+	//大分類が選択されている場合、小分類を削除する
+	var idarray = [];
+	var g1array = [];
+	for (var i = 0; i < rowIds.length; i++){
+		idarray.push(rowgid1[i] + "." + rowgid2[i]);
+		if(rowgid2[i] == "0"){
+			g1array.push(rowgid1[i]);
+		}
+	}
+	alert("削除前" + idarray);
+	g1array.some(function(v, i){
+		idarray.some(function(vv, ii){
+			var aos = vv.split(".");
+			if(aos[0] == v){
+				idarray.splice(ii,1);
+			}
+		})
+	});
+	alert("削除後" + idarray);
+	/*
 	var successFlg = true;
 	var myRet = confirm("選択行を削除しますか？");
 	if ( myRet == true ){
@@ -253,6 +273,7 @@ function drow() {
 			alert("削除できませんでした");
 		}
 	}
+	*/
 }
 
 function irow(){
