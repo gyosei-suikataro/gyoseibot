@@ -236,7 +236,6 @@ function drow() {
 			g1array.push(rowgid1[i]);
 		}
 	}
-	alert("削除前" + idarray);
 	g1array.forEach(function(v, i){
 		for (var ii = idarray.length - 1; ii >= 0; ii--) {
 			var aos = idarray[ii].split(".");
@@ -247,35 +246,33 @@ function drow() {
 			}
 		}
 	});
-	alert("削除後" + idarray);
-	/*
-	var successFlg = true;
-	var myRet = confirm("選択行を削除しますか？");
+	var myRet = false;
+	if(g1array.length > 0){
+		myRet = confirm("選択行を削除しますか？\n※大分類を削除すると関連する小分類も削除されます");
+	}else{
+		myRet = confirm("選択行を削除しますか？");
+	}
 	if ( myRet == true ){
 		for (var i = 0; i < rowIds.length; i++){
 			$.ajax({
 				type: "POST",
 				url: "genredel.php",
 				data: {
-					"gid1" : rowgid1[i],
-					"gid2" : rowgid2[i]
+					"id" : idarray
 				}
-			}).then(
-				function(){
-				},
-				function(){
-					successFlg = false;
+			}).done(function (response) {
+				result = JSON.parse(response);
+				if(result == "OK"){
+					alert("削除しました");
+					location.reload();
+				}else{
+					alert("削除できませんでした");
 				}
-			);
-		}
-		if( successFlg == true){
-			alert("削除しました");
-			location.reload();
-		}else{
-			alert("削除できませんでした");
+		    }).fail(function () {
+		        alert("削除できませんでした");
+		    });
 		}
 	}
-	*/
 }
 
 function irow(){
