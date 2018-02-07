@@ -203,7 +203,7 @@ $(function() {
 	{
 	    for (var i = 0; i < rows.length; i++)
 	    {
-	        rowIds.push(rows[i].id);
+	        rowIds.push(rows[i].no);
 	    }
 	    //alert("Select: " + rowIds.join(","));
 	}).on("deselected.rs.jquery.bootgrid", function(e, rows)
@@ -211,7 +211,7 @@ $(function() {
 	    for (var i = 0; i < rows.length; i++)
 	    {
 	    	rowIds.some(function(v, ii){
-	    	    if (v==rows[i].id) rowIds.splice(ii,1);
+	    	    if (v==rows[i].no) rowIds.splice(ii,1);
 	    	});
 	        //rowIds.push(rows[i].no);
 	    }
