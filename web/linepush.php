@@ -18,11 +18,10 @@
 		<label class="col-sm-2 control-label" for="taisho">送信対象者数</label>
 		<div class="col-sm-2">
 			<input class="form-control" id="taisho" readonly>
-			<label for="taisho">人</label>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for="age_kara">対象年齢</label>
+		<label class="col-sm-2 control-label" for="age_kara" onChange="ageChange()">対象年齢</label>
 		<div class="col-sm-2">
 			<select class="form-control" id="age_kara" >
 				<option value="999" selected>すべて</option>
@@ -305,6 +304,18 @@
 	</form>
 	</div>
 	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="sendmess">送信内容</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" id="sendmess" rows='10'></textarea>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="送信" onclick="send()">
@@ -315,6 +326,15 @@ $(function(){
 	$("#header").load("header.html");
 });
 
+function ageChange(){
+	if(document.getElementById('age_kara').value == "999"){
+		document.getElementById('age_kigo').style.display = "none";
+		document.getElementById('age_made').style.display = "none";
+	}else{
+		document.getElementById('age_kigo').style.display = "block";
+		document.getElementById('age_made').style.display = "block";
+	}
+}
 </script>
 </html>
 
