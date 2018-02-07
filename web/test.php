@@ -2,8 +2,6 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<meta http-equiv="x-ua-compatible" content="IE=9" >
-<meta http-equiv="x-ua-compatible" content="IE=EmulateIE9" >
 <title>チャットボットテスト</title>
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
@@ -12,6 +10,7 @@
 <link href="css/botui-theme-default.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
 <!-- <script src="//cdn.jsdelivr.net/vue/latest/vue.min.js"></script> -->
+<script src="//www.promisejs.org/polyfills/promise-6.1.0.min.js"></script>
 <script src="//npmcdn.com/vue@2.0.5/dist/vue.min.js"></script>
 <script src="//unpkg.com/botui/build/botui.min.js"></script>
 
