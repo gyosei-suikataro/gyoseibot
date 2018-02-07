@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset='utf-8'>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
 <title>チャットボットテスト</title>
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
@@ -245,14 +246,6 @@ $(function(){
 	            alert(errorThrown);
 	        });
 	  }
-
-	  if (!window.console){
-		    window.console = {
-		        log : function(msg){
-		            // do nothing.
-		        }
-		    };
-		}
 
 });
 
