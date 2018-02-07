@@ -246,6 +246,14 @@ $(function(){
 	        });
 	  }
 
+	  if (!window.console){
+		    window.console = {
+		        log : function(msg){
+		            // do nothing.
+		        }
+		    };
+		}
+
 });
 
 function dispclear(){
