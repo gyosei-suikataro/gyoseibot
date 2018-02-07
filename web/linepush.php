@@ -12,6 +12,7 @@
 <div id="header"></div>
 <div class="container">
 	<div class="panel panel-default">
+	<div class="panel-heading">対象情報</div>
 	<div class="panel-body">
 	<form class="form-horizontal">
 	<div class="form-group">
@@ -21,9 +22,9 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="col-sm-2 control-label" for="age_kara" onChange="ageChange()">対象年齢</label>
+		<label class="col-sm-2 control-label" for="age_kara">対象年齢</label>
 		<div class="col-sm-2">
-			<select class="form-control" id="age_kara" >
+			<select class="form-control" id="age_kara" onChange="ageChange()">
 				<option value="999" selected>すべて</option>
 				<option value="0">0歳</option>
 				<option value="1">1歳</option>
@@ -305,6 +306,7 @@
 	</div>
 	</div>
 	<div class="panel panel-default">
+		<div class="panel-heading">送信情報</div>
 		<div class="panel-body">
 			<form class="form-horizontal">
 				<div class="form-group">
