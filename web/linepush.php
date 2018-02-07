@@ -11,16 +11,18 @@
 <body>
 <div id="header"></div>
 <div class="container">
+	<div class="panel panel-default">
+	<div class="panel-body">
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="taisho">送信対象者数</label>
 		<div class="col-sm-2">
-			<input class="form-control" id="taisho" >
+			<input class="form-control" id="taisho" readonly>
 			人
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="age_kara">対象年齢</label>
-		<div class="col-sm-10">
+		<div class="col-sm-6">
 			<select class="form-control" id="age_kara" >
 				<option value="999" selected>すべて</option>
 				<option value="0">0歳</option>
@@ -272,6 +274,8 @@
 			</select>
 		</div>
 	</div>
+	</div>
+	</div>
 </div>
 <div class="container" align="center">
 	<input id="btn_del" type="button" class="btn btn-default" value="送信" onclick="send()">
@@ -279,8 +283,7 @@
 </body>
 <script>
 $(function(){
-
-
+	$("#header").load("header.html");
 });
 
 </script>
