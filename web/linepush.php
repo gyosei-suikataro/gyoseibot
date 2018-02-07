@@ -13,6 +13,7 @@
 <div class="container">
 	<div class="panel panel-default">
 	<div class="panel-body">
+	<form class="form-horizontal">
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="taisho">送信対象者数</label>
 		<div class="col-sm-2">
@@ -274,6 +275,7 @@
 			</select>
 		</div>
 	</div>
+	</form>
 	</div>
 	</div>
 </div>
