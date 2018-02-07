@@ -3,6 +3,7 @@
 <head>
 <meta charset='utf-8'>
 <meta http-equiv="x-ua-compatible" content="IE=9" >
+<meta http-equiv="x-ua-compatible" content="IE=EmulateIE9" >
 <title>チャットボットテスト</title>
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
