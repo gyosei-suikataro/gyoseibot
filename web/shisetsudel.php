@@ -34,6 +34,7 @@ if ($link) {
 		if (!$result) {
 			error_log("削除に失敗しました。".pg_last_error());
 			$delresult = false;
+			break;
 		}
 	}
 

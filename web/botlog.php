@@ -180,28 +180,25 @@ function drow() {
 		alert("削除する行を選択してください");
 		return;
 	}
-	var successFlg = true;
 	var myRet = confirm("選択行を削除しますか？");
 	if ( myRet == true ){
-		for (var i = 0; i < rowIds.length; i++){
-			$.ajax({
-				type: "POST",
-				url: "botlogdel.php",
-				data: "no=" + rowIds[i],
-			}).then(
-				function(){
-				},
-				function(){
-					successFlg = false;
-				}
-			);
-		}
-		if( successFlg == true){
-			alert("削除しました");
-			location.reload();
-		}else{
-			alert("削除できませんでした");
-		}
+		$.ajax({
+			type: "POST",
+			url: "botlogdel.php",
+			data:{
+				"no" : rowIds
+			}
+		}).done(function (response) {
+			result = JSON.parse(response);
+			if(result == "OK"){
+				alert("削除しました");
+				location.reload();
+			}else{
+				alert("削除できませんでした");
+			}
+	    }).fail(function () {
+	        alert("削除できませんでした");
+	    });
 	}
 }
 

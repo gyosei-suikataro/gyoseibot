@@ -257,27 +257,6 @@ function drow() {
 	var successFlg = true;
 	var myRet = confirm("選択行を削除しますか？");
 	if ( myRet == true ){
-		/*
-		for (var i = 0; i < rowIds.length; i++){
-			$.ajax({
-				type: "POST",
-				url: "shisetsudel.php",
-				data: "id=" + rowIds[i],
-			}).then(
-				function(){
-				},
-				function(){
-					successFlg = false;
-				}
-			);
-		}
-		if( successFlg == true){
-			alert("削除しました");
-			location.reload();
-		}else{
-			alert("削除できませんでした");
-		}
-		*/
 		$.ajax({
 			type: "POST",
 			url: "shisetsudel.php",
