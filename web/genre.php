@@ -238,12 +238,12 @@ function drow() {
 	}
 	alert("削除前" + idarray);
 	g1array.forEach(function(v, i){
-		idarray.forEach(function(vv, ii){
+		for (var ii = idarray.length - 1; ii >= 0; ii--) {
 			var aos = vv.split(".");
 			if(aos[0] == v){
 				idarray.splice(ii,1);
 			}
-		})
+		}
 	});
 	alert("削除後" + idarray);
 	/*
