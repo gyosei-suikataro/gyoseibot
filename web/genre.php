@@ -241,7 +241,9 @@ function drow() {
 		for (var ii = idarray.length - 1; ii >= 0; ii--) {
 			var aos = vv.split(".");
 			if(aos[0] == v){
-				idarray.splice(ii,1);
+				if(aos[1] > 0){
+					idarray.splice(ii,1);
+				}
 			}
 		}
 	});
