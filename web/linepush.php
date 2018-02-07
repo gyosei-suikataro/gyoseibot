@@ -281,7 +281,7 @@
 		<label class="col-sm-2 control-label" for="sex">対象性別</label>
 		<div class="col-sm-2">
 			<select class="form-control" id="sex" >
-				<option value="0" selected>全て</option>
+				<option value="0" selected>すべて</option>
 				<option value="1">男性</option>
 				<option value="2">女性</option>
 			</select>
