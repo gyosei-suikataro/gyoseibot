@@ -18,12 +18,12 @@
 		<label class="col-sm-2 control-label" for="taisho">送信対象者数</label>
 		<div class="col-sm-2">
 			<input class="form-control" id="taisho" readonly>
-			人
+			<label for="taisho">人</label>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="age_kara">対象年齢</label>
-		<div class="col-sm-6">
+		<div class="col-sm-2">
 			<select class="form-control" id="age_kara" >
 				<option value="999" selected>すべて</option>
 				<option value="0">0歳</option>
@@ -148,7 +148,11 @@
 				<option value="119">119歳</option>
 				<option value="120">120歳</option>
 			</select>
+		</div>
+		<div class="col-sm-1">
 			<label id="age_kigo" style="display:none">～</label>
+		</div>
+		<div class="col-sm-2">
 			<select class="form-control" id="age_made" style="display:none">
 				<option value="999" selected>すべて</option>
 				<option value="0">0歳</option>
@@ -272,6 +276,29 @@
 				<option value="118">118歳</option>
 				<option value="119">119歳</option>
 				<option value="120">120歳</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="sex">対象性別</label>
+		<div class="col-sm-2">
+			<select class="form-control" id="sex" >
+				<option value="0" selected>全て</option>
+				<option value="1">男性</option>
+				<option value="2">女性</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" for="region">対象地域</label>
+		<div class="col-sm-2">
+			<select class="form-control" id="region" >
+				<option value="000" selected>すべて</option>
+				<option value="001">東地区</option>
+				<option value="002">西地区</option>
+				<option value="003">中地区</option>
+				<option value="004">南地区</option>
+				<option value="005">北地区</option>
 			</select>
 		</div>
 	</div>
