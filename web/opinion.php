@@ -98,7 +98,10 @@ if ($link) {
 }
 
 ?>
-<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#shosaiDialog" value="モーダル表示" />
+<div class="container" align="center">
+	<input id="btn_del" type="button" class="btn btn-default" value="選択行の削除" onclick="drow()">
+	<input id="btn_modal" type="button" style="display:none" data-toggle="modal"  data-target="#shosaiDialog" value="モーダル表示" />
+</div>
 </div>
 <div class="modal" id="shosaiDialog"  tabindex="-1">
 	<div class="modal-dialog">
@@ -222,11 +225,33 @@ $(window).load(function () { //全ての読み込みが完了したら実行
 	  $('#wrap').css('display', 'block');
 });
 
-/*
-function detailwin(date,sex,age,sadness,joy,fear,disgust,anger,opinion){
-	alert(date + "/" + sex + "/" + age);
+function drow() {
+	if(rowIds.length == 0){
+		alert("削除する行を選択してください");
+		return;
+	}
+	var myRet = confirm("選択行を削除しますか？");
+	if ( myRet == true ){
+		$.ajax({
+			type: "POST",
+			url: "opiniondel.php",
+			data:{
+				"no" : rowIds
+			}
+		}).done(function (response) {
+			result = JSON.parse(response);
+			if(result == "OK"){
+				alert("削除しました");
+				location.reload();
+			}else{
+				alert("削除できませんでした");
+			}
+	    }).fail(function () {
+	        alert("削除できませんでした");
+	    });
+	}
 }
-*/
+
 function detailwin(value){
 	document.getElementById("btn_modal").click();
 	for (var i = 0; i < dbvalue.length; i++){
@@ -235,75 +260,8 @@ function detailwin(value){
 			modal_mod(i);
 		}
 	}
-	/*
-	for (var i = 0; i < dbvalue.length; i++){
-		if(dbvalue[i][0] == value){
-			// 表示するウィンドウのサイズ
-			var w_size=900;
-			var h_size=400;
-			// 表示するウィンドウの位置
-			var l_position=Number((window.screen.width-w_size)/2);
-			var t_position=Number((window.screen.height-h_size)/2);
-
-		    myWin = window.open("" , "detailwindow" , 'width='+w_size+', height='+h_size+', left='+l_position+', top='+t_position); // ウィンドウを開く
-
-		    myWin.document.open();
-		    myWin.document.write( "<html>" );
-		    myWin.document.write( "<head>" );
-		    myWin.document.write( "<title>", "詳細" , "</title>" );
-		    myWin.document.write( "<link href='css/common.css' rel='stylesheet' />" );
-		    myWin.document.write( "<link href='css/bootstrap.css' rel='stylesheet' />" );
-		    myWin.document.write( "</head>" );
-		    myWin.document.write( "<body style='margin:10px;padding:10px'>" );
-		    var idate = dbvalue[i][1].substr(0,4) + "/" + dbvalue[i][1].substr(4,2) + "/" + dbvalue[i][1].substr(6,2) + " " + dbvalue[i][1].substr(8,2) + ":" + dbvalue[i][1].substr(10,2);
-		    myWin.document.write( "<p style='display:inline;'>　　日時　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + idate + "'>" );
-		    myWin.document.write( "<br>" );
-		    var sex = "";
-		    if(dbvalue[i][2] == 1){
-			    sex = "男性";
-		    }
-		    if(dbvalue[i][2] == 2){
-			    sex = "女性";
-		    }
-		    myWin.document.write( "<p style='display:inline;'>　　性別　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + sex + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<p style='display:inline;'>　　年齢　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + dbvalue[i][3] + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<p style='display:inline;'>　悲しみ　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + dbvalue[i][5] + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<p style='display:inline;'>　　喜び　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + dbvalue[i][6] + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<p style='display:inline;'>　　恐れ　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + dbvalue[i][7] + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<p style='display:inline;'>　　嫌悪　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + dbvalue[i][8] + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<p style='display:inline;'>　　怒り　</p>" );
-		    myWin.document.write( "<input type='text' readonly value='" + dbvalue[i][9] + "'>" );
-		    myWin.document.write( "<br>" );
-		    myWin.document.write( "<label>　ご意見　</label>" );
-		    myWin.document.write( "<textarea  readonly rows='5' cols='100' style='vertical-align:middle;'>" + dbvalue[i][4] + "</textarea>");
-		    myWin.document.write( "</body>" );
-		    myWin.document.write( "</html>" );
-		    myWin.document.close();
-
-		    myWin.onpageshow = function(){
-
-		    	var width=screen.availWidth - 600;
-		        var height=screen.availHeight - 300;
-		        myWin.moveTo(width/2, height/2);
-		    };
-		    break;
-		}
-	}
-	*/
 }
+
 function shosai_back(){
 	shosai_idx = shosai_idx - 1;
 	modal_mod(shosai_idx);
