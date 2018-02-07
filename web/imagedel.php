@@ -11,12 +11,25 @@ $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_
 $link = pg_connect($conn);
 
 //引数
-$delno = $_POST['no'];
-
+$no = $_POST['no'];
 
 if ($link) {
-	$result = pg_query("DELETE FROM logimage WHERE NO = ".$delno);
-
+	$delresult = true;
+	foreach($no as $delno){
+		$result = pg_query("DELETE FROM logimage WHERE NO = ".$delno);
+		if (!$result) {
+			error_log("削除に失敗しました。".pg_last_error());
+			$delresult = false;
+			break;
+		}
+	}
+	if($delresult){
+		echo json_encode("OK");
+	}else{
+		echo json_encode("NG");
+	}
+}else{
+	echo json_encode("NG");
 }
 
 ?>
