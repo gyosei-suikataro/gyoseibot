@@ -149,9 +149,7 @@
 				<option value="120">120歳</option>
 			</select>
 		</div>
-		<div class="col-sm-1">
-			<label id="age_kigo" style="display:none">～</label>
-		</div>
+		<label class="col-sm-1 control-label" id="age_kigo" for="age_made">～</label>
 		<div class="col-sm-2">
 			<select class="form-control" id="age_made" style="display:none">
 				<option value="999" selected>すべて</option>
