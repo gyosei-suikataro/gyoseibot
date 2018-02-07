@@ -239,7 +239,7 @@ function drow() {
 	alert("削除前" + idarray);
 	g1array.forEach(function(v, i){
 		for (var ii = idarray.length - 1; ii >= 0; ii--) {
-			var aos = vv.split(".");
+			var aos = idarray[ii].split(".");
 			if(aos[0] == v){
 				if(aos[1] > 0){
 					idarray.splice(ii,1);
