@@ -59,7 +59,7 @@ if ($link) {
 		if(!$result){
 			echo json_encode("NG");
 		}else{
-			$row = mysql_fetch_assoc($result);
+			$row = pg_fetch_assoc($result);
 			error_log("★★★★★★★★★★★★★★★★★★".$row["rows"]);
 			echo json_encode($row["rows"]);
 		}
