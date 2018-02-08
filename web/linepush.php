@@ -384,32 +384,60 @@ function taishoDisabled(bl){
 
 //対象人数の調査
 function taishocount(){
+	postController("search");
+}
+
+//ControllerにPOST
+function (para){
 	var info = document.getElementById('userinfo').value;
 	var agek = document.getElementById('age_kara').value;
 	var agem = document.getElementById('age_made').value;
 	var sex = document.getElementById('sex').value;
 	var region = document.getElementById('region').value;
+	var sendmess = document.getElementById('sendmess').value;
 	$.ajax({
 		type: "POST",
 		url: "linepushController.php",
 		data: {
-			"para" : "search",
+			"para" : "para",
 			"info" : info,
 			"agek" : agek,
 			"agem" : agem,
 			"sex" : sex,
-			"region" : region
+			"region" : region,
+			"sendmess" : sendmess
 		}
 	}).done(function (response) {
 		result = JSON.parse(response);
 		if(result == "NG"){
-			alert("対象者数を取得できませんでした");
+			if(para == "search"){
+				alert("対象者数を取得できませんでした");
+			}
+			if(para == "send"){
+			}
 		}else{
-			document.getElementById('taisho').value = result;
+			if(para == "search"){
+				document.getElementById('taisho').value = result;
+			}
+			if(para == "send"){
+			}
 		}
     }).fail(function () {
-        alert("対象者数を取得できませんでした");
+    	if(para == "search"){
+        	alert("対象者数を取得できませんでした");
+    	}
+    	if(para == "send"){
+		}
     });
+}
+
+//送信
+function send(){
+	if (document.getElementById('taisho').value == 0){
+		alert("送信対象者が存在しません");
+		return;
+	}
+	postController("send");
 }
 </script>
 </html>

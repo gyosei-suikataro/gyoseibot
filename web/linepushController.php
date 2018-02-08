@@ -64,6 +64,9 @@ if ($link) {
 			echo json_encode($row["rows"]);
 		}
 	}
+	if($para == "send"){
+		//jsonを作成し、LINEに送信
+	}
 
 }else{
 	echo json_encode("NG");
