@@ -388,7 +388,7 @@ function taishocount(){
 }
 
 //ControllerにPOST
-function (para){
+function postController(para){
 	var info = document.getElementById('userinfo').value;
 	var agek = document.getElementById('age_kara').value;
 	var agem = document.getElementById('age_made').value;
