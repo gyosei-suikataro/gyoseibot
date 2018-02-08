@@ -437,6 +437,10 @@ function send(){
 		alert("送信対象者が存在しません");
 		return;
 	}
+	if (!document.getElementById('sendmess').value.match(/\S/g)){
+		alert("送信内容が入力されていません");
+		return;
+	}
 	postController("send");
 }
 </script>
