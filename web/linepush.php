@@ -391,7 +391,7 @@ function taishocount(){
 	var region = document.getElementById('region').value;
 	$.ajax({
 		type: "POST",
-		url: "genreup.php",
+		url: "linepushController.php",
 		data: {
 			"para" : "search",
 			"info" : info,
