@@ -26,15 +26,15 @@
 		<div class="col-sm-2">
 			<select class="form-control" id="userinfo" onChange="userinfoChange()">
 				<option value="0" selected>すべて</option>
-				<option value="1">あり</option>
-				<option value="2">なし</option>
+				<option value="1">登録あり</option>
+				<option value="2">登録なし</option>
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="age_kara">対象年齢</label>
 		<div class="col-sm-2">
-			<select class="form-control" id="age_kara" onChange="ageChange()">
+			<select class="form-control" id="age_kara" onChange="agekChange()">
 				<option value="999" selected>すべて</option>
 				<option value="0">0歳</option>
 				<option value="1">1歳</option>
@@ -161,7 +161,7 @@
 		</div>
 		<label class="col-sm-1 control-label" id="age_kigo" for="age_made"style="display:none">から</label>
 		<div class="col-sm-2">
-			<select class="form-control" id="age_made" style="display:none">
+			<select class="form-control" id="age_made" style="display:none" onChange="agemkChange()">
 				<option value="999" selected>すべて</option>
 				<option value="0">0歳</option>
 				<option value="1">1歳</option>
@@ -290,7 +290,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="sex">対象性別</label>
 		<div class="col-sm-2">
-			<select class="form-control" id="sex" >
+			<select class="form-control" id="sex" onChange="sexChange()">
 				<option value="0" selected>すべて</option>
 				<option value="1">男性</option>
 				<option value="2">女性</option>
@@ -300,7 +300,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="region">対象地域</label>
 		<div class="col-sm-2">
-			<select class="form-control" id="region" >
+			<select class="form-control" id="region" onChange="regionChange()">
 				<option value="000" selected>すべて</option>
 				<option value="001">東地区</option>
 				<option value="002">西地区</option>
@@ -337,7 +337,17 @@ $(function(){
 	taishoDisabled(true);
 });
 
-function ageChange(){
+//属性登録有無チェンジ
+function userinfoChange(){
+	if(document.getElementById('userinfo').value == 1){
+		taishoDisabled(false);
+	}else{
+		taishoDisabled(true);
+	}
+}
+
+//対象年齢からチェンジ
+function agekChange(){
 	if(document.getElementById('age_kara').value == "999"){
 		document.getElementById('age_kigo').style.display = "none";
 		document.getElementById('age_made').style.display = "none";
@@ -347,12 +357,19 @@ function ageChange(){
 	}
 }
 
-function userinfoChange(){
-	if(document.getElementById('userinfo').value == 1){
-		taishoDisabled(false);
-	}else{
-		taishoDisabled(true);
-	}
+//対象年齢までチェンジ
+function agemChange(){
+
+}
+
+//対象性別チェンジ
+function agemChange(){
+
+}
+
+//対象地域チェンジ
+function regionChange(){
+
 }
 
 function taishoDisabled(bl){
@@ -360,6 +377,36 @@ function taishoDisabled(bl){
 	document.getElementById('age_made').disabled = bl;
 	document.getElementById('sex').disabled = bl;
 	document.getElementById('region').disabled = bl;
+}
+
+//対象人数の調査
+function taishocount(){
+	var info = document.getElementById('userinfo').value;
+	var agek = document.getElementById('age_kara').value;
+	var agem = document.getElementById('age_made').value;
+	var sex = document.getElementById('sex').value;
+	var region = document.getElementById('region').value;
+	$.ajax({
+		type: "POST",
+		url: "genreup.php",
+		data: {
+			"para" : "search",
+			"info" : info,
+			"agek" : agek,
+			"agem" : agem,
+			"sex" : sex,
+			"region" : region
+		}
+	}).done(function (response) {
+		result = JSON.parse(response);
+		if(result == "NG"){
+			alert("対象者数を取得できませんでした");
+		}else{
+			document.getElementById('taisho').value = result
+		}
+    }).fail(function () {
+        alert("対象者数を取得できませんでした");
+    });
 }
 </script>
 </html>
