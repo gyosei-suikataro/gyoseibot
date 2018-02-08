@@ -405,7 +405,7 @@ function taishocount(){
 		if(result == "NG"){
 			alert("対象者数を取得できませんでした");
 		}else{
-			document.getElementById('taisho').value = result
+			document.getElementById('taisho').value = result;
 		}
     }).fail(function () {
         alert("対象者数を取得できませんでした");
