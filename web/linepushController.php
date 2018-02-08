@@ -21,7 +21,7 @@ $region= $_POST['region'];
 error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 error_log("para:".$para." info:".$info." agek:".$agek." agem:".$agem." sex:".$sex." region:".$region);
 
-$query = "SELECT COUNT(*) FROM userinfo";
+$query = "SELECT COUNT(*) AS raws FROM userinfo";
 $queryWhere = "";
 
 if ($link) {
@@ -29,7 +29,7 @@ if ($link) {
 		switch ($info) {
 			//全て
 			case 0:
-				$result = pg_query("SELECT COUNT(*) FROM userinfo");
+				$result = pg_query("SELECT COUNT(*) AS raws FROM userinfo");
 				break;
 			//属性登録あり
 			case 1:
@@ -53,14 +53,15 @@ if ($link) {
 				break;
 			//属性登録なし
 			case 2:
-				$result = pg_query("SELECT COUNT(*) FROM userinfo WHERE sex = '0' AND age = 999 AND region = '000'");
+				$result = pg_query("SELECT COUNT(*) AS raws FROM userinfo WHERE sex = '0' AND age = 999 AND region = '000'");
 				break;
 		}
 		if(!$result){
 			echo json_encode("NG");
 		}else{
-			error_log("★★★★★★★★★★★★★★★★★★".$result);
-			echo json_encode($result);
+			$row = mysql_fetch_assoc($result);
+			error_log("★★★★★★★★★★★★★★★★★★".$row["rows"]);
+			echo json_encode($row["rows"]);
 		}
 	}
 
