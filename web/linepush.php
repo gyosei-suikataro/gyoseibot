@@ -399,7 +399,7 @@ function postController(para){
 		type: "POST",
 		url: "linepushController.php",
 		data: {
-			"para" : "para",
+			"para" : para,
 			"info" : info,
 			"agek" : agek,
 			"agem" : agem,
