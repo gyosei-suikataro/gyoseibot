@@ -59,6 +59,7 @@ if ($link) {
 		if(!$result){
 			echo json_encode("NG");
 		}else{
+			error_log("★★★★★★★★★★★★★★★★★★".$result);
 			echo json_encode($result);
 		}
 	}
