@@ -16,7 +16,8 @@ $user = $_POST['user'];
 //error_log("user:".$user." age:".$age." sex:".$sex." region:".$region);
 
 if ($link) {
-	$result = pg_query("DELETE FROM userinfo WHERE userid = '{$user}'");
+	//$result = pg_query("DELETE FROM userinfo WHERE userid = '{$user}'");
+	$result = pg_query("UPDATE userinfo SET  sex = '0', age = 999 , region = '000' WHERE userid = '{$user}'");
 }
 
 
