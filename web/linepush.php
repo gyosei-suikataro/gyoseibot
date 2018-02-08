@@ -335,6 +335,7 @@
 $(function(){
 	$("#header").load("header.html");
 	taishoDisabled(true);
+	taishocount();
 });
 
 //属性登録有無チェンジ
@@ -344,6 +345,7 @@ function userinfoChange(){
 	}else{
 		taishoDisabled(true);
 	}
+	taishocount();
 }
 
 //対象年齢からチェンジ
@@ -355,21 +357,22 @@ function agekChange(){
 		document.getElementById('age_kigo').style.display = "block";
 		document.getElementById('age_made').style.display = "block";
 	}
+	taishocount();
 }
 
 //対象年齢までチェンジ
 function agemChange(){
-
+	taishocount();
 }
 
 //対象性別チェンジ
 function agemChange(){
-
+	taishocount();
 }
 
 //対象地域チェンジ
 function regionChange(){
-
+	taishocount();
 }
 
 function taishoDisabled(bl){
