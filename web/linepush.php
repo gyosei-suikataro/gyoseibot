@@ -22,6 +22,16 @@
 		</div>
 	</div>
 	<div class="form-group">
+		<label class="col-sm-2 control-label" for="userinfo">属性登録有無</label>
+		<div class="col-sm-2">
+			<select class="form-control" id="userinfo" onChange="userinfoChange()">
+				<option value="0" selected>すべて</option>
+				<option value="1">あり</option>
+				<option value="2">なし</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
 		<label class="col-sm-2 control-label" for="age_kara">対象年齢</label>
 		<div class="col-sm-2">
 			<select class="form-control" id="age_kara" onChange="ageChange()">
@@ -324,6 +334,7 @@
 <script>
 $(function(){
 	$("#header").load("header.html");
+	taishoDisabled(true);
 });
 
 function ageChange(){
@@ -334,6 +345,21 @@ function ageChange(){
 		document.getElementById('age_kigo').style.display = "block";
 		document.getElementById('age_made').style.display = "block";
 	}
+}
+
+function userinfoChange(){
+	if(document.getElementById('userinfo').value == 1){
+		taishoDisabled(false);
+	}else{
+		taishoDisabled(true);
+	}
+}
+
+function taishoDisabled(bl){
+	document.getElementById('age_kara').disabled = bl;
+	document.getElementById('age_made').disabled = bl;
+	document.getElementById('sex').disabled = bl;
+	document.getElementById('region').disabled = bl;
 }
 </script>
 </html>
