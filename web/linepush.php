@@ -161,7 +161,7 @@
 		</div>
 		<label class="col-sm-1 control-label" id="age_kigo" for="age_made"style="display:none">から</label>
 		<div class="col-sm-2">
-			<select class="form-control" id="age_made" style="display:none" onChange="agemkChange()">
+			<select class="form-control" id="age_made" style="display:none" onChange="agemChange()">
 				<option value="999" selected>すべて</option>
 				<option value="0">0歳</option>
 				<option value="1">1歳</option>
@@ -366,7 +366,7 @@ function agemChange(){
 }
 
 //対象性別チェンジ
-function agemChange(){
+function sexChange(){
 	taishocount();
 }
 
@@ -405,7 +405,6 @@ function taishocount(){
 		if(result == "NG"){
 			alert("対象者数を取得できませんでした");
 		}else{
-			alert(result);
 			document.getElementById('taisho').value = result;
 		}
     }).fail(function () {
