@@ -21,7 +21,7 @@ $region= $_POST['region'];
 error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
 error_log("para:".$para." info:".$info." agek:".$agek." agem:".$agem." sex:".$sex." region:".$region);
 
-$query = "SELECT COUNT(*) FROM userinfo"
+$query = "SELECT COUNT(*) FROM userinfo";
 $queryWhere = "";
 
 if ($link) {
@@ -47,7 +47,7 @@ if ($link) {
 					queryadd("region = '".$region."'");
 				}
 				if($queryWhere != ""){
-					$query = $query." WHERE ".$queryWhere
+					$query = $query." WHERE ".$queryWhere;
 				}
 				error_log("★★★★★★★★★★★★★★★★★★".$query);
 				$result = pg_query($query);
@@ -71,9 +71,9 @@ if ($link) {
 function queryadd($st){
 	global $queryWhere;
 	if($queryWhere != ""){
-		$queryWhere = $queryWhere." AND ".$st
+		$queryWhere = $queryWhere." AND ".$st;
 	}else{
-		$queryWhere = $st
+		$queryWhere = $st;
 	}
 }
 
