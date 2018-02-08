@@ -18,7 +18,8 @@ $agem = $_POST['agem'];
 $sex = $_POST['sex'];
 $region= $_POST['region'];
 
-//error_log("user:".$user." age:".$age." sex:".$sex." region:".$region);
+error_log("★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
+error_log("para:".$para." info:".$info." agek:".$agek." agem:".$agem." sex:".$sex." region:".$region);
 
 $query = "SELECT COUNT(*) FROM userinfo"
 $queryWhere = "";
