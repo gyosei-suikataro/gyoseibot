@@ -25,7 +25,6 @@ $query = "SELECT COUNT(*) FROM userinfo";
 $queryWhere = "";
 
 if ($link) {
-	対象数検索
 	if($para == "search"){
 		switch ($info) {
 			//全て
