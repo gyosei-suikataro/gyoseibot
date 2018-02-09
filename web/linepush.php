@@ -6,6 +6,7 @@
 <link href="css/common.css" rel="stylesheet" />
 <link href="css/bootstrap.css" rel="stylesheet" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script>
+<script src="bootbox.min.js"></script>
 
 </head>
 <body>
@@ -434,7 +435,11 @@ function postController(para){
 //送信
 function send(){
 	if (document.getElementById('taisho').value == 0){
-		alert("送信対象者が存在しません");
+		//alert("送信対象者が存在しません");
+		bootbox.alert({
+			message: "送信対象者が存在しません",
+			size: 'small'
+		});
 		return;
 	}
 	if (!document.getElementById('sendmess').value.match(/\S/g)){
@@ -449,7 +454,7 @@ function send(){
 	}
 	mess = mess + "\n　　　対象性別：" + document.getElementById('sex').options[document.getElementById('sex').selectedIndex].text;
 	mess = mess + "\n　　　対象地域：" + document.getElementById('region').options[document.getElementById('region').selectedIndex].text;
-	mess = mess + "\n\n上記の条件に該当する" + document.getElementById('taisho').value + "にメッセージを送信しますか？";
+	mess = mess + "\n\n上記の条件に該当する" + document.getElementById('taisho').value + "人にメッセージを送信しますか？";
 
 	myRet = confirm(mess);
 	if ( myRet == true ){
