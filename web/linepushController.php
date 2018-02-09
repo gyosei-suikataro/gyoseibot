@@ -51,7 +51,7 @@ if ($link) {
 			}
 			$uids = rtrim($uids, ",") + "]";
 			error_log("★★★★★★★★★★★★★★★★★★".$uids);
-			$response_format_text = {
+			$response_format_text = [
 					"to" => $uids,
 					"messages" => [
 							{
@@ -59,7 +59,7 @@ if ($link) {
 								"text" => $sendmess
 							}
 					]
-			};
+			];
 			$ch = curl_init("https://api.line.me/v2/bot/message/multicast");
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
