@@ -441,14 +441,14 @@ function send(){
 		alert("送信内容が入力されていません");
 		return;
 	}
-	var mess = "【送信対象】\n属性登録有無：" + document.getElementById('userinfo').text;
+	var mess = "【送信対象】\n　属性登録有無：" + document.getElementById('userinfo').options[document.getElementById('userinfo').selectedIndex].text;
 	if(document.getElementById('age_kara').value == 0){
-		mess = mess + "\n対象年齢：" + document.getElementById('age_kara').text;
+		mess = mess + "\n　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text;
 	}else{
-		mess = mess + "\n対象年齢：" + document.getElementById('age_kara').text + "から" + document.getElementById('age_made').text;
+		mess = mess + "\n　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text + "から" + document.getElementById('age_made').options[document.getElementById('age_made').selectedIndex].text;
 	}
-	mess = mess + "\n対象性別：" + document.getElementById('sex').text;
-	mess = mess + "\n対象地域：" + document.getElementById('region').text;
+	mess = mess + "\n　　　対象性別：" + document.getElementById('sex').options[document.getElementById('sex').selectedIndex].text;
+	mess = mess + "\n　　　対象地域：" + document.getElementById('region').options[document.getElementById('region').selectedIndex].text;
 	mess = mess + "\n\n上記の条件に該当する" + document.getElementById('taisho').value + "にメッセージを送信しますか？";
 
 	myRet = confirm(mess);
