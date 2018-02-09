@@ -442,7 +442,7 @@ function send(){
 		return;
 	}
 	var mess = "【送信対象】\n　属性登録有無：" + document.getElementById('userinfo').options[document.getElementById('userinfo').selectedIndex].text;
-	if(document.getElementById('age_kara').value == 0){
+	if(document.getElementById('age_kara').value == "0"){
 		mess = mess + "\n　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text;
 	}else{
 		mess = mess + "\n　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text + "から" + document.getElementById('age_made').options[document.getElementById('age_made').selectedIndex].text;
