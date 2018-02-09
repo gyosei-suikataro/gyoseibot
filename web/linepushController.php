@@ -47,7 +47,7 @@ if ($link) {
 		}else{
 			$uids = "[";
 			while ($row = pg_fetch_row($result)) {
-				$uids = $uids + """" + $row[0] + """,";
+				$uids = $uids + "\"" + $row[0] + "\",";
 			}
 			$uids = rtrim($uids, ",") + "]";
 			error_log("★★★★★★★★★★★★★★★★★★".$uids);
