@@ -441,7 +441,20 @@ function send(){
 		alert("送信内容が入力されていません");
 		return;
 	}
-	postController("send");
+	var mess = "【送信対象】\n属性登録有無：" + document.getElementById('userinfo').text;
+	if(document.getElementById('age_kara').value == 0){
+		mess = mess + "\n対象年齢：" + document.getElementById('age_kara').text;
+	}else{
+		mess = mess + "\n対象年齢：" + document.getElementById('age_kara').text + "から" + document.getElementById('age_made').text;
+	}
+	mess = mess + "\n対象性別：" + document.getElementById('sex').text;
+	mess = mess + "\n対象地域：" + document.getElementById('region').text;
+	mess = mess + "\n\n上記の条件に該当する" + document.getElementById('taisho').value + "にメッセージを送信しますか？";
+
+	myRet = confirm(mess);
+	if ( myRet == true ){
+		postController("send");
+	}
 }
 </script>
 </html>
