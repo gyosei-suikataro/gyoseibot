@@ -448,15 +448,15 @@ function send(){
 		});
 		return;
 	}
-	var mess = "【送信対象】\n　属性登録有無：" + document.getElementById('userinfo').options[document.getElementById('userinfo').selectedIndex].text;
+	var mess = "【送信対象】<br>　属性登録有無：" + document.getElementById('userinfo').options[document.getElementById('userinfo').selectedIndex].text;
 	if(document.getElementById('age_kara').value == "999"){
-		mess = mess + "\n　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text;
+		mess = mess + "<br>　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text;
 	}else{
-		mess = mess + "\n　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text + "から" + document.getElementById('age_made').options[document.getElementById('age_made').selectedIndex].text;
+		mess = mess + "<br>　　　対象年齢：" + document.getElementById('age_kara').options[document.getElementById('age_kara').selectedIndex].text + "から" + document.getElementById('age_made').options[document.getElementById('age_made').selectedIndex].text;
 	}
-	mess = mess + "\n　　　対象性別：" + document.getElementById('sex').options[document.getElementById('sex').selectedIndex].text;
-	mess = mess + "\n　　　対象地域：" + document.getElementById('region').options[document.getElementById('region').selectedIndex].text;
-	mess = mess + "\n\n上記の条件に該当する" + document.getElementById('taisho').value + "人にメッセージを送信しますか？";
+	mess = mess + "<br>　　　対象性別：" + document.getElementById('sex').options[document.getElementById('sex').selectedIndex].text;
+	mess = mess + "<br>　　　対象地域：" + document.getElementById('region').options[document.getElementById('region').selectedIndex].text;
+	mess = mess + "<br><br>上記の条件に該当する" + document.getElementById('taisho').value + "人にメッセージを送信しますか？";
 
 	/*
 	myRet = confirm(mess);
@@ -475,9 +475,8 @@ function send(){
 	        }
 	    },
 	    callback: function (result) {
-	    	alert(result);
 	        if(result){
-	        	//postController("send");
+	        	postController("send");
 	        }
 	    }
 	});
