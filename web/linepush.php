@@ -435,7 +435,6 @@ function postController(para){
 //送信
 function send(){
 	if (document.getElementById('taisho').value == 0){
-		//alert("送信対象者が存在しません");
 		bootbox.alert({
 			message: "送信対象者が存在しません",
 			size: 'small'
@@ -443,7 +442,10 @@ function send(){
 		return;
 	}
 	if (!document.getElementById('sendmess').value.match(/\S/g)){
-		alert("送信内容が入力されていません");
+		bootbox.alert({
+			message: "送信内容が入力されていません",
+			size: 'small'
+		});
 		return;
 	}
 	var mess = "【送信対象】\n　属性登録有無：" + document.getElementById('userinfo').options[document.getElementById('userinfo').selectedIndex].text;
@@ -456,10 +458,29 @@ function send(){
 	mess = mess + "\n　　　対象地域：" + document.getElementById('region').options[document.getElementById('region').selectedIndex].text;
 	mess = mess + "\n\n上記の条件に該当する" + document.getElementById('taisho').value + "人にメッセージを送信しますか？";
 
+	/*
 	myRet = confirm(mess);
 	if ( myRet == true ){
 		postController("send");
 	}
+	*/
+	bootbox.confirm({
+	    message: mess,
+	    buttons: {
+	    	confirm: {
+	            label: '<i class="fa fa-check"></i> はい'
+	        },
+	        cancel: {
+	            label: '<i class="fa fa-times"></i> いいえ'
+	        }
+	    },
+	    callback: function (result) {
+	    	alert(result);
+	        if(result){
+	        	//postController("send");
+	        }
+	    }
+	});
 }
 </script>
 </html>
