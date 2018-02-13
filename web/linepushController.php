@@ -5,7 +5,7 @@ $db_host =  getenv('DB_HOST');
 $db_name =  getenv('DB_NAME');
 $db_pass =  getenv('DB_PASS');
 $db_user =  getenv('DB_USER');
-$accessToken = getenv('LINE_CHANNEL_ACCESS_TOKEN');
+$accessToken = getenv('LINE_CHANNEL_ACCESS_TOKEN3');
 
 //DB接続
 $conn = "host=".$db_host." dbname=".$db_name." user=".$db_user." password=".$db_pass;
