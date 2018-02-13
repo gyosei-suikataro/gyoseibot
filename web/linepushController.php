@@ -45,30 +45,18 @@ if ($link) {
 		if(!$result){
 			echo json_encode("NG");
 		}else{
-			$uids = "[";
+			$uids = [];
 			while ($row = pg_fetch_row($result)) {
-				$uids = $uids."\"".trim($row[0])."\",";
+				//$uids = $uids."\"".trim($row[0])."\",";
+				array_push($uids,trim($row[0]))
 			}
 			error_log("★★★★★★★★★★★★★★★★★★".$uids);
-			$uids = rtrim($uids, ",")."]";
-			error_log("★★★★★★★★★★★★★★★★★★".$uids);
-			/*
 			$response_format_text = [
 					"to" => $uids,
 					"messages" => [
 							[
 								"type" => "text",
 								"text" => $sendmess
-							]
-					]
-			];
-			*/
-			$response_format_text = [
-					"to" => ["Uafb35684e520a14524c89f0a853d0fa3"],
-					"messages" => [
-							[
-									"type" => "text",
-									"text" => $sendmess
 							]
 					]
 			];
