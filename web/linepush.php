@@ -412,22 +412,40 @@ function postController(para){
 		result = JSON.parse(response);
 		if(result == "NG"){
 			if(para == "search"){
-				alert("対象者数を取得できませんでした");
+				bootbox.alert({
+					message: "対象者数を取得できませんでした",
+					size: 'small'
+				});
 			}
 			if(para == "send"){
+				bootbox.alert({
+					message: "送信できませんでした",
+					size: 'small'
+				});
 			}
 		}else{
 			if(para == "search"){
 				document.getElementById('taisho').value = result;
 			}
 			if(para == "send"){
+				bootbox.alert({
+					message: "送信しました",
+					size: 'small'
+				});
 			}
 		}
     }).fail(function () {
     	if(para == "search"){
-        	alert("対象者数を取得できませんでした");
+    		bootbox.alert({
+				message: "対象者数を取得できませんでした",
+				size: 'small'
+			});
     	}
     	if(para == "send"){
+    		bootbox.alert({
+				message: "送信できませんでした",
+				size: 'small'
+			});
 		}
     });
 }
