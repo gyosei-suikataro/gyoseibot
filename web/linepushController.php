@@ -54,10 +54,10 @@ if ($link) {
 			$response_format_text = [
 					"to" => $uids,
 					"messages" => [
-							{
+							[
 								"type" => "text",
 								"text" => $sendmess
-							}
+							]
 					]
 			];
 			$ch = curl_init("https://api.line.me/v2/bot/message/multicast");
