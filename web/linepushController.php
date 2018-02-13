@@ -52,12 +52,23 @@ if ($link) {
 			error_log("★★★★★★★★★★★★★★★★★★".$uids);
 			$uids = rtrim($uids, ",")."]";
 			error_log("★★★★★★★★★★★★★★★★★★".$uids);
+			/*
 			$response_format_text = [
 					"to" => $uids,
 					"messages" => [
 							[
 								"type" => "text",
 								"text" => $sendmess
+							]
+					]
+			];
+			*/
+			$response_format_text = [
+					"to" => ["Uafb35684e520a14524c89f0a853d0fa3"],
+					"messages" => [
+							[
+									"type" => "text",
+									"text" => $sendmess
 							]
 					]
 			];
