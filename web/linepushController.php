@@ -80,7 +80,7 @@ if ($link) {
 }
 
 function readDB(){
-	global $info, $query, $agek, $sex, $region, $queryWhere, $result;
+	global $info, $query, $agek, $agem, $sex, $region, $queryWhere, $result;
 	switch ($info) {
 		//全て
 		case 0:
