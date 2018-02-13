@@ -46,12 +46,14 @@ if ($link) {
 			echo json_encode("NG");
 		}else{
 			$uids = "[";
+			error_log("★★★★★★★★★★★★★★★★★★".$uids);
 			while ($row = pg_fetch_row($result)) {
+				error_log("★★★★★★★★★★★★★★★★★★".$row[0]);
 				$uids = $uids + "\"" + $row[0] + "\",";
 			}
 			error_log("★★★★★★★★★★★★★★★★★★".$uids);
 			$uids = rtrim($uids, ",") + "]";
-			error_log("★★★★★★★★★★★★★★★★★★".$uids);
+			error_log("★★★★★★★★★★★★★★★★★★".$uids[0]);
 			$response_format_text = [
 					"to" => $uids,
 					"messages" => [
