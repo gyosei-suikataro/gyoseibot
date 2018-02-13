@@ -47,7 +47,7 @@ if ($link) {
 		}else{
 			$uids = "[";
 			while ($row = pg_fetch_row($result)) {
-				$uids = $uids."\"".$row[0]."\",";
+				$uids = $uids."\"".trim($row[0])."\",";
 			}
 			error_log("★★★★★★★★★★★★★★★★★★".$uids);
 			$uids = rtrim($uids, ",")."]";
@@ -71,8 +71,19 @@ if ($link) {
 					'Authorization: Bearer ' . $accessToken
 			));
 			$result = curl_exec($ch);
+			if(!curl_errno($ch)) {
+				$info = curl_getinfo($ch);
+				error_log("★★★★★★★★★★★★★★★★★★".$info['http_code']);
+				if($info['http_code'] == "200"){
+					echo json_encode("OK");
+				}else{
+					echo json_encode("NG");
+				}
+			}else{
+				echo json_encode("NG");
+			}
+
 			curl_close($ch);
-			echo json_encode("OK");
 		}
 	}
 
