@@ -99,7 +99,7 @@ function readDB(){
 			break;
 		//属性登録あり
 		case 1:
-			queryadd("updkbn = '0'");
+			queryadd("updkbn = '1'");
 			if($agek != 999){
 				queryadd("age >= ".$agek);
 				if($agem != 999){
