@@ -23,13 +23,13 @@ $region= $_POST['region'];
 if ($link) {
 	$result = pg_query("SELECT * FROM userinfo WHERE userid = '{$user}'");
 	if (pg_num_rows($result) == 0) {
-		$sql = "INSERT INTO userinfo (userid, language, sex, age, region) VALUES ('{$user}','{$lang}','{$sex}','{$age}','{$region}')";
+		$sql = "INSERT INTO userinfo (userid, language, sex, age, region, updkbn) VALUES ('{$user}','{$lang}','{$sex}','{$age}','{$region}','1')";
 		$result_flag = pg_query($sql);
 		if (!$result_flag) {
 			error_log("インサートに失敗しました。".pg_last_error());
 		}
 	}else{
-		$sql = "UPDATE userinfo SET language = '{$lang}', sex = '{$sex}', age = '{$age}' , region = '{$region}' WHERE userid = '{$user}'";
+		$sql = "UPDATE userinfo SET language = '{$lang}', sex = '{$sex}', age = '{$age}' , region = '{$region}',updkbn = '1' WHERE userid = '{$user}'";
 		$result_flag = pg_query($sql);
 		if (!$result_flag) {
 			error_log("アップデートに失敗しました。".pg_last_error());

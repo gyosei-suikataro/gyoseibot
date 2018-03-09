@@ -54,6 +54,8 @@ $region = "000";
 $lang = "01";
 //周辺検索ジャンル
 $searchG = "";
+//属性情報有無
+$updkbn = "0";
 
 
 //DB接続
@@ -71,6 +73,7 @@ if ($link) {
 		$age = $row[4];
 		$region = $row[5];
 		$searchG = $row[7];
+		$updkbn= $row[9];
 	}
 }
 
@@ -161,7 +164,7 @@ if($shorimode == "01" or $shorimode == "00"){
 	}
 	error_log("送信データ：".$age."の".$sexN);
 	$data = array('input' => array("text" => $age."の".$sexN));
-	if($sex == "0" or $age == "999"){
+	if($updkbn== "0"){
 		$resmess = "申し訳ありませんが、先に画面下の「問い合わせメニュー」より、属性登録を選択して、年齢と性別を登録してください。";
 	}
 	if($resmess != ""){
@@ -220,7 +223,7 @@ if($shorimode != ""){
 	if ($link) {
 		$result = pg_query("SELECT userid FROM userinfo WHERE userid = '{$userID}' ");
 		if (pg_num_rows($result) == 0) {
-			$sql = "INSERT INTO userinfo (userid, sex, age, region, sposi, time) VALUES ('{$userID}','0','999','000','{$shorimode}','{$tdate}')";
+			$sql = "INSERT INTO userinfo (userid, sex, age, region, sposi, time, updkbn) VALUES ('{$userID}','0','999','000','{$shorimode}','{$tdate}','0')";
 			$result_flag = pg_query($sql);
 			if (!$result_flag) {
 				error_log("インサートに失敗しました。".pg_last_error());

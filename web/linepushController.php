@@ -97,8 +97,9 @@ function readDB(){
 		case 0:
 			$result = pg_query($query);
 			break;
-			//属性登録あり
+		//属性登録あり
 		case 1:
+			queryadd("updkbn = '0'");
 			if($agek != 999){
 				queryadd("age >= ".$agek);
 				if($agem != 999){
@@ -117,9 +118,9 @@ function readDB(){
 			error_log("★★★★★★★★★★★★★★★★★★".$query);
 			$result = pg_query($query);
 			break;
-			//属性登録なし
+		//属性登録なし
 		case 2:
-			$result = pg_query($query." WHERE sex = '0' AND age = 999 AND region = '000'");
+			$result = pg_query($query." WHERE updkbn = '0'");
 			break;
 	}
 }
