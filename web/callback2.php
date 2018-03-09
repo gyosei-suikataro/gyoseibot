@@ -4,7 +4,7 @@ date_default_timezone_set('Asia/Tokyo');
 $tdate = date("YmdHis");
 
 //環境変数の取得
-$accessToken = getenv('LINE_CHANNEL_ACCESS_TOKEN2');
+//$accessToken = getenv('LINE_CHANNEL_ACCESS_TOKEN2');
 $classfier = getenv('CLASSFIER');
 $workspace_id = getenv('CVS_WORKSPASE_ID');
 $workspace_id_ken = getenv('CVS_WORKSPASE_ID_KEN');
