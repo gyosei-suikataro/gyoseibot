@@ -124,6 +124,7 @@ if($eventType == "follow"){
 	goto lineSend;
 }
 
+
 //処理モード変更時
 if($text == "検診相談"){
 	$shorimode = "01";
